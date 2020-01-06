@@ -1,0 +1,63 @@
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import DateRangeIcon from '@material-ui/icons/DateRange';
+import SettingsIcon from '@material-ui/icons/Settings';
+import GeofenceToggleButton from './DisableGeofence';
+import NotificationToggleButton from './DisableNotifications'
+
+const useStyles = makeStyles({
+  list: {
+    width: 300,
+  },
+  fullList: {
+    width: 'auto',
+  },
+});
+
+export default function SideMenu(props) {
+  const classes = useStyles()
+
+  return (
+    <div className={classes.list}>
+         <Divider />
+      <List component="nav" aria-label="main mailbox folders"> 
+        <ListItem button>
+            <ListItemText primary="Settings" />
+            <ListItemIcon>
+              <SettingsIcon />
+            </ListItemIcon>
+          </ListItem>
+        <ListItem button>
+          <ListItemText primary="Create Notification" />
+          <ListItemIcon>
+            <NotificationsIcon />
+          </ListItemIcon>
+        </ListItem>
+        <ListItem button>
+          <ListItemText primary="All Notifications" />
+          <ListItemIcon>
+            <DateRangeIcon />
+          </ListItemIcon>
+        </ListItem>
+        <ListItem button>
+          <ListItemText primary="Disable Notifications" />
+          <ListItemIcon>
+            <NotificationToggleButton></NotificationToggleButton> 
+          </ListItemIcon>
+        </ListItem>
+        <ListItem button>
+          <ListItemText primary="Disable Geofence" />
+          <ListItemIcon>
+            <GeofenceToggleButton></GeofenceToggleButton>
+          </ListItemIcon>
+        </ListItem>
+      </List>
+    </div>
+  );
+}
