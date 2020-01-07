@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { useGoogleMap, useMap } from "../hooks/map_hook.js";
 import { useGeolocation } from "../hooks/useGeolocation.js"
 
-// const GMAPS_API_KEY = "AIzaSyAtgUlkz_-er6PiU6i3o4deGpgdxuvZXVg";
+
 const mapApiKey = process.env.REACT_APP_GMAPS_API_KEY;
 // const geocodeApiKey = REACT_APP_GEOCODE_KEY;
 
