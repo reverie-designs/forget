@@ -34,6 +34,27 @@
   width: 80%;
   margin: auto;
 }
+
+.rbc-event {
+  background-color: #282c34 !important;
+}
+.rbc-event.rbc-selected {
+  background-color: red !important;
+}
+
+// .notification_create{
+//   background-color: rosybrown;
+//   width: 80%;
+//   margin: auto;
+// }
+
+// .category__item{
+//   background-color: white;
+//   border-radius: 5px;
+//   // display: inline;
+//   width: 100px;
+//   height: 100px;
+// }
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

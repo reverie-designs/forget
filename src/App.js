@@ -6,9 +6,10 @@ import { Calendar, momentLocalizer } from 'react-big-calendar'
 import moment from 'moment'
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css"
 import "react-big-calendar/lib/css/react-big-calendar.css"
+// import Selectable from './selectable'
 const localizer = momentLocalizer(moment)
 
-const myEventsList = [{
+const myNotificationList = [{
   id: 0,
   title: 'All Day Event very long title',
   allDay: true,
@@ -104,7 +105,7 @@ const myEventsList = [{
   id: 13,
   title: 'Multi-day Event',
   start: new Date(2020, 3, 20, 19, 30, 0),
-  end: new Date(2020, 3, 22, 2, 0, 0),
+  end: new Date(2020, 3, 20, 19, 52, 0),
   // start: new Date(new Date(2020, 3, 20).setHours(new Date().getHours() - 3)),
   // end: new Date(new Date(2020, 3, 22).setHours(new Date().getHours() + 3))
 },
@@ -114,7 +115,36 @@ const myEventsList = [{
   start: new Date(new Date().setHours(new Date().getHours() - 3)),
   end: new Date(new Date().setHours(new Date().getHours() + 3)),
 },
+{
+  id: 14,
+  title: 'Today-Now',
+  start: new Date(new Date().setHours(new Date().getHours() - 3)),
+  end: new Date(new Date().setHours(new Date().getHours() + 3)),
+},
 ]
+
+const data = {
+  categories: {
+  "1": {
+    id: 1,
+    name: "Appointment",
+    avatar: "https://img.icons8.com/ios-filled/50/000000/appointment-scheduling.png"
+  },
+  "2": {
+    id: 2,
+    name: "Food",
+    avatar: "https://img.icons8.com/ios-filled/50/000000/tableware.png"
+  },
+  "3": {
+    id: 3,
+    name: "Pills",
+    avatar: "https://img.icons8.com/metro/26/000000/pill.png"
+  },
+}
+};
+
+
+ /* <Form categories = {data.categories}/> */
 function App() {
   return (
     <div className="App">
@@ -123,18 +153,11 @@ function App() {
         <p>
           Welcome to Forget Me Not
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
+
       <div className="CalendarBox"><Calendar
         localizer={localizer}
-        events={myEventsList}
+        events={myNotificationList}
         startAccessor="start"
         endAccessor="end"
         style={{height: 500}}
