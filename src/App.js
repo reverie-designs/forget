@@ -7,6 +7,9 @@ import moment from 'moment'
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css"
 import "react-big-calendar/lib/css/react-big-calendar.css"
 // import Selectable from './selectable'
+import NavBar from './components/NavBar';
+import SignIn from './components/SignIn';
+import HomepageCarousel from './components/HomepageCarousel/HomepageCarousel';
 const localizer = momentLocalizer(moment)
 
 const myNotificationList = [{
@@ -147,23 +150,24 @@ const data = {
  /* <Form categories = {data.categories}/> */
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Welcome to Forget Me Not
-        </p>
-      </header>
-
-      <div className="CalendarBox"><Calendar
-        localizer={localizer}
-        events={myNotificationList}
-        startAccessor="start"
-        endAccessor="end"
-        style={{height: 500}}
-      /></div>
-      
-    </div>
+    <main>
+        <div>
+            <NavBar
+            />
+            <SignIn
+            />
+            <HomepageCarousel
+            />
+          </div>
+          <div className="CalendarBox"><Calendar
+            localizer={localizer}
+            events={myNotificationList}
+            startAccessor="start"
+            endAccessor="end"
+            style={{height: 500}}
+        />
+        </div>
+     </main>  
   );
 }
 
