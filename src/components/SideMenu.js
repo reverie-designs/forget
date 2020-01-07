@@ -9,7 +9,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import DateRangeIcon from '@material-ui/icons/DateRange';
 import SettingsIcon from '@material-ui/icons/Settings';
 import GeofenceToggleButton from './DisableGeofence';
-import NotificationToggleButton from './DisableNotifications'
+import NotificationToggleButton from './DisableNotification'
 
 const useStyles = makeStyles({
   list: {
