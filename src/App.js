@@ -152,20 +152,17 @@ function App() {
   return (
     <main>
         <div>
-            <NavBar
+            <NavBar/>
+            <SignIn/>
+            <Calendar
+                      className='CalendarBox'
+                      localizer={localizer}
+                      events={myNotificationList}
+                      startAccessor="start"
+                      endAccessor="end"
+                      style={{height: 500}}
             />
-            <SignIn
-            />
-            <HomepageCarousel
-            />
-          </div>
-          <div className="CalendarBox"><Calendar
-            localizer={localizer}
-            events={myNotificationList}
-            startAccessor="start"
-            endAccessor="end"
-            style={{height: 500}}
-        />
+            <HomepageCarousel/>
         </div>
      </main>  
   );
