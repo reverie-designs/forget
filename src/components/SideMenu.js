@@ -9,7 +9,8 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import DateRangeIcon from '@material-ui/icons/DateRange';
 import SettingsIcon from '@material-ui/icons/Settings';
 import GeofenceToggleButton from './DisableGeofence';
-import NotificationToggleButton from './DisableNotification'
+import NotificationToggleButton from './DisableNotification';
+import ImageAvatars from './Avatar';
 
 const useStyles = makeStyles({
   list: {
@@ -25,6 +26,14 @@ export default function SideMenu(props) {
 
   return (
     <div className={classes.list}>
+      <ImageAvatars></ImageAvatars>
+        <div>
+          Bob Smith
+        </div>
+        <br />
+        <div>
+          bob.smith@gmail.com
+        </div>
          <Divider />
       <List component="nav" aria-label="main mailbox folders"> 
         <ListItem button>
