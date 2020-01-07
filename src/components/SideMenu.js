@@ -11,6 +11,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import GeofenceToggleButton from './DisableGeofence';
 import NotificationToggleButton from './DisableNotification';
 import ImageAvatars from './Avatar';
+import './SideMenu.scss';
 
 const useStyles = makeStyles({
   list: {
@@ -27,13 +28,8 @@ export default function SideMenu(props) {
   return (
     <div className={classes.list}>
       <ImageAvatars></ImageAvatars>
-        <div>
-          Bob Smith
-        </div>
-        <br />
-        <div>
-          bob.smith@gmail.com
-        </div>
+      <ListItemText primary="Bob Smith" />
+      <ListItemText primary="bob.smith@gmail.com" />
          <Divider />
       <List component="nav" aria-label="main mailbox folders"> 
         <ListItem button>
