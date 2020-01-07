@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from './forgetmenot.png';
+import Map from './MapComponent/component/Map';
 import './App.scss';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           Learn React
         </a>
       </header>
+      <Map/>
     </div>
   );
 }
