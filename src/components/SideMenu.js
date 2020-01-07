@@ -30,7 +30,7 @@ export default function SideMenu(props) {
       <ImageAvatars></ImageAvatars>
       <ListItemText primary="Bob Smith" />
       <ListItemText primary="bob.smith@gmail.com" />
-         <Divider />
+         <Divider></Divider>
       <List component="nav" aria-label="main mailbox folders"> 
         <ListItem button>
             <ListItemText primary="Settings" />
