@@ -2,7 +2,7 @@ import React, { useState} from 'react';
 
 import AutoRotatingCarousel from './AutoRotatingCarousel';
 import Slide from './Slide';
-import { blue, lime, cyan } from '@material-ui/core/colors';
+import { blue, cyan } from '@material-ui/core/colors';
 
 export default function HomepageCarousel() {
   
@@ -28,22 +28,22 @@ return (
     />
      <Slide
       media={<img src='https://image.flaticon.com/icons/svg/854/854878.svg' />}
-      mediaBackgroundStyle={{ backgroundColor: lime[400] }}
-      style={{ backgroundColor: lime[600] }}
+      mediaBackgroundStyle={{ backgroundColor: blue[400] }}
+      style={{ backgroundColor: blue[600] }}
       title="Current location"
       subtitle='You can also set a geofence for safety!'
     />
     <Slide
       media={<img src='https://image.flaticon.com/icons/svg/843/843220.svg' />}
-      mediaBackgroundStyle={{ backgroundColor: cyan[400] }}
-      style={{ backgroundColor: cyan[600] }}
+      mediaBackgroundStyle={{ backgroundColor: blue[400] }}
+      style={{ backgroundColor: blue[600] }}
       title='Create reminders and appointments'
       // subtitle='reminders and appointments'
     />
     <Slide
       media={<img src='https://image.flaticon.com/icons/svg/123/123392.svg' />}
-      mediaBackgroundStyle={{ backgroundColor: lime[400] }}
-      style={{ backgroundColor: lime[600] }}
+      mediaBackgroundStyle={{ backgroundColor: blue[400] }}
+      style={{ backgroundColor: blue[600] }}
       title='View all notifications you created'
       subtitle='Calendar for easy viewing'
     />
