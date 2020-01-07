@@ -20,7 +20,7 @@ const createFence = (googleObj,center,map,radius = 3,isOn = false) => {
     visible: isOn,
     editable: true,
     geodesic: true,
-    draggable: false
+    draggable: false,
   });
   // googleObj.maps.event.addListener(circle, 'radius_changed', function() {
   //   console.log(circle.getRadius());

@@ -26,9 +26,19 @@ const useMap = ({ googleMap, mapContainerRef, initialConfig, homePosition }) => 
       const m1 = createMarker(googleMap,initialConfig.center,map,baseIcon,'Current Location');
       
       const radius = 2.5
-      if (homePosition){ // needs an additioanl condiaitional to see if patient has preset radius
+      if (homePosition){ // needs an additional condiaitional to see if patient has preset radius
         loc = new googleMap.maps.LatLng(homePosition.lat, homePosition.lng);
         bounds.extend(loc);
+     
+        const m2 = createMarker(googleMap,homePosition,map,homeIcon,'Home');
+        
+        
+        const isInside = getDistance(initialConfig.center, homePosition) <= radius;
+        console.log(isInside)
+        let fence = createFence(googleMap,homePosition,map,radius,true);
+        fence.setOptions({fillColor: isInside ? '#0000FF': '#FF0000'});
+        fence.setDraggable(false)        
+
         loc = new googleMap.maps.LatLng(homePosition.lat-(radius*0.01), homePosition.lng+(radius*0.01));
         bounds.extend(loc);
         loc = new googleMap.maps.LatLng(homePosition.lat-(radius*0.01), homePosition.lng-(radius*0.01));
@@ -37,20 +47,26 @@ const useMap = ({ googleMap, mapContainerRef, initialConfig, homePosition }) => 
         bounds.extend(loc);
         loc = new googleMap.maps.LatLng(homePosition.lat+(radius*0.01), homePosition.lng-(radius*0.01));
         bounds.extend(loc);
-        const m2 = createMarker(googleMap,homePosition,map,homeIcon,'Home');
-        m2.setDraggable(true);
-        // need to link editable circle to radius
-        const isInside = getDistance(initialConfig.center, homePosition) <= radius;
-        console.log(isInside)
-        let fence = createFence(googleMap,homePosition,map,radius,true);
-        fence.setOptions({fillColor: isInside ? '#0000FF': '#FF0000'})
-        
-        // on fence size change
+        m2.setLabel({
+                    text: `Fence ${radius} km`,
+                    color: "white",
+                    fontSize: "12px",
+                    })
+        // on fence radius change
         googleMap.maps.event.addListener(fence, 'radius_changed', function() {
-          let newRadius = fence.getRadius() / 1000
+          let newRadius = Math.round(fence.getRadius() / 10)/100
           let newPosition = getDistance(initialConfig.center, homePosition) <= newRadius;
           fence.setOptions({fillColor: newPosition ? '#0000FF': '#FF0000'})
+          m2.setLabel({
+            text: `Fence ${newRadius} km`,
+            color: "white",
+            fontSize: "12px",
+            })
         });
+        
+        // googleMap.maps.event.addListener(fence, 'center_changed', () => {
+        //   fence.setCenter(homePosition);
+        // });
       };
       map.fitBounds(bounds);
       map.panToBounds(bounds); 

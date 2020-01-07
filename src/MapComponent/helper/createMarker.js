@@ -11,9 +11,10 @@ const createMarker = (googleObj,LatLng,map,markerIcon,desc) => {
     position: LatLng,
     map: map,
     icon: {
+            labelOrigin: new googleObj.maps.Point(15,45),
             url: markerIcon,
             scaledSize: new googleObj.maps.Size(30, 30)
-           }
+    }
   });
   const InfoWindow = new googleObj.maps.InfoWindow({
     content: `<div id="content">

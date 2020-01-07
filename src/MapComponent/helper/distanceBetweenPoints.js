@@ -6,9 +6,12 @@
 const rad = (x) => {
   return x * Math.PI / 180;
 };
-
+/**
+ * returns the distnace in KM between 2 coordinates
+ * @param {object} p1 - point one coordinates in Lat and Lng
+ * @param {object} p2 - point two coordinates in Lat and Lng
+ */
 export default function getDistance(p1, p2) {
-  // var R = 6378137; // Earth’s mean radius in meters
   const R = 6372.8 // approx Earth's radius of the average circumference
   const dLat = rad(p1.lat - p2.lat);
   const dLong = rad(p2.lng - p1.lng);
