@@ -3,6 +3,7 @@ import logo from './forgetmenot.png';
 import './App.scss';
 import NavBar from './components/NavBar';
 import SignIn from './components/SignIn';
+import HomepageCarousel from './components/HomepageCarousel/HomepageCarousel';
 
 function App() {
   return (
@@ -10,6 +11,8 @@ function App() {
         <NavBar
         />
         <SignIn
+        />
+        <HomepageCarousel
         />
       </div>
   );
