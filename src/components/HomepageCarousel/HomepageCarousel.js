@@ -3,7 +3,7 @@ import React, { useState} from 'react';
 import AutoRotatingCarousel from './AutoRotatingCarousel';
 import Slide from './Slide';
 import { blue, cyan } from '@material-ui/core/colors';
-import { ElderlyCouple } from './elderly.png'
+import ElderlyCouple from './elderly.png'
 
 export default function HomepageCarousel() {
   
