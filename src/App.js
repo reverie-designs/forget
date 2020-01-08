@@ -11,6 +11,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css"
 import NavBar from './components/NavBar';
 import SignIn from './components/SignIn';
 import HomepageCarousel from './components/HomepageCarousel/HomepageCarousel';
+import PatientSettings from './components/PatientSettings';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 // import CalendarView from './components/Notification/CalendarView'
@@ -160,6 +161,7 @@ function App() {
     <main>
         <div>
             <NavBar/>
+            <PatientSettings/>
             <SignIn/>
             <section className="notification-box">
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
