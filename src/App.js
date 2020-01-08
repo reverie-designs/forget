@@ -11,7 +11,6 @@ function App() {
     <div>
         <NavBar
         />
-
         <SignIn
         />
         <HomepageCarousel
