@@ -10,7 +10,13 @@ import "react-big-calendar/lib/css/react-big-calendar.css"
 import NavBar from './components/NavBar';
 import SignIn from './components/SignIn';
 import HomepageCarousel from './components/HomepageCarousel/HomepageCarousel';
-const localizer = momentLocalizer(moment)
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
+// import CalendarView from './components/Notification/CalendarView'
+// import Time from './components/Notification/Time'
+// import MyButton from './components/Notification/Button'
+import Form from './components/Notification/Form'
+const localizer = momentLocalizer(moment);
 
 const myNotificationList = [{
   id: 0,
@@ -154,6 +160,16 @@ function App() {
         <div>
             <NavBar/>
             <SignIn/>
+            <section className="notification-box">
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                  <div>
+                    <Form/>
+                  </div>
+                    
+                </MuiPickersUtilsProvider>
+                
+            </section>
+            
             <Calendar
                       className='CalendarBox'
                       localizer={localizer}
