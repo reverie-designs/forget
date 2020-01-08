@@ -27,6 +27,7 @@ const Map = () => {
   const googleMap = useGoogleMap(mapApiKey);
   const mapContainerRef = useRef(null);
   useMap({ googleMap, mapContainerRef, initialConfig, homePosition });
+  // useMap({ googleMap, mapContainerRef, initialConfig, homePosition, radius, applyGeofence });
   return (
     <div
       style={{

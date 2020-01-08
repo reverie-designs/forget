@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from './forgetmenot.png';
-import Map from './MapComponent/component/Map';
+import Map from './components/MapComponent/component/Map';
 import './App.scss';
 import NavBar from './components/NavBar';
 import SignIn from './components/SignIn';
@@ -11,6 +11,7 @@ function App() {
     <div>
         <NavBar
         />
+
         <SignIn
         />
         <HomepageCarousel
@@ -20,3 +21,6 @@ function App() {
 }
 
 export default App;
+
+{/* <Map
+/> */}

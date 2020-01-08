@@ -9,7 +9,7 @@ const baseIcon = "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
 const homeIcon = "http://maps.google.com/mapfiles/ms/icons/homegardenbusiness.png"
 const lhlIcon = "https://image.flaticon.com/icons/svg/365/365009.svg"
 
-const useMap = ({ googleMap, mapContainerRef, initialConfig, homePosition }) => {
+const useMap = ({ googleMap, mapContainerRef, initialConfig, homePosition, radius, applyGeofence, }) => {
   const [map, setMap] = useState(null);
   useEffect(
     () => {
@@ -34,7 +34,7 @@ const useMap = ({ googleMap, mapContainerRef, initialConfig, homePosition }) => 
         
         
         const isInside = getDistance(initialConfig.center, homePosition) <= radius;
-        console.log(isInside)
+        
         let fence = createFence(googleMap,homePosition,map,radius,true);
         fence.setOptions({fillColor: isInside ? '#0000FF': '#FF0000'});
         fence.setDraggable(false)        
@@ -72,7 +72,7 @@ const useMap = ({ googleMap, mapContainerRef, initialConfig, homePosition }) => 
       map.panToBounds(bounds); 
       setMap(map);
     },
-    [initialConfig, googleMap, mapContainerRef, homePosition]
+    [initialConfig, googleMap, mapContainerRef, homePosition, radius, applyGeofence,]
     );
     return map;
   };
