@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from './forgetmenot.png';
+import Map from './components/MapComponent/component/Map';
 import './App.scss';
 // import Calendar from './components/Calendar'
 import { Calendar, momentLocalizer } from 'react-big-calendar'
@@ -10,7 +11,13 @@ import "react-big-calendar/lib/css/react-big-calendar.css"
 import NavBar from './components/NavBar';
 import SignIn from './components/SignIn';
 import HomepageCarousel from './components/HomepageCarousel/HomepageCarousel';
-const localizer = momentLocalizer(moment)
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
+// import CalendarView from './components/Notification/CalendarView'
+// import Time from './components/Notification/Time'
+// import MyButton from './components/Notification/Button'
+import Form from './components/Notification/Form'
+const localizer = momentLocalizer(moment);
 
 const myNotificationList = [{
   id: 0,
@@ -119,7 +126,7 @@ const myNotificationList = [{
   end: new Date(new Date().setHours(new Date().getHours() + 3)),
 },
 {
-  id: 14,
+  id: 15,
   title: 'Today-Now',
   start: new Date(new Date().setHours(new Date().getHours() - 3)),
   end: new Date(new Date().setHours(new Date().getHours() + 3)),
@@ -154,6 +161,17 @@ function App() {
         <div>
             <NavBar/>
             <SignIn/>
+            <section className="notification-box">
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                  <div>
+                    <Form/>
+                  </div>
+                    
+                </MuiPickersUtilsProvider>
+                
+            </section>
+            <Map/>
+            
             <Calendar
                       className='CalendarBox'
                       localizer={localizer}
@@ -169,3 +187,6 @@ function App() {
 }
 
 export default App;
+
+{/* <Map
+/> */}
