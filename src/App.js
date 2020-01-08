@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from './forgetmenot.png';
+import Map from './components/MapComponent/component/Map';
 import './App.scss';
 // import Calendar from './components/Calendar'
 import { Calendar, momentLocalizer } from 'react-big-calendar'
@@ -169,6 +170,7 @@ function App() {
                 </MuiPickersUtilsProvider>
                 
             </section>
+            <Map/>
             
             <Calendar
                       className='CalendarBox'
@@ -185,3 +187,6 @@ function App() {
 }
 
 export default App;
+
+{/* <Map
+/> */}
