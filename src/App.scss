@@ -31,8 +31,10 @@
 }
 
 .CalendarBox {
+  padding-top: 100px;
+  border-top: 2px solid grey;
   width: 80%;
-  margin: auto;
+  margin: 2% auto;
 }
 
 .rbc-event {
@@ -42,12 +44,63 @@
   background-color: red !important;
 }
 
-// .notification_create{
-//   background-color: rosybrown;
-//   width: 80%;
-//   margin: auto;
-// }
+.notification-box {
+  // margin-top: 1%;
+  margin: auto;
+  text-align: center;
+  padding-top: 2%;
+  // border-top: 2px solid grey;
+}
 
+.textLabel{
+  text-align: left !important;
+}
+.MuiFormControl-root{
+  margin: 2%;
+}
+.MuiPickersToolbar-toolbar{
+  background-color: #43A5F5 !important;
+}
+
+.MuiButton-root {
+  margin: 2% !important;
+}
+.makeStyles-root-385 .MuiTextField-root {
+  width: 60% !important;
+}
+
+.MuiFormGroup-row {
+  justify-content: center;
+}
+.formBox{
+  background-color: #61dafb;
+  max-width: 400px;
+  width: 80%;
+  margin: auto;
+  border-radius: 10px;
+}
+.formTitle{
+  padding-top: 10%;
+  font-size: 1.3rem;
+}
+// .text{
+//   // width: 30% !important;
+// }
+.button:hover{
+  cursor: pointer !important;
+  background-color: #b39ddb !important;
+}
+.flex-center{
+  display: flex;
+  justify-content: center;
+  // margin-left: 9px;
+}
+.margin-fix{
+  margin-top: 4px;
+}
+// .time{
+//   margin-left: 10px;
+// }
 // .category__item{
 //   background-color: white;
 //   border-radius: 5px;
