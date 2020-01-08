@@ -21,28 +21,28 @@ return (
     style={{ position: 'absolute' }}
   >
      <Slide
-      media={<img src={ElderlyCouple} />}
+      media={<img alt="Smiling elderly couple holding photo frame" src={ElderlyCouple} />}
       mediaBackgroundStyle={{ backgroundColor: cyan[400] }}
       style={{ backgroundColor: cyan[600] }}
       title='Forget Me Not'
       subtitle='The ideal solution to assist you in helping your family member with dementia continue to live an independent life.'
     />
      <Slide
-      media={<img src='https://image.flaticon.com/icons/svg/854/854878.svg' />}
+      media={<img alt="Map with pinned address" src='https://image.flaticon.com/icons/svg/854/854878.svg' />}
       mediaBackgroundStyle={{ backgroundColor: blue[400] }}
       style={{ backgroundColor: blue[600] }}
       title="Current location"
       subtitle='You can also set a geofence for safety!'
     />
     <Slide
-      media={<img src='https://image.flaticon.com/icons/svg/843/843220.svg' />}
+      media={<img alt="A cellphone with a pill icon on top of it" src='https://image.flaticon.com/icons/svg/843/843220.svg' />}
       mediaBackgroundStyle={{ backgroundColor: cyan[400] }}
       style={{ backgroundColor: cyan[600] }}
       title='Create reminders and appointments'
       // subtitle='reminders and appointments'
     />
     <Slide
-      media={<img src='https://image.flaticon.com/icons/svg/123/123392.svg' />}
+      media={<img alt="Calendar with one day selected" src='https://image.flaticon.com/icons/svg/123/123392.svg' />}
       mediaBackgroundStyle={{ backgroundColor: blue[400] }}
       style={{ backgroundColor: blue[600] }}
       title='View all notifications you created'
