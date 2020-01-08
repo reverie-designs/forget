@@ -3,7 +3,7 @@ import Time from "./Time";
 import MyButton from "./Button";
 import StateTextFields from "./TextField";
 import CalendarView from "./CalendarView";
-
+import FormControlLabel from "./CheckBox";
 
 function Form(props) {
 
@@ -12,14 +12,14 @@ function Form(props) {
     <div className="formBox">
       
        <form autoComplete="off" onSubmit={event => event.preventDefault()}>
-          <h3 className="formTitle">Create New Notification</h3>
+          <h3 className="formTitle">NEW NOTIFICATION</h3>
          <StateTextFields/>
         <div>
           Set Date: <CalendarView/>
           <div>
           Set Time:<Time className="time"/>
           </div>
-          
+          <FormControlLabel/>
         </div>
         <div>
           <MyButton buttonText="Save" buttonColor="primary"/>
