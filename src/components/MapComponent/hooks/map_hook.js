@@ -37,8 +37,7 @@ const useMap = ({ googleMap, mapContainerRef, initialConfig, homePosition, radiu
         
         let fence = createFence(googleMap,homePosition,map,radius,true);
         fence.setOptions({fillColor: isInside ? '#0000FF': '#FF0000'});
-        fence.setDraggable(false)        
-
+        
         loc = new googleMap.maps.LatLng(homePosition.lat-(radius*0.01), homePosition.lng+(radius*0.01));
         bounds.extend(loc);
         loc = new googleMap.maps.LatLng(homePosition.lat-(radius*0.01), homePosition.lng-(radius*0.01));

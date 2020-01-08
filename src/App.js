@@ -11,6 +11,7 @@ function App() {
     <div>
         <NavBar
         />
+        <Map/>
         <SignIn
         />
         <HomepageCarousel
