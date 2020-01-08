@@ -39,7 +39,7 @@ return (
       mediaBackgroundStyle={{ backgroundColor: cyan[400] }}
       style={{ backgroundColor: cyan[600] }}
       title='Create reminders and appointments'
-      // subtitle='reminders and appointments'
+      subtitle=''
     />
     <Slide
       media={<img alt="Calendar with one day selected" src='https://image.flaticon.com/icons/svg/123/123392.svg' />}
