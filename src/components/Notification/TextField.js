@@ -20,8 +20,9 @@ export default function StateTextFields() {
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
-      <div>
-        <TextField id="standard-name" className="text" label="Natification Info" value={info} name="info" onChange={handleChange} />
+      <div className="flex-center">
+        <p>Notes:</p>
+        <TextField id="standard-name" className="text" label="" value={info} name="info" onChange={handleChange} />
       </div>
      </form>
   );
