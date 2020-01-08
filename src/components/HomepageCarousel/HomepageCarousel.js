@@ -3,6 +3,7 @@ import React, { useState} from 'react';
 import AutoRotatingCarousel from './AutoRotatingCarousel';
 import Slide from './Slide';
 import { blue, cyan } from '@material-ui/core/colors';
+import ElderlyCouple from './elderly.png';
 
 export default function HomepageCarousel() {
   
@@ -20,7 +21,7 @@ return (
     style={{ position: 'absolute' }}
   >
      <Slide
-      media={<img src='https://image.flaticon.com/icons/svg/122/122903.svg' />}
+      media={<img src={ElderlyCouple} />}
       mediaBackgroundStyle={{ backgroundColor: cyan[400] }}
       style={{ backgroundColor: cyan[600] }}
       title='Forget Me Not'
