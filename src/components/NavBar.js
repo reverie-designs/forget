@@ -11,9 +11,6 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Drawer from '@material-ui/core/Drawer';
-import { createMuiTheme } from '@material-ui/core/styles';
-import blue from '@material-ui/core/colors/blue';
-
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -49,7 +46,7 @@ export default function ButtonAppBar(props) {
           <IconButton onClick={toggleDrawer('left', true)} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
-          <img src={Logo} />
+          <img alt="Forget me Not Logo" src={Logo} />
           <Typography variant="h6" className={classes.title}>
             Forget Me Not
           </Typography>

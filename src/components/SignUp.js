@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -49,7 +49,10 @@ const useStyles = makeStyles(theme => ({
 
 export default function SignUp() {
   const classes = useStyles();
-
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [submit, setSubmit] = useState("");
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -67,9 +70,9 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
-                id="email"
+                id="username"
                 label="Username"
-                name="Username"
+                name="username"
                 autoComplete="username"
               />
             </Grid>

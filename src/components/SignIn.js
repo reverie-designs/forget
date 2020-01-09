@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -49,7 +49,15 @@ const useStyles = makeStyles(theme => ({
 
 export default function SignIn() {
   const classes = useStyles();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
+  const login = {}
+  const save = () => {
+    login.username = username
+    login.password = password
+    console.log("THIS IS ......", login.username, login.password)
+  }
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -60,7 +68,7 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={event => event.preventDefault()}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -68,20 +76,22 @@ export default function SignIn() {
             fullWidth
             id="username"
             label="Username"
-            name="username"
+            name={username}
             autoComplete="username"
             autoFocus
+            onChange={event => setUsername(event.target.value)}
           />
           <TextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            name="password"
+            name={password}
             label="Password"
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={event => setPassword(event.target.value)}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -93,6 +103,7 @@ export default function SignIn() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={save}
           >
             Sign In
           </Button>
