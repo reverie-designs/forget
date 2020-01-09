@@ -47,7 +47,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SignUp() {
+export default function SignUp(props) {
   const classes = useStyles();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -55,13 +55,15 @@ export default function SignUp() {
 
   const signup = {}
   const save = () => {
-    signup.username = username
+    signup.name = username
     signup.password = password
+    props.addUser(signup);
   }
 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
+      <p>{props.error}</p>
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />

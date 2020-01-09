@@ -63,7 +63,7 @@ export default function SignIn(props) {
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-      <p>{props.addUser} {props.error}</p>
+      <p>{props.error}</p>
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />

@@ -133,39 +133,56 @@ const myNotificationList = [{
 ]
 
 const data = {
- users: {
-   id: 1,
-   name: "Dasha",
-   password: "xxx"
- }
+ users: [{
+    id: 1,
+    name: "Dasha",
+    password: "xxx",
+    patient: false,
+    autherizationCode: null
+  }
+] 
 };
 
-  const errors = {signIn: "username password didn't match"};
+const errors = {signIn: "username password didn't match", signUp: "We already have a user with that username"};
 
  /* <Form categories = {data.categories}/> */
 function App() {
   const [user, setUser] = useState("");
   const [error, setError] = useState("");
+
   const addUser = (newUser) => {
-      // console.log(newUser);
       setUser(newUser);
-      // console.log("Updated User",user);
   }
   const addError = (msg) => {
     setError(msg);
   }
+  const findUser = (newUser) => {
+    return data.users.find(user=> user.name === newUser.username && user.password === newUser.password);
+  }
   const validate = (newUser) => {
     console.log(data.users.name, newUser.username);
     console.log(data.users.password, newUser.password);
-    
-    if(data.users.name === newUser.username && data.users.password === newUser.password) {
+    console.log("THIS IS",data.users[0].name);
+    let result = findUser(newUser);
+    console.log("This is result", result);
+    if(result) {
       console.log("BANG");
-      addUser(newUser);
+      addUser(result);
     }
     else {
       console.log("PEW");
       addError(errors.signIn);
     }
+  }
+
+  const validateSignUp = (newUser) => {
+        let result = findUser(newUser);
+        if(result === undefined){
+          data.users.push(newUser);
+          setUser(newUser);
+        } else {
+          addError(errors.signUp);
+        }
   }
 
   return (
@@ -174,8 +191,9 @@ function App() {
         <div>
             <NavBar user={user}/>
             <PatientSettings/>
-            <SignUp/>
-            <p>This is User: {user.username}</p>
+            <p>This is User: {user.name}</p>
+            <SignUp addUser={validateSignUp} user={user} error={error}/>
+            <p>This is User: {user.name}</p>
             <SignIn  addUser={validate} user={user} error={error}/>
             <section className="notification-box">
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
