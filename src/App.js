@@ -11,7 +11,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css"
 import NavBar from './components/NavBar';
 import SignUp from './components/SignUp';
 import HomepageCarousel from './components/HomepageCarousel/HomepageCarousel';
-import PatientSettings from './components/PatientSettings';
+import PatientSettings from './components/PatientSettings/PatientSettings';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 // import CalendarView from './components/Notification/CalendarView'
@@ -182,7 +182,7 @@ function App() {
                       endAccessor="end"
                       style={{height: 500}}
             />
-            <HomepageCarousel/>
+            {/* <HomepageCarousel/> */}
         </div>
      </main>  
   );
