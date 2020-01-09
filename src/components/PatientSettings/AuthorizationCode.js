@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import { randomCodeGenerator } from '../../helpers/randomCodeGenerator';
-import './PatientSettings.scss';
 
 const useStyles = makeStyles(theme => ({
   form: {
@@ -18,16 +16,14 @@ const useStyles = makeStyles(theme => ({
 
 export default function AuthorizationCode(props) {
   const classes = useStyles();
-
-  //props.
-
-  // const [code, setCode] = useState("");
-  // const [disableButton, setDisableButton] = useState(false);
-
-  return (
+  
+    return (
       <div>
-        <Typography component="h2">
+        <Typography component="h2" variant="h6">
           Authorization Code
+        </Typography>
+        <Typography component="h2">
+          Please add authentication code to patient's device prior to their entering address below.
         </Typography>
         <form className={classes.form} noValidate>
         <TextField
@@ -48,6 +44,16 @@ export default function AuthorizationCode(props) {
           >
             Generate Code
           </Button>
+        {/* <Button
+          type="submit"
+          width={1/4}
+          variant="contained"
+          color="primary"
+          className={classes.submit}
+          onClick={}
+        >
+          Add Code
+        </Button> */}
       </div>
   );
 }

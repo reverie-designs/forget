@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import AuthorizationCode from './AuthorizationCode';
+import AddCode from './AddCode';
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -47,7 +48,7 @@ export default function SignIn() {
     settingsSave.postalCode = postalCode
     settingsSave.country = country
     settingsSave.code = code
-    // console.log("THIS IS>>>>>", settingsSave.addressOne, settingsSave.addressTwo, settingsSave.city, settingsSave.province, settingsSave.postalCode, settingsSave.country, settingsSave.code)
+    console.log("THIS IS>>>>>", settingsSave)
   }
 
   return (
@@ -62,6 +63,7 @@ export default function SignIn() {
           disableButton={disableButton} 
           onClick={() => randomCodeGenerator(5, setCode, setDisableButton)}
           />
+        <AddCode />
         <Typography component="h3">
             Patient Address
         </Typography>

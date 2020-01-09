@@ -51,12 +51,12 @@ export default function SignUp() {
   const classes = useStyles();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  // const [confirmPassword, setConfirmPassword] = useState("");
 
   const signup = {}
   const save = () => {
     signup.username = username
     signup.password = password
+    console.log("THIS IS....", signup)
   }
 
   return (
