@@ -1,42 +1,29 @@
-import React, { useState } from "react";
-import Time from "./Time";
+import React, { useState, useEffect } from "react";
 import MyButton from "./Button";
 import StateTextFields from "./TextField";
-import CalendarView from "./CalendarView";
 import FormControlLabel from "./CheckBox";
 import Switch from "./Switch";
+import DateTimePicker from "./DateTime";
 // Icons
 
 import RestaurantIcon from '@material-ui/icons/Restaurant';
 import EnhancedEncryptionIcon from '@material-ui/icons/EnhancedEncryption';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 
-const formResult = {};
+const formResult = {hello:"hello", info:""};
 //date:"", time:"", categories:[pills:T/F, appointment:T/F, food:T/F], info:"", daily:T/F 
+
+
 function Form(props) {
+
+  //DATE TIME
+  const [selectedDateTime, handleDateChange] = useState(new Date());
 
   // TEXT BOX STATE
   const [info, setInfo] = useState('');
   const setTextChange = event => {
     setInfo(event.target.value);
   };
-
-  // CALENDAR VIEW STATE
-  const [selectedDate, setDateChange] = useState(new Date());
-
-  //TIME
-  const [selectedTime, setTimeChange] = useState(new Date());
-
-  // CHECKBOX STATE
-  // const [state, setState] = useState({
-  //   pills: true,
-  //   food: true,
-  //   appointment: true
-  // });
-  // const { pills, food, appointment } = state;
-  // const categoryChange = category => event => {
-  //   setState({ ...state, [category]: event.target.checked });
-  // };
 
   const [pills, setPills] = useState(false);
   const [food, setFood] = useState(false);
@@ -48,7 +35,7 @@ function Form(props) {
     setFood( event.target.checked );
   };
   const appointmentChange = event => {
-    setAppointment( event.target.checked);
+    setAppointment(event.target.checked);
   };
 
   // DAILY TOGGLE STATE
@@ -59,23 +46,57 @@ function Form(props) {
 
   //CANCEL BUTTON
   const reset = () => {
-    setTimeChange(new Date());
-    setDateChange(new Date());
     setInfo("");
     setDailyToggle(false);
-    // setState.pills = true;
     setPills(false);
     setFood(false);
     setAppointment(false);
+    handleDateChange(new Date());
   }
 
-  //SAVE BUTTON
-  const save = () => {
+    //SAVE BUTTON
+    const [test, setTest] = useState("");
+    const save = (info) => {
+      setTest(info);
+    }
+    //CHECKS DAILY TOGGLE VALUE
+    // useEffect(() => {
+    //   if(!dailyToggle){
+    //     setTest("false")
+    //   }
+    //   if(dailyToggle){
+    //     setTest("true")
+    //   }   
+    //   }, [dailyToggle])
 
-  }
+    // CHECKS categories TOGGLE VALUE
+    // useEffect(() => {
+    //   if(!pills){
+    //     setTest("false")
+    //   }
+    //   if(pills){
+    //     setTest("true")
+    //   }   
+    //   }, [pills])
+
+    //CHECKS DATE
+    //  useEffect(() => {
+    //   //  console.log(selectedDate)
+    //   if(selectedDate){
+    //     setTest(selectedDate)
+    //   }   
+    //   }, [selectedDate])
+    //Checks TIME
+     useEffect(() => {
+      //  console.log(selectedDate)
+      if(selectedDateTime){
+        setTest(selectedDateTime)
+      }   
+      }, [selectedDateTime])
+      console.log("THIS IS TEST",test);
   return (
     <div className="formBox">
-      
+        <p>Form result is here->{test.toString()}</p>
        <form autoComplete="off" onSubmit={event => event.preventDefault()}>
          <h3 className="formTitle">NEW NOTIFICATION</h3>
          
@@ -83,10 +104,9 @@ function Form(props) {
           <p> 
            <StateTextFields value={info} name="info" onChange={setTextChange} id="standard-name" className="text"/>
           </p>
-          <p>Set Date: <CalendarView handleDateChange={setDateChange} selectedDate={selectedDate}/></p>
-          <p>Set Time: <Time className="time" value={selectedTime} onChange={setTimeChange}/></p>
-
+          <p>Set Date: <DateTimePicker value={selectedDateTime} onChange={handleDateChange}/></p>
           <div className="flex-center"> 
+                
                 <p className="margin-fix">Repeat Daily:</p> <Switch checked={dailyToggle} value={dailyToggle} onChange={handleToggleChange}/>
           </div>
           <div className="flex-center">
@@ -117,7 +137,7 @@ function Form(props) {
                 />
           </div>
           <div>
-              <MyButton buttonText="Save" type="submit" onClick="" buttonColor="primary"/>
+              <MyButton buttonText="Save" type="submit" onClick={save} buttonColor="primary"/>
               <MyButton buttonText="Cancel" onClick={reset} buttonColor="secondary"/>
           </div>
         </section>
