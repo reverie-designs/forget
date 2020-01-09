@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -25,6 +25,24 @@ const useStyles = makeStyles(theme => ({
 
 export default function SignIn() {
   const classes = useStyles();
+  const [addressOne, setAddressOne] = useState("")
+  const [addressTwo, setAddressTwo] = useState("")
+  const [city, setCity] = useState("")
+  const [province, setProvince] = useState("")
+  const [postalCode, setPostalCode] = useState("")
+  const [country, setCountry] = useState("")  
+
+  const addressSave = {}
+
+  const save = () => {
+    addressSave.addressOne = addressOne 
+    addressSave.addressTwo = addressTwo
+    addressSave.city = city
+    addressSave.province = province
+    addressSave.postalCode = postalCode
+    addressSave.country = country
+    // console.log("THIS IS>>>>>", addressSave.addressOne, addressSave.addressTwo, addressSave.city, addressSave.province, addressSave.postalCode, addressSave.country)
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -33,50 +51,57 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
             Settings
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={event => event.preventDefault()}>
         <TextField
           required
           id="outlined-disabled"
           label="Address 1"
-          defaultValue=""
+          name={addressOne}
           variant="outlined"
+          onChange={event => setAddressOne(event.target.value)}
         />
         <TextField
           required
           id="outlined-disabled"
           label="Address 2"
-          defaultValue=""
+          name={addressTwo}
           variant="outlined"
+          onChange={event => setAddressTwo(event.target.value)}
         />
         <div className="city-province">
         <TextField
           required
           id="outlined-disabled"
           label="City"
-          defaultValue=""
+          name={city}
           variant="outlined"
+          onChange={event => setCity(event.target.value)}
+
         />
          <TextField
           required
           id="outlined-disabled"
           label="Province"
-          defaultValue=""
+          name={province}
           variant="outlined"
+          onChange={event => setProvince(event.target.value)}
         />
         </div>
         <TextField
           required
           id="outlined-disabled"
           label="Postal Code"
-          defaultValue=""
+          name={postalCode}
           variant="outlined"
+          onChange={event => setPostalCode(event.target.value)}
         />
       <TextField
           required
           id="outlined-disabled"
           label="Country"
-          defaultValue=""
+          name={country}
           variant="outlined"
+          onChange={event => setCountry(event.target.value)}
         />
         </form>
         <Button
@@ -85,6 +110,7 @@ export default function SignIn() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={save}
           >
             Save
           </Button>
