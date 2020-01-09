@@ -10,7 +10,7 @@ import RestaurantIcon from '@material-ui/icons/Restaurant';
 import EnhancedEncryptionIcon from '@material-ui/icons/EnhancedEncryption';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 
-const formResult = {hello:"hello", info:""};
+const formResult = {};
 //date:"", time:"", categories:[pills:T/F, appointment:T/F, food:T/F], info:"", daily:T/F 
 
 
@@ -56,36 +56,22 @@ function Form(props) {
 
     //SAVE BUTTON
     const [test, setTest] = useState("");
-    const save = (info) => {
-      setTest(info);
+    const save = () => {
+      // const newInfo = info.toString();
+      formResult.info = info;
+      // formResult.categories = {pills: pills, appointment: appointment, food: food};
+      formResult.pills = pills;
+      formResult.appointment = appointment;
+      formResult.food = food;
+      formResult.daily = dailyToggle;
+      formResult.date = selectedDateTime;
+      console.log(formResult.info);
+      console.log(formResult.pills);
+      console.log(formResult.daily);
+      console.log(formResult.date);
+
     }
-    //CHECKS DAILY TOGGLE VALUE
-    // useEffect(() => {
-    //   if(!dailyToggle){
-    //     setTest("false")
-    //   }
-    //   if(dailyToggle){
-    //     setTest("true")
-    //   }   
-    //   }, [dailyToggle])
-
-    // CHECKS categories TOGGLE VALUE
-    // useEffect(() => {
-    //   if(!pills){
-    //     setTest("false")
-    //   }
-    //   if(pills){
-    //     setTest("true")
-    //   }   
-    //   }, [pills])
-
-    //CHECKS DATE
-    //  useEffect(() => {
-    //   //  console.log(selectedDate)
-    //   if(selectedDate){
-    //     setTest(selectedDate)
-    //   }   
-    //   }, [selectedDate])
+ 
     //Checks TIME
      useEffect(() => {
       //  console.log(selectedDate)
@@ -96,7 +82,7 @@ function Form(props) {
       console.log("THIS IS TEST",test);
   return (
     <div className="formBox">
-        <p>Form result is here->{test.toString()}</p>
+
        <form autoComplete="off" onSubmit={event => event.preventDefault()}>
          <h3 className="formTitle">NEW NOTIFICATION</h3>
          
