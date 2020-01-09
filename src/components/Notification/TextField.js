@@ -11,19 +11,14 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function StateTextFields() {
+export default function StateTextFields(props) {
   const classes = useStyles();
-  const [info, setInfo] = React.useState('');
-  const handleChange = event => {
-    setInfo(event.target.value);
-  };
-
   return (
-    <form className={classes.root} noValidate autoComplete="off">
+    <div className={classes.root} noValidate autoComplete="off">
       <div className="flex-center">
         <p>Notes:</p>
-        <TextField id="standard-name" className="text" label="" value={info} name="info" onChange={handleChange} />
+        <TextField value={props.value} onChange={props.onChange} />
       </div>
-     </form>
+     </div>
   );
 }
