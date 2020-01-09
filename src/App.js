@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import logo from './forgetmenot.png';
 import Map from './components/MapComponent/component/Map';
 import './App.scss';
@@ -10,13 +10,11 @@ import "react-big-calendar/lib/css/react-big-calendar.css"
 // import Selectable from './selectable'
 import NavBar from './components/NavBar';
 import SignUp from './components/SignUp';
+import SignIn from './components/SignIn';
 import HomepageCarousel from './components/HomepageCarousel/HomepageCarousel';
 import PatientSettings from './components/PatientSettings';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
-// import CalendarView from './components/Notification/CalendarView'
-// import Time from './components/Notification/Time'
-// import MyButton from './components/Notification/Button'
 import Form from './components/Notification/Form'
 const localizer = momentLocalizer(moment);
 
@@ -135,34 +133,50 @@ const myNotificationList = [{
 ]
 
 const data = {
-  categories: {
-  "1": {
-    id: 1,
-    name: "Appointment",
-    avatar: "https://img.icons8.com/ios-filled/50/000000/appointment-scheduling.png"
-  },
-  "2": {
-    id: 2,
-    name: "Food",
-    avatar: "https://img.icons8.com/ios-filled/50/000000/tableware.png"
-  },
-  "3": {
-    id: 3,
-    name: "Pills",
-    avatar: "https://img.icons8.com/metro/26/000000/pill.png"
-  },
-}
+ users: {
+   id: 1,
+   name: "Dasha",
+   password: "xxx"
+ }
 };
 
+  const errors = {signIn: "username password didn't match"};
 
  /* <Form categories = {data.categories}/> */
 function App() {
+  const [user, setUser] = useState("");
+  const [error, setError] = useState("");
+  const addUser = (newUser) => {
+      // console.log(newUser);
+      setUser(newUser);
+      // console.log("Updated User",user);
+  }
+  const addError = (msg) => {
+    setError(msg);
+  }
+  const validate = (newUser) => {
+    console.log(data.users.name, newUser.username);
+    console.log(data.users.password, newUser.password);
+    
+    if(data.users.name === newUser.username && data.users.password === newUser.password) {
+      console.log("BANG");
+      addUser(newUser);
+    }
+    else {
+      console.log("PEW");
+      addError(errors.signIn);
+    }
+  }
+
   return (
     <main>
+        
         <div>
-            <NavBar/>
+            <NavBar user={user}/>
             <PatientSettings/>
             <SignUp/>
+            <p>This is User: {user.username}</p>
+            <SignIn  addUser={validate} user={user} error={error}/>
             <section className="notification-box">
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                   <div>
@@ -182,13 +196,10 @@ function App() {
                       endAccessor="end"
                       style={{height: 500}}
             />
-            <HomepageCarousel/>
+            {/* <HomepageCarousel/> */}
         </div>
      </main>  
   );
 }
 
 export default App;
-
-{/* <Map
-/> */}

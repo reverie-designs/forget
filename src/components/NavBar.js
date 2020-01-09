@@ -57,7 +57,7 @@ export default function ButtonAppBar(props) {
       </AppBar> 
 
       <Drawer open={drawerOpen.left} onClose={toggleDrawer('left', false)}>
-      <SideMenu toggleDrawer={toggleDrawer}></SideMenu>
+      <SideMenu toggleDrawer={toggleDrawer} user={props.user}/>
       </Drawer>    
     </div>
   );

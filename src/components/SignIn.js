@@ -18,7 +18,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link color="inherit" >
         Forget Me Not
       </Link>{' '}
       {new Date().getFullYear()}
@@ -47,20 +47,23 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SignIn() {
+export default function SignIn(props) {
   const classes = useStyles();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const login = {}
+  const newUser = {}
   
   const save = () => {
-    login.username = username
-    login.password = password
+    newUser.username = username
+    newUser.password = password
+    props.addUser(newUser);
   }
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
+      <p>{props.addUser} {props.error}</p>
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
