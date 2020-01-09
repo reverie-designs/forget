@@ -51,6 +51,9 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
             Settings
         </Typography>
+        <Typography component="h3">
+            Patient Address
+        </Typography>
         <form className={classes.form} noValidate onSubmit={event => event.preventDefault()}>
         <TextField
           required
@@ -114,7 +117,7 @@ export default function SignIn() {
           >
             Save
           </Button>
-        <Typography component="h1" variant="h5">
+        <Typography component="h2">
           Authorization Code
         </Typography>
         <form className={classes.form} noValidate>
