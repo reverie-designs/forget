@@ -9,8 +9,9 @@ import "react-big-calendar/lib/addons/dragAndDrop/styles.css"
 import "react-big-calendar/lib/css/react-big-calendar.css"
 // import Selectable from './selectable'
 import NavBar from './components/NavBar';
-import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
 import HomepageCarousel from './components/HomepageCarousel/HomepageCarousel';
+import PatientSettings from './components/PatientSettings';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 // import CalendarView from './components/Notification/CalendarView'
@@ -160,7 +161,8 @@ function App() {
     <main>
         <div>
             <NavBar/>
-            <SignIn/>
+            <PatientSettings/>
+            <SignUp/>
             <section className="notification-box">
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                   <div>
