@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import SideMenu from './SideMenu';
 import './NavBar.scss';
+import Logo from '../forgetmenot.png'
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -48,6 +49,7 @@ export default function ButtonAppBar(props) {
           <IconButton onClick={toggleDrawer('left', true)} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
+          <img src={Logo} />
           <Typography variant="h6" className={classes.title}>
             Forget Me Not
           </Typography>
