@@ -51,8 +51,14 @@ export default function SignUp() {
   const classes = useStyles();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [submit, setSubmit] = useState("");
+  // const [confirmPassword, setConfirmPassword] = useState("");
+
+  const signup = {}
+  const save = () => {
+    signup.username = username
+    signup.password = password
+  }
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -63,7 +69,7 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={event => event.preventDefault()}>
           <Grid container spacing={2}>
           <Grid item xs={12}>
               <TextField
@@ -74,6 +80,7 @@ export default function SignUp() {
                 label="Username"
                 name="username"
                 autoComplete="username"
+                onChange={event => setUsername(event.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -86,6 +93,7 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={event => setPassword(event.target.value)}
               />
             </Grid>
           </Grid>
@@ -95,13 +103,14 @@ export default function SignUp() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={save}
           >
             Sign Up
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
               <Link href="#" variant="body2">
-                Already have an account? Sign in
+                Already have an account? Login
               </Link>
             </Grid>
           </Grid>

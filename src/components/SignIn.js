@@ -56,7 +56,6 @@ export default function SignIn() {
   const save = () => {
     login.username = username
     login.password = password
-    console.log("THIS IS ......", login.username, login.password)
   }
   return (
     <Container component="main" maxWidth="xs">
