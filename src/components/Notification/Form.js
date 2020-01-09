@@ -54,6 +54,23 @@ function Form(props) {
     handleDateChange(new Date());
   }
 
+    const splitTime =(fullDate) =>{
+      const dateArray = fullDate.toString().split(" ");
+      const time = [];
+      time.push(dateArray[4]);
+      return time.toString();
+    }
+
+    const splitDate =(fullDate) =>{
+      const dateArray = fullDate.toString().split(" ");
+      const date = [];
+      date.push(dateArray[0]);
+      date.push(dateArray[1]);
+      date.push(dateArray[2]);
+      date.push(dateArray[3]);
+      return date.join(" ");
+    }
+    
     //SAVE BUTTON
     const [test, setTest] = useState("");
     const save = () => {
@@ -64,12 +81,13 @@ function Form(props) {
       formResult.appointment = appointment;
       formResult.food = food;
       formResult.daily = dailyToggle;
-      formResult.date = selectedDateTime;
-      console.log(formResult.info);
-      console.log(formResult.pills);
-      console.log(formResult.daily);
-      console.log(formResult.date);
-
+      formResult.time = splitTime(selectedDateTime)
+      formResult.date = splitDate(selectedDateTime);
+      // console.log(formResult.info);
+      // console.log(formResult.pills);
+      // console.log(formResult.daily);
+      // console.log(formResult.date);
+      // console.log(formResult.time);
     }
  
     //Checks TIME
