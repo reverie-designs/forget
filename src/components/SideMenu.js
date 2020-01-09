@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
@@ -24,6 +24,19 @@ const useStyles = makeStyles({
 
 export default function SideMenu(props) {
   const classes = useStyles()
+
+  const [toggleNotification, setNotification] = useState({
+    notification: false,
+  });
+
+  const [toggleGeofence, setGeofence] = useState({
+    geofence: false,
+  });
+
+  const handleChange = name => event => {
+    setNotification({ ...toggleNotification, [name]: event.target.checked });
+    setGeofence({ ...toggleGeofence, [name]: event.target.checked });
+  };
 
   return (
     <div className={classes.list}>
@@ -53,13 +66,13 @@ export default function SideMenu(props) {
         <ListItem button>
           <ListItemText primary="Disable Notifications" />
           <ListItemIcon>
-            <NotificationToggleButton></NotificationToggleButton> 
+            <NotificationToggleButton checked={toggleNotification.notification} onChange={handleChange('notification')} />
           </ListItemIcon>
         </ListItem>
         <ListItem button>
           <ListItemText primary="Disable Geofence" />
           <ListItemIcon>
-            <GeofenceToggleButton></GeofenceToggleButton>
+            <GeofenceToggleButton checked={toggleGeofence.geofence} onChange={handleChange('geofence')} />
           </ListItemIcon>
         </ListItem>
       </List>
