@@ -24,7 +24,7 @@ import Notification from './components/Notification/index'
 // import ReactDOM from "react-dom";
 // import { Link } from 'react-router-dom';
 import Main from './components/Main';
-import PatientHomepageDay from './components/PatientHomepage/PatientHomepageDay';
+import PatientHomepageNight from './components/PatientHomepage/PatientHomepageNight';
 
 import {
   Route,
@@ -210,7 +210,7 @@ function App() {
     <HashRouter>
           <div>
             <NavBar user={user} onClick={logoutUser}/>
-            <PatientHomepageDay />
+            <PatientHomepageNight />
               <div>
                 <p><NavLink to="/cv-map">Map</NavLink></p>
                   {/* <PatientSettings/> */}

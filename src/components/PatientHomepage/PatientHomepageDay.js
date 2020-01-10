@@ -1,6 +1,6 @@
 import React from 'react';
 import Clock from './Clock';
-import './PatientHomepage.scss'
+import './PatientHomepageDay.scss'
 
 export default function PatientHomepage() {
   return (
