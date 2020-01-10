@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import AuthorizationCode from './AuthorizationCode';
 import AddCode from './AddCode';
+import PatientToggle from './PatientToggle';
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -37,8 +38,20 @@ export default function SignIn() {
   const [country, setCountry] = useState("")  
   const [code, setCode] = useState("");
   const [disableButton, setDisableButton] = useState(false);
+  const [togglePatient, setPatient] = useState({
+    patient: false,
+  });
+
+  const handleChange = name => event => {
+    setPatient({ ...togglePatient, [name]: event.target.checked });
+  };
 
   const settingsSave = {}
+  
+  const add = () => {
+    settingsSave.code = code
+    // console.log("THIS IS>>>>", settingsSave)
+  }
 
   const save = () => {
     settingsSave.addressOne = addressOne 
@@ -48,7 +61,6 @@ export default function SignIn() {
     settingsSave.postalCode = postalCode
     settingsSave.country = country
     settingsSave.code = code
-    console.log("THIS IS>>>>>", settingsSave)
   }
 
   return (
@@ -62,8 +74,11 @@ export default function SignIn() {
           code={code} 
           disableButton={disableButton} 
           onClick={() => randomCodeGenerator(5, setCode, setDisableButton)}
+          onChange={setCode}
           />
-        <AddCode />
+        <AddCode onClick={add} />
+        <PatientToggle checked={togglePatient.patient} onChange={handleChange('patient')} />
+        {togglePatient.patient === false && <div>
         <Typography component="h3">
             Patient Address
         </Typography>
@@ -126,7 +141,8 @@ export default function SignIn() {
             onClick={save}
           >
             Save
-          </Button>
+          </Button> 
+          </div>}
       </div>
     </Container>
   );

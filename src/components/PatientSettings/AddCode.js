@@ -21,6 +21,7 @@ export default function AddCode(props) {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={props.onClick}
           >
             Add Code
           </Button>

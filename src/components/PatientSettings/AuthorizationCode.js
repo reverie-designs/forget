@@ -23,13 +23,14 @@ export default function AuthorizationCode(props) {
           Authorization Code
         </Typography>
         <Typography component="h2">
-          Please add authentication code to patient's device prior to their entering address below.
+          Please add authentication code to patient's device prior to entering their address below.
         </Typography>
         <form className={classes.form} noValidate>
         <TextField
           id="outlined-disabled"
           label=""
           value={props.code}
+          onChange={(event) => props.onChange(event.target.value)}
           variant="outlined"
         />
         </form>
