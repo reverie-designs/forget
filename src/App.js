@@ -12,7 +12,9 @@ import SignIn from './components/SignIn';
 import Notification from './components/Notification/index'
 import Main from './components/Main';
 import {Route, NavLink, HashRouter} from "react-router-dom";
-import { forEachChild } from 'typescript';
+// import Alerts from "./components/PatientAlerts";
+import CvAlerts from "./components/CaregiverNotifications";
+// import { forEachChild } from 'typescript';
 const localizer = momentLocalizer(moment);
 
 const myNotificationList = [{
@@ -239,9 +241,7 @@ function App() {
     <HashRouter>
           <div>
             <NavBar user={user}/>
-            {/* <p>Today's notifications: {getNotificationsToday(noteList)}</p> */}
-            <p>Today's Notifications:</p>
-             {printNotificationsCV(noteList)}
+            <CvAlerts notes={getNotificationsToday(noteList)}/>
               <div>
                 <p><NavLink to="/cv-map">Map</NavLink></p>
                   {/* <PatientSettings/> */}
