@@ -44,6 +44,16 @@ export default function ButtonAppBar(props) {
     setDrawerOpen({ ...drawerOpen, [side]: open });
   };
 
+  const checkForUser = (user) => {
+    if (user === "") {
+      return (<div><NavLink to="/sign-in"><Button color="inherit" className="button-pop">Login</Button></NavLink>
+      |
+      <NavLink to="/sign-up"><Button color="inherit" className="button-pop">Sign Up</Button></NavLink></div>)
+    } else {
+      return (<LogoutButton onClick={props.onClick}/>)
+    }
+  }
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -55,10 +65,11 @@ export default function ButtonAppBar(props) {
           <Typography variant="h6" className={classes.title}>
             Forget Me Not
           </Typography>
-          <LogoutButton onClick={props.onClick}/>
+          {checkForUser(props.user)}
+          {/* <LogoutButton onClick={props.onClick}/>
           <NavLink to="/sign-in"><Button color="inherit" className="button-pop">Login</Button></NavLink>
           |
-          <NavLink to="/sign-up"><Button color="inherit" className="button-pop">Sign Up</Button></NavLink>
+          <NavLink to="/sign-up"><Button color="inherit" className="button-pop">Sign Up</Button></NavLink> */}
         </Toolbar>
       </AppBar> 
 
