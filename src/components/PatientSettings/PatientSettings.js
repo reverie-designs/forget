@@ -41,6 +41,7 @@ export default function SignIn() {
   const [togglePatient, setPatient] = useState({
     patient: false,
   });
+  const [isToggleVisisble, setToggleVisibility] = useState(false);
 
   const handleChange = name => event => {
     setPatient({ ...togglePatient, [name]: event.target.checked });
@@ -49,8 +50,13 @@ export default function SignIn() {
   const settingsSave = {}
 
   const add = () => {
+
+
+    //send axios 
+    //is success
+    setToggleVisibility(true);
     settingsSave.code = code
-    // console.log("THIS IS>>>>", settingsSave)
+    console.log("THIS IS>>>>", settingsSave)
   }
 
   const save = () => {
@@ -77,6 +83,8 @@ export default function SignIn() {
           onChange={setCode}
           />
         <AddCode onClick={add} />
+
+        { isToggleVisisble === true && <div>
         <PatientToggle checked={togglePatient.patient} onChange={handleChange('patient')} />
         {togglePatient.patient === false && <div>
         <Typography component="h3">
@@ -142,7 +150,7 @@ export default function SignIn() {
           >
             Save
           </Button> 
-          </div>}
+        </div>} </div> }
       </div>
     </Container>
   );
