@@ -11,7 +11,11 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Drawer from '@material-ui/core/Drawer';
-
+import {
+  Route,
+  NavLink,
+  HashRouter
+} from "react-router-dom";
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -46,13 +50,13 @@ export default function ButtonAppBar(props) {
           <IconButton onClick={toggleDrawer('left', true)} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
-          <img alt="Forget me Not Logo" src={Logo} />
+          <NavLink to="/"><img alt="Forget me Not Logo" src={Logo} className="logo"/></NavLink>
           <Typography variant="h6" className={classes.title}>
             Forget Me Not
           </Typography>
-          <Button color="inherit">Login</Button>
+          <NavLink to="/sign-in"><Button color="inherit" className="button-pop">Login</Button></NavLink>
           |
-          <Button color="inherit">Sign Up</Button>
+          <NavLink to="/sign-up"><Button color="inherit" className="button-pop">Sign Up</Button></NavLink>
         </Toolbar>
       </AppBar> 
 
