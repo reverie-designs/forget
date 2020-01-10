@@ -104,7 +104,7 @@ export default function SignUp(props) {
             fullWidth
             variant="contained"
             color="primary"
-            className={classes.submit}
+            className="margin-left cursor"
             onClick={save}
           >
             Sign Up
