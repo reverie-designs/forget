@@ -22,9 +22,6 @@ export default function AuthorizationCode(props) {
         <Typography component="h2" variant="h6">
           Authorization Code
         </Typography>
-        <Typography component="h2">
-          Please add authentication code to patient's device prior to entering their address below.
-        </Typography>
         <form className={classes.form} noValidate>
         <TextField
           id="outlined-disabled"
