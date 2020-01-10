@@ -52,8 +52,10 @@ export default function SignIn() {
   const add = () => {
     //send axios 
     //is success
-    setToggleVisibility(true);
-    settingsSave.code = code
+    if (code.length >= 5) {
+      settingsSave.code = code
+      setToggleVisibility(true);
+    }
     console.log("THIS IS>>>>", settingsSave)
   }
 
@@ -64,7 +66,7 @@ export default function SignIn() {
     settingsSave.province = province
     settingsSave.postalCode = postalCode
     settingsSave.country = country
-    settingsSave.code = code
+    // settingsSave.code = code
   }
 
   return (
@@ -82,7 +84,6 @@ export default function SignIn() {
           onChange={setCode}
           />
         <AddCode onClick={add} />
-
         { isToggleVisisble === true && <div>
         <PatientToggle checked={togglePatient.patient} onChange={handleChange('patient')} />
         {togglePatient.patient === false && <div>
