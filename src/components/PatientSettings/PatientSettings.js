@@ -50,8 +50,6 @@ export default function SignIn() {
   const settingsSave = {}
 
   const add = () => {
-
-
     //send axios 
     //is success
     setToggleVisibility(true);

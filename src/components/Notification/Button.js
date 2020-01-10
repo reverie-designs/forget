@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 // const useStyles = makeStyles(theme => ({
@@ -14,7 +14,7 @@ import Button from '@material-ui/core/Button';
 function MyButton(props) {
 
   return (
-    <Button variant="contained" className="button" color={props.buttonColor} disableElevation>
+    <Button variant="contained" className="button" onClick={props.onClick} color={props.buttonColor} disableElevation>
       {props.buttonText}
     </Button>
   );

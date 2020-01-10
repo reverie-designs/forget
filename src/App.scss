@@ -98,16 +98,34 @@
 .margin-fix{
   margin-top: 4px;
 }
-// .time{
-//   margin-left: 10px;
-// }
-// .category__item{
-//   background-color: white;
-//   border-radius: 5px;
-//   // display: inline;
-//   width: 100px;
-//   height: 100px;
-// }
+.userName{
+  margin-left:15px;
+}
+.button-pop{
+  color:white !important;
+  padding: 0 !important;
+}
+.curser:hover{
+  cursor: pointer;
+}
+.margin-left{
+  margin-right: 150px !important;
+}
+.MuiButton-root {
+  margin-top: 2% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  margin-bottom: 2% !important;
+}
+.no-link-style{
+  color: black !important;
+  text-decoration: none;
+}
+
+.logo{
+  width: 50%;
+  animation: App-logo-spin infinite 20s linear;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
