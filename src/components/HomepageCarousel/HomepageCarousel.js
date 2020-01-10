@@ -21,7 +21,7 @@ return (
     style={{ position: 'absolute' }}
   >
      <Slide
-      media={<img alt="Grandfather and grandmother holding photo frame smiling" src={ElderlyCouple} />}
+      media={<img alt="Grandfather and grandmother smiling" src={ElderlyCouple} />}
       mediaBackgroundStyle={{ backgroundColor: cyan[400] }}
       style={{ backgroundColor: cyan[600] }}
       title='Forget Me Not'

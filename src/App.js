@@ -1,5 +1,4 @@
-import React,{useState, Fragment} from 'react';
-import logo from './forgetmenot.png';
+import React,{useState} from 'react';
 import Map from './components/MapComponent/component/Map';
 import './App.scss';
 import { Calendar, momentLocalizer } from 'react-big-calendar'
@@ -8,27 +7,12 @@ import "react-big-calendar/lib/addons/dragAndDrop/styles.css"
 import "react-big-calendar/lib/css/react-big-calendar.css"
 import NavBar from './components/NavBar';
 import SignUp from './components/SignUp';
-import HomepageCarousel from './components/HomepageCarousel/HomepageCarousel';
 import PatientSettings from './components/PatientSettings/PatientSettings';
-import { MuiPickersUtilsProvider } from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
-// import CalendarView from './components/Notification/CalendarView'
-// import Time from './components/Notification/Time'
-// import MyButton from './components/Notification/Button'
-import Form from './components/Notification/Form'
 import SignIn from './components/SignIn';
-// import HomepageCarousel from './components/HomepageCarousel/HomepageCarousel';
-// import { MuiPickersUtilsProvider } from '@material-ui/pickers';
-// import DateFnsUtils from '@date-io/date-fns';
 import Notification from './components/Notification/index'
-// import ReactDOM from "react-dom";
-// import { Link } from 'react-router-dom';
 import Main from './components/Main';
-import {
-  Route,
-  NavLink,
-  HashRouter
-} from "react-router-dom";
+import {Route, NavLink, HashRouter} from "react-router-dom";
+import { forEachChild } from 'typescript';
 const localizer = momentLocalizer(moment);
 
 const myNotificationList = [{
@@ -197,11 +181,67 @@ function App() {
           addError(errors.signUp);
         }
   }
+
+  //id: 15,
+  // title: 'Today-Now',
+  // start: new Date(new Date().setHours(new Date().getHours() - 3)),
+  // end: new Date(new Date().setHours(new Date().getHours() + 3)),
+  //
+  const splitDate =(fullDate) =>{
+    const dateArray = fullDate.toString().split(" ");
+    const date = [];
+    date.push(dateArray[0]);
+    date.push(dateArray[1]);
+    date.push(dateArray[2]);
+    date.push(dateArray[3]);
+    return date.join(" ");
+  }
+ 
+
+  const noteList = [{
+    id: 0,
+    title: 'All Day Event very long title',
+    allDay: true,
+    start: new Date(2020, 3, 0),
+    end: new Date(2020, 3, 1),
+  },
+  {
+    id: 12,
+    title: 'You need your Vitamins',
+    start: new Date(new Date().setHours(new Date().getHours() - 3)),
+    end: new Date(new Date().setHours(new Date().getHours() + 3)),
+  },
+  {
+    id: 15,
+    title: 'Don\'t Forget To Eat!',
+    start: new Date(new Date().setHours(new Date().getHours() - 3)),
+    end: new Date(new Date().setHours(new Date().getHours() + 3)),
+  },
+  ]
+
+  const getNotificationsToday = (notifications)=>{
+    let today=new Date();
+    today = splitDate(today);
+    const result = notifications.filter(notification=> splitDate(notification.start) === today);
+    return result;
+  }
+  //Print for CareGiver
+  const printNotificationsCV = (notifications) => {
+    const todaysList = getNotificationsToday(notifications);
+    return todaysList.map(item => <p>{item.title}</p>)
+  }
+  //Print For Patient
+  const printNotificationsPatient = (notifications)=>{
+
+  }
   //import ReactDOM from "react-dom";
   return (
     <HashRouter>
           <div>
             <NavBar user={user}/>
+            {/* <p>Today's notifications: {getNotificationsToday(noteList)}</p> */}
+            <p>Today's Notifications:</p>
+             {printNotificationsCV(noteList)}
               <div>
                 <p><NavLink to="/cv-map">Map</NavLink></p>
                   {/* <PatientSettings/> */}
