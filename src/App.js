@@ -8,9 +8,16 @@ import "react-big-calendar/lib/addons/dragAndDrop/styles.css"
 import "react-big-calendar/lib/css/react-big-calendar.css"
 import NavBar from './components/NavBar';
 import SignUp from './components/SignUp';
+import HomepageCarousel from './components/HomepageCarousel/HomepageCarousel';
+import PatientSettings from './components/PatientSettings/PatientSettings';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
+// import CalendarView from './components/Notification/CalendarView'
+// import Time from './components/Notification/Time'
+// import MyButton from './components/Notification/Button'
+import Form from './components/Notification/Form'
 import SignIn from './components/SignIn';
 // import HomepageCarousel from './components/HomepageCarousel/HomepageCarousel';
-import PatientSettings from './components/PatientSettings';
 // import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 // import DateFnsUtils from '@date-io/date-fns';
 import Notification from './components/Notification/index'
@@ -201,9 +208,6 @@ function App() {
               
                   <p>This is User: {user.name}</p>
                   {/* <SignUp addUser={validateSignUp} user={user} error={error}/> */}
-                  
-                  
-                
                 </div>
                 <main>
                 {/* <Route path='/' render={props =>

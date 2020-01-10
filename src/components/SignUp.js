@@ -51,7 +51,6 @@ export default function SignUp(props) {
   const classes = useStyles();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  // const [confirmPassword, setConfirmPassword] = useState("");
 
   const signup = {}
   const save = () => {
