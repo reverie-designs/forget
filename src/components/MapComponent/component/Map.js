@@ -12,8 +12,8 @@ const initialConfig = {
   type: null,
 };
 
-// const homePosition = {lat:43.644174, lng: -79.402206}; // light house labs
-const homePosition = {lat:43.715251, lng: -79.722510}; // BCC mall
+const homePosition = {lat:43.644174, lng: -79.402206}; // light house labs
+// const homePosition = {lat:43.715251, lng: -79.722510}; // BCC mall
 
 const Map = () => {
   const { latitude, longitude, timestamp } = useGeolocation(true, {enableHighAccuracy: true});
