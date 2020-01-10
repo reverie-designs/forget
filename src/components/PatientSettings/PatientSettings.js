@@ -64,7 +64,7 @@ export default function SignIn() {
     settingsSave.province = province
     settingsSave.postalCode = postalCode
     settingsSave.country = country
-    settingsSave.code = code
+    // settingsSave.code = code
   }
 
   return (

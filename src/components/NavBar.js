@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import SideMenu from './SideMenu';
+import LogoutButton from './LogoutButton.js';
 import './NavBar.scss';
 import Logo from '../forgetmenot.png'
 
@@ -54,6 +55,7 @@ export default function ButtonAppBar(props) {
           <Typography variant="h6" className={classes.title}>
             Forget Me Not
           </Typography>
+          <LogoutButton />
           <NavLink to="/sign-in"><Button color="inherit" className="button-pop">Login</Button></NavLink>
           |
           <NavLink to="/sign-up"><Button color="inherit" className="button-pop">Sign Up</Button></NavLink>
