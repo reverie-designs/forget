@@ -1,21 +1,27 @@
-import React,{useState} from 'react';
+import React,{useState, Fragment} from 'react';
 import logo from './forgetmenot.png';
 import Map from './components/MapComponent/component/Map';
 import './App.scss';
-// import Calendar from './components/Calendar'
 import { Calendar, momentLocalizer } from 'react-big-calendar'
 import moment from 'moment'
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css"
 import "react-big-calendar/lib/css/react-big-calendar.css"
-// import Selectable from './selectable'
 import NavBar from './components/NavBar';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
-import HomepageCarousel from './components/HomepageCarousel/HomepageCarousel';
+// import HomepageCarousel from './components/HomepageCarousel/HomepageCarousel';
 import PatientSettings from './components/PatientSettings';
-import { MuiPickersUtilsProvider } from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
-import Form from './components/Notification/Form'
+// import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+// import DateFnsUtils from '@date-io/date-fns';
+import Notification from './components/Notification/index'
+// import ReactDOM from "react-dom";
+// import { Link } from 'react-router-dom';
+import Main from './components/Main';
+import {
+  Route,
+  NavLink,
+  HashRouter
+} from "react-router-dom";
 const localizer = momentLocalizer(moment);
 
 const myNotificationList = [{
@@ -184,39 +190,69 @@ function App() {
           addError(errors.signUp);
         }
   }
-
+  //import ReactDOM from "react-dom";
   return (
-    <main>
-        
-        <div>
+    <HashRouter>
+          <div>
             <NavBar user={user}/>
-            <PatientSettings/>
-            <p>This is User: {user.name}</p>
-            <SignUp addUser={validateSignUp} user={user} error={error}/>
-            <p>This is User: {user.name}</p>
-            <SignIn  addUser={validate} user={user} error={error}/>
-            <section className="notification-box">
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <div>
-                    <Form/>
-                  </div>
-                    
-                </MuiPickersUtilsProvider>
+              <div>
+                <p><NavLink to="/cv-map">Map</NavLink></p>
+                  {/* <PatientSettings/> */}
+              
+                  <p>This is User: {user.name}</p>
+                  {/* <SignUp addUser={validateSignUp} user={user} error={error}/> */}
+                  
+                  
                 
-            </section>
-            <Map/>
-            
-            <Calendar
-                      className='CalendarBox'
-                      localizer={localizer}
-                      events={myNotificationList}
-                      startAccessor="start"
-                      endAccessor="end"
-                      style={{height: 500}}
-            />
-            {/* <HomepageCarousel/> */}
-        </div>
-     </main>  
+                </div>
+                <main>
+                {/* <Route path='/' render={props =>
+                                    <Fragment>
+                                      <SignUp addUser={validateSignUp} user={user} error={error} />
+                                      <HomepageCarousel/>
+                                    </Fragment>
+                                  } /> */}
+                {/* <Route exact path="/" component={HomepageCarousel}/> */}
+                {/* <Route exact path="/" component={() => <SignUp  />}/> */}
+                <Route exact path="/" component={()=><Main addUser={validateSignUp} user={user} error={error}/>}/>
+                <Route path="/sign-up" component={() => <SignUp addUser={validateSignUp} user={user} error={error} />}/>
+                <Route path="/sign-in" component={() => <SignIn addUser={validate} user={user} error={error}/>}/>
+                <Route path="/cv-map" component={Map}/>
+                <Route path="/settings" component={PatientSettings}/>
+                <Route path="/calendar" component={() => <Calendar className='CalendarBox'
+                                                    localizer={localizer}
+                                                    events={myNotificationList}
+                                                    startAccessor="start"
+                                                    endAccessor="end"
+                                                    style={{height: 500}}/>}
+                />
+                <Route path="/create-notification" component={Notification}/>
+             
+                  {/* <p>This is User: {user.name}</p> */}
+                  {/* <SignIn  addUser={validate} user={user} error={error}/> */}
+                  {/* <section className="notification-box">
+                      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <div>
+                          <Form/>
+                        </div>
+                          
+                      </MuiPickersUtilsProvider>
+                      
+                  </section>
+                  <Map/>
+                  
+                  <Calendar
+                            className='CalendarBox'
+                            localizer={localizer}
+                            events={myNotificationList}
+                            startAccessor="start"
+                            endAccessor="end"
+                            style={{height: 500}}
+                  /> */}
+                  {/* <HomepageCarousel/> */}
+              </main>
+          </div>  
+     </HashRouter>   
   );
 }
 
