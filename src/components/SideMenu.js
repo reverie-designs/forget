@@ -12,6 +12,11 @@ import GeofenceToggleButton from './DisableGeofence';
 import NotificationToggleButton from './DisableNotification';
 import ImageAvatars from './Avatar';
 import './SideMenu.scss';
+import {
+  Route,
+  NavLink,
+  HashRouter
+} from "react-router-dom";
 
 const useStyles = makeStyles({
   list: {
@@ -41,24 +46,24 @@ export default function SideMenu(props) {
   return (
     <div className={classes.list}>
       <ImageAvatars></ImageAvatars>
-      <ListItemText primary="Bob Smith" />
-      <ListItemText primary="bob.smith@gmail.com" />
+      <ListItemText primary={"Hello:",props.user.name} className="userName"/>
+      {/* <ListItemText primary={props.user.username} /> */}
          <Divider></Divider>
       <List component="nav" aria-label="main mailbox folders"> 
         <ListItem button>
-            <ListItemText primary="Settings" />
+            <NavLink to="/settings" className="no-link-style"> <ListItemText primary="Settings" /></NavLink>
             <ListItemIcon>
               <SettingsIcon />
             </ListItemIcon>
           </ListItem>
         <ListItem button>
-          <ListItemText primary="Create Notification" />
+        <NavLink to="/create-notification" className="no-link-style"><ListItemText primary="Create Notification" /></NavLink>
           <ListItemIcon>
             <NotificationsIcon />
           </ListItemIcon>
         </ListItem>
         <ListItem button>
-          <ListItemText primary="All Notifications" />
+        <NavLink to="/calendar" className="no-link-style"><ListItemText primary="All Notifications" /></NavLink>
           <ListItemIcon>
             <DateRangeIcon />
           </ListItemIcon>
