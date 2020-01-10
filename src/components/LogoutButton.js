@@ -15,7 +15,7 @@ export default function LogoutButton(props) {
 
   return (
     <div className={classes.root}>
-      <Button color="inherit" className="button-pop">
+      <Button color="inherit" className="button-pop" onClick={props.onClick}>
         Logout
       </Button>
     </div>

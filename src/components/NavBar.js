@@ -55,7 +55,7 @@ export default function ButtonAppBar(props) {
           <Typography variant="h6" className={classes.title}>
             Forget Me Not
           </Typography>
-          <LogoutButton />
+          <LogoutButton onClick={props.onClick}/>
           <NavLink to="/sign-in"><Button color="inherit" className="button-pop">Login</Button></NavLink>
           |
           <NavLink to="/sign-up"><Button color="inherit" className="button-pop">Sign Up</Button></NavLink>

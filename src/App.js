@@ -197,11 +197,15 @@ function App() {
           addError(errors.signUp);
         }
   }
+
+  const logoutUser = () => {
+    setUser("")
+  };
   //import ReactDOM from "react-dom";
   return (
     <HashRouter>
           <div>
-            <NavBar user={user}/>
+            <NavBar user={user} onClick={logoutUser}/>
               <div>
                 <p><NavLink to="/cv-map">Map</NavLink></p>
                   {/* <PatientSettings/> */}
