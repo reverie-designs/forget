@@ -236,11 +236,14 @@ function App() {
   const printNotificationsPatient = (notifications)=>{
 
   }
+  const logoutUser = () => {
+    setUser("")
+  };
   //import ReactDOM from "react-dom";
   return (
     <HashRouter>
           <div>
-            <NavBar user={user}/>
+            <NavBar user={user} onClick={logoutUser}/>
             <CvAlerts notes={getNotificationsToday(noteList)}/>
               <div>
                 <p><NavLink to="/cv-map">Map</NavLink></p>
