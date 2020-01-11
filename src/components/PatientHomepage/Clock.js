@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import './Clock.scss';
 
+// const DaytoNight = () => {
+  
+//   const today = new Date();
+//   const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+// }
+
 class Clock extends Component {
   state = {
     time: new Date()
