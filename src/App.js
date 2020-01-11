@@ -153,7 +153,7 @@ const data = {
     name: "Dasha",
     password: "xxx",
     patient: false,
-    autherizationCode: null
+    authorizationCode: null
   },
   {
     id: 2,
@@ -210,26 +210,12 @@ function App() {
   const logoutUser = () => {
     setUser("")
   };
-
-  // const checkForPatient = () => {
-  //   if (user === "") {
-  //     return (<div><Main addUser={validateSignUp} user={user} error={error}/></ div>)
-  //   } else {
-  //     if (user.patient === true) {
-  //       return (<div><PatientHomepageDay /></div>)
-  //     } else {
-  //       return (<div><Map /></div>)
-  //     }
-  //   }
-  // };
-
  
   //import ReactDOM from "react-dom";
   return (
     <HashRouter>
           <div>
             <NavBar user={user} onClick={logoutUser}/>
-            {/* {checkForPatient()}             */}
               <div>
                 <p><NavLink to="/cv-map">Map</NavLink></p>
                   {/* <PatientSettings/> */}
@@ -251,10 +237,10 @@ function App() {
                   // user ? Home : LandingPage
                   <Main addUser={validateSignUp} user={user} error={error}/>
                   }/>
+                <Route exact path="/#/" component={() => <Main addUser={validateSignUp} user={user} error={error} />}/>
                 <Route exact path="/sign-up" component={() => <SignUp addUser={validateSignUp} user={user} error={error} />}/>
                 <Route exact path="/sign-in" component={() => <SignIn addUser={validate} user={user} error={error}/>}/>
                 <Route path="/cv-map" component={Map}/>
-                
                 <Route path="/settings" component={PatientSettings}/>
                 <Route path="/calendar" component={() => <Calendar className='CalendarBox'
                                                     localizer={localizer}
