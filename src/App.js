@@ -247,7 +247,10 @@ function App() {
                                   } /> */}
                 {/* <Route exact path="/" component={HomepageCarousel}/> */}
                 {/* <Route exact path="/" component={() => <SignUp  />}/> */}
-                <Route exact path="/" component={()=><Main addUser={validateSignUp} user={user} error={error}/>}/>
+                <Route exact path="/" component={()=>
+                  // user ? Home : LandingPage
+                  <Main addUser={validateSignUp} user={user} error={error}/>
+                  }/>
                 <Route exact path="/sign-up" component={() => <SignUp addUser={validateSignUp} user={user} error={error} />}/>
                 <Route exact path="/sign-in" component={() => <SignIn addUser={validate} user={user} error={error}/>}/>
                 <Route path="/cv-map" component={Map}/>
