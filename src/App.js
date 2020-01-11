@@ -24,12 +24,12 @@ import Notification from './components/Notification/index'
 // import ReactDOM from "react-dom";
 // import { Link } from 'react-router-dom';
 import Main from './components/Main';
-import PatientHomepageDay from './components/PatientHomepage/PatientHomepageDay';
 
 import {
   Route,
   NavLink,
-  HashRouter
+  HashRouter,
+  Redirect
 } from "react-router-dom";
 const localizer = momentLocalizer(moment);
 
@@ -174,6 +174,7 @@ function App() {
 
   const addUser = (newUser) => {
       setUser(newUser);
+      return <Redirect to="/#/"/>
   }
   const addError = (msg) => {
     setError(msg);
@@ -217,7 +218,7 @@ function App() {
           <div>
             <NavBar user={user} onClick={logoutUser}/>
               <div>
-                <p><NavLink to="/cv-map">Map</NavLink></p>
+                {/* <p><NavLink to="/cv-map">Map</NavLink></p> */}
                   {/* <PatientSettings/> */}
               
                   <p>This is User: {user.name}</p>

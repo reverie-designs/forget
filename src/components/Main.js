@@ -1,9 +1,7 @@
 import React from 'react';
-import HomePageCarousel from './HomepageCarousel/HomepageCarousel';
-import SignUp from "./SignUp";
 import Map from './MapComponent/component/Map';
 import PatientHomepageDay from './PatientHomepage/PatientHomepageDay';
-
+import MainHomepage from "./MainHomepage"
 
 //  const checkForPatient = () => {
 //   if (user === "") {
@@ -24,10 +22,9 @@ export default function Main(props) {
 
   return (
     <div>
-      { !loggedIn && <SignUp addUser={props.addUser} user={props.user} error={props.error}/> }
+      { !loggedIn && <MainHomepage addUser={props.addUser} user={props.user} error={props.error}/> }
       { isCareGiver &&  <Map /> }
       { isPatient && <PatientHomepageDay />}
-      <HomePageCarousel/> */}
     </div>
   );
 }
