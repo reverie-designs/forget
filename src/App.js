@@ -24,6 +24,7 @@ import Notification from './components/Notification/index'
 // import ReactDOM from "react-dom";
 // import { Link } from 'react-router-dom';
 import Main from './components/Main';
+import PatientNotifications from './components/PatientNotifications/PatientNotifications';
 import {
   Route,
   NavLink,
@@ -208,6 +209,7 @@ function App() {
     <HashRouter>
           <div>
             <NavBar user={user} onClick={logoutUser}/>
+            <PatientNotifications />
               <div>
                 <p><NavLink to="/cv-map">Map</NavLink></p>
                   {/* <PatientSettings/> */}
