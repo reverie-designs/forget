@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
@@ -12,6 +12,11 @@ import GeofenceToggleButton from './DisableGeofence';
 import NotificationToggleButton from './DisableNotification';
 import ImageAvatars from './Avatar';
 import './SideMenu.scss';
+import {
+  Route,
+  NavLink,
+  HashRouter
+} from "react-router-dom";
 
 const useStyles = makeStyles({
   list: {
@@ -25,27 +30,40 @@ const useStyles = makeStyles({
 export default function SideMenu(props) {
   const classes = useStyles()
 
+  const [toggleNotification, setNotification] = useState({
+    notification: false,
+  });
+
+  const [toggleGeofence, setGeofence] = useState({
+    geofence: false,
+  });
+
+  const handleChange = name => event => {
+    setNotification({ ...toggleNotification, [name]: event.target.checked });
+    setGeofence({ ...toggleGeofence, [name]: event.target.checked });
+  };
+
   return (
     <div className={classes.list}>
       <ImageAvatars></ImageAvatars>
-      <ListItemText primary="Bob Smith" />
-      <ListItemText primary="bob.smith@gmail.com" />
+      <ListItemText primary={"Hello:",props.user.name} className="userName"/>
+      {/* <ListItemText primary={props.user.username} /> */}
          <Divider></Divider>
       <List component="nav" aria-label="main mailbox folders"> 
         <ListItem button>
-            <ListItemText primary="Settings" />
+            <NavLink to="/settings" className="no-link-style"> <ListItemText primary="Settings" /></NavLink>
             <ListItemIcon>
               <SettingsIcon />
             </ListItemIcon>
           </ListItem>
         <ListItem button>
-          <ListItemText primary="Create Notification" />
+        <NavLink to="/create-notification" className="no-link-style"><ListItemText primary="Create Notification" /></NavLink>
           <ListItemIcon>
             <NotificationsIcon />
           </ListItemIcon>
         </ListItem>
         <ListItem button>
-          <ListItemText primary="All Notifications" />
+        <NavLink to="/calendar" className="no-link-style"><ListItemText primary="All Notifications" /></NavLink>
           <ListItemIcon>
             <DateRangeIcon />
           </ListItemIcon>
@@ -53,13 +71,13 @@ export default function SideMenu(props) {
         <ListItem button>
           <ListItemText primary="Disable Notifications" />
           <ListItemIcon>
-            <NotificationToggleButton></NotificationToggleButton> 
+            <NotificationToggleButton checked={toggleNotification.notification} onChange={handleChange('notification')} />
           </ListItemIcon>
         </ListItem>
         <ListItem button>
           <ListItemText primary="Disable Geofence" />
           <ListItemIcon>
-            <GeofenceToggleButton></GeofenceToggleButton>
+            <GeofenceToggleButton checked={toggleGeofence.geofence} onChange={handleChange('geofence')} />
           </ListItemIcon>
         </ListItem>
       </List>

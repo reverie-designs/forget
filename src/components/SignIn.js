@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,12 +12,13 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import './SignIn.scss';
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link color="inherit" >
         Forget Me Not
       </Link>{' '}
       {new Date().getFullYear()}
@@ -46,20 +47,32 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SignIn() {
+export default function SignIn(props) {
   const classes = useStyles();
+  
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const newUser = {}
+  
+  const save = () => {
+    newUser.username = username
+    newUser.password = password
+    props.addUser(newUser);
+  }
 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
+      <p>{props.error}</p>
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Login
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={event => event.preventDefault()}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -67,20 +80,22 @@ export default function SignIn() {
             fullWidth
             id="username"
             label="Username"
-            name="username"
+            name={username}
             autoComplete="username"
             autoFocus
+            onChange={event => setUsername(event.target.value)}
           />
           <TextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            name="password"
+            name={password}
             label="Password"
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={event => setPassword(event.target.value)}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -92,8 +107,9 @@ export default function SignIn() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={save}
           >
-            Sign In
+            Login
           </Button>
           <Grid container>
             <Grid item xs>

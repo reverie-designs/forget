@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -47,12 +47,22 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SignUp() {
+export default function SignUp(props) {
   const classes = useStyles();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const signup = {}
+  const save = () => {
+    signup.name = username
+    signup.password = password
+    props.addUser(signup);
+  }
 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
+      <p>{props.error}</p>
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
@@ -60,17 +70,18 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={event => event.preventDefault()}>
           <Grid container spacing={2}>
           <Grid item xs={12}>
               <TextField
                 variant="outlined"
                 required
                 fullWidth
-                id="email"
+                id="username"
                 label="Username"
-                name="Username"
+                name="username"
                 autoComplete="username"
+                onChange={event => setUsername(event.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -83,6 +94,7 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={event => setPassword(event.target.value)}
               />
             </Grid>
           </Grid>
@@ -91,14 +103,15 @@ export default function SignUp() {
             fullWidth
             variant="contained"
             color="primary"
-            className={classes.submit}
+            className="margin-left cursor"
+            onClick={save}
           >
             Sign Up
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
               <Link href="#" variant="body2">
-                Already have an account? Sign in
+                Already have an account? Login
               </Link>
             </Grid>
           </Grid>
