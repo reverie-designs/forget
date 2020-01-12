@@ -12,6 +12,7 @@ class Clock extends Component {
     time: new Date()
   };
 
+
   componentDidMount() {
     this.timerID = setInterval(() => this.tick(), 1000);
   }
@@ -21,9 +22,15 @@ class Clock extends Component {
   }
 
   tick() {
-    this.setState({
-      time: new Date()
-    });
+     let date = new Date();
+     this.setState({
+       time: date
+     });
+     this.props.handleUpdate(date);
+    
+     //TEST
+     // let date = this.state.time;
+    // date.setTime(date.getTime() + (1*60*60*1000));
   }
 
   render() {

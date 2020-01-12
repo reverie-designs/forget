@@ -15,7 +15,6 @@
     "date-fns": "^2.8.1",
     "google-maps-api-loader": "1.1.1",
     "material-auto-rotating-carousel": "^3.0.2",
-    "moment": "^2.24.0",
     "node-sass": "^4.13.0",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
