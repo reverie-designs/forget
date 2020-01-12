@@ -4,17 +4,17 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import { makeStyles } from '@material-ui/core/styles';
 
+const useStyles = makeStyles(theme => ({
+  paper: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'left',
+  },
+}));
+
 export default function PatientToggle(props) {
   const classes = useStyles();
 
-  const useStyles = makeStyles(theme => ({
-    paper: {
-      marginTop: theme.spacing(8),
-      display: 'flex',
-      flexDirection: 'row',
-      alignItems: 'left',
-    },
-  }));
   return (
 
     <div className={classes.paper}>
