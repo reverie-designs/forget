@@ -179,18 +179,19 @@ function App() {
   const addError = (msg) => {
     setError(msg);
   }
-  const findUser = (newUser) => {
-    return data.users.find(user=> user.name === newUser.username && user.password === newUser.password);
-  }
+  // const findUser = (newUser) => {
+  //   return data.users.find(user=> user.name === newUser.username && user.password === newUser.password);
+  // }
   const validate = (newUser) => {
-    console.log(data.users.name, newUser.username);
-    console.log(data.users.password, newUser.password);
-    console.log("THIS IS",data.users[0].name);
-    let result = findUser(newUser);
-    console.log("This is result", result);
-    if(result) {
+    // console.log(data.users.name, newUser.username);
+    // console.log(data.users.password, newUser.password);
+    // console.log("THIS IS",data.users[0].name);
+    // let result = findUser(newUser);
+    // console.log("This is result", result);
+    addError("");
+    if(newUser.name) {
       console.log("BANG");
-      addUser(result);
+      addUser(newUser);
     }
     else {
       console.log("PEW");
@@ -198,15 +199,15 @@ function App() {
     }
   }
 
-  const validateSignUp = (newUser) => {
-        let result = findUser(newUser);
-        if(result === undefined){
-          data.users.push(newUser);
-          setUser(newUser);
-        } else {
-          addError(errors.signUp);
-        }
-  }
+  // const validateSignUp = (newUser) => {
+  //       // let result = findUser(newUser);
+  //       if(result === undefined){
+  //         data.users.push(newUser);
+  //         setUser(newUser);
+  //       } else {
+  //         addError(errors.signUp);
+  //       }
+  // }
 
   const logoutUser = () => {
     setUser("")
@@ -219,28 +220,16 @@ function App() {
             <NavBar user={user} onClick={logoutUser}/>
             <PatientNotifications />
               <div>
-                {/* <p><NavLink to="/cv-map">Map</NavLink></p> */}
-                  {/* <PatientSettings/> */}
               
                   <p>This is User: {user.name}</p>
-                  {/* <SignUp addUser={validateSignUp} user={user} error={error}/> */}
                 </div>
                 <main>
 
-                {/* <Route path='/' render={props =>
-                                    <Fragment>
-                                      <SignUp addUser={validateSignUp} user={user} error={error} />
-                                      <HomepageCarousel/>
-                                    </Fragment>
-                                  } /> */}
-                {/* <Route exact path="/" component={HomepageCarousel}/> */}
-                {/* <Route exact path="/" component={() => <SignUp  />}/> */}
                 <Route exact path="/" component={()=>
-                  // user ? Home : LandingPage
-                  <Main addUser={validateSignUp} user={user} error={error}/>
+                  <Main addUser={addUser} user={user} error={error}/>
                   }/>
-                <Route exact path="/#/" component={() => <Main addUser={validateSignUp} user={user} error={error} />}/>
-                <Route exact path="/sign-up" component={() => <SignUp addUser={validateSignUp} user={user} error={error} />}/>
+                <Route exact path="/#/" component={() => <Main addUser={addUser} user={user} error={error} />}/>
+                <Route exact path="/sign-up" component={() => <SignUp addUser={addUser} user={user} error={error} />}/>
                 <Route exact path="/sign-in" component={() => <SignIn addUser={validate} user={user} error={error}/>}/>
                 <Route path="/cv-map" component={Map}/>
                 <Route path="/settings" component={PatientSettings}/>

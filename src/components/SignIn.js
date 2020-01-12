@@ -50,13 +50,13 @@ const useStyles = makeStyles(theme => ({
 export default function SignIn(props) {
   const classes = useStyles();
   
-  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
   const newUser = {}
   
   const save = () => {
-    newUser.username = username
+    newUser.name = name
     newUser.password = password
     props.addUser(newUser);
   }
@@ -80,10 +80,10 @@ export default function SignIn(props) {
             fullWidth
             id="username"
             label="Username"
-            name={username}
+            name="username"
             autoComplete="username"
             autoFocus
-            onChange={event => setUsername(event.target.value)}
+            onChange={event => setName(event.target.value)}
           />
           <TextField
             variant="outlined"
