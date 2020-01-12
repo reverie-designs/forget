@@ -14,9 +14,13 @@ import Main from './components/Main';
 import {Route, NavLink, HashRouter} from "react-router-dom";
 // import Alerts from "./components/PatientAlerts";
 import CvAlerts from "./components/CaregiverNotifications";
-// import { forEachChild } from 'typescript';
+// import { getUsers, addNewUser} from "./hooks/useApplicationData";
+// import getUsers from "./hooks/getUser";
+// import addNewUser from "./hooks/addNewUser";
+import useApplicationData from "./hooks/useApplicationData"
 const localizer = momentLocalizer(moment);
 
+const {getUsers, addNewUser} = useApplicationData();
 const myNotificationList = [{
   id: 0,
   title: 'All Day Event very long title',
@@ -156,29 +160,44 @@ function App() {
     setError(msg);
   }
   const findUser = (newUser) => {
-    return data.users.find(user=> user.name === newUser.username && user.password === newUser.password);
+    return data.users.find(user=> user.name === newUser.name && user.password === newUser.password);
   }
   const validate = (newUser) => {
-    console.log(data.users.name, newUser.username);
-    console.log(data.users.password, newUser.password);
-    console.log("THIS IS",data.users[0].name);
-    let result = findUser(newUser);
-    console.log("This is result", result);
-    if(result) {
-      console.log("BANG");
-      addUser(result);
-    }
-    else {
-      console.log("PEW");
-      addError(errors.signIn);
-    }
+    // console.log(newUser);
+    // console.log(data.users.name, newUser.username);
+    // console.log(data.users.password, newUser.password);
+    // console.log("THIS IS",data.users[0].name);
+    // const userResponse = getUsers(newUser.name, newUser.password);
+    // console.log("Logged in",newUser);
+    console.log("user OBJECT",newUser);
+    let falsehe = {name: newUser.username, password: newUser.password};
+    addUser(falsehe);
+    setUser(falsehe);
+     let user = getUsers(newUser.username, newUser.password);
+     console.log(user);
+     addUser(user);
+    // addUser(newUser);
+    // let result = findUser(newUser);
+    // console.log("This is result", result);
+    // if(result) {
+    //   console.log("BANG");
+    //   addUser(result);
+    // }
+    // else {
+    //   console.log("PEW");
+    //   addError(errors.signIn);
+    // }
   }
 
   const validateSignUp = (newUser) => {
+      // console.log("Hello",newUser.name, newUser.password);
+       addNewUser(newUser.name, newUser.password);
         let result = findUser(newUser);
         if(result === undefined){
           data.users.push(newUser);
           setUser(newUser);
+          // 
+          
         } else {
           addError(errors.signUp);
         }
@@ -244,6 +263,7 @@ function App() {
     <HashRouter>
           <div>
             <NavBar user={user} onClick={logoutUser}/>
+            {/* <button onClick={getUsers}>Get API</button> */}
             <CvAlerts notes={getNotificationsToday(noteList)}/>
               <div>
                 <p><NavLink to="/cv-map">Map</NavLink></p>
