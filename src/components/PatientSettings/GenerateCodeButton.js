@@ -1,36 +1,36 @@
 import React from "react";
+import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
+import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
   paper: {
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(8),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    marginTop: theme.spacing(1),
   },
 }));
 
-export default function AddCode(props) {
+export default function AuthorizationCode(props) {
   const classes = useStyles();
-
-  return (
+  
+    return (
       <div className={classes.paper}>
-          <Button
+        <Button
             type="submit"
-            width={1/4}
             variant="contained"
             color="primary"
             className={classes.submit}
+            disabled={props.disableButton}
             onClick={props.onClick}
           >
-            Add Code
+            Generate Code
           </Button>
-          
       </div>
   );
 }
-
