@@ -28,7 +28,8 @@ import PatientNotifications from './components/PatientNotifications/PatientNotif
 import {
   Route,
   NavLink,
-  HashRouter
+  HashRouter,
+  Redirect
 } from "react-router-dom";
 const localizer = momentLocalizer(moment);
 
@@ -152,7 +153,14 @@ const data = {
     name: "Dasha",
     password: "xxx",
     patient: false,
-    autherizationCode: null
+    authorizationCode: null
+  },
+  {
+    id: 2,
+    name: "Fatima",
+    password: "123",
+    patient: true,
+    authorizationCode: null
   }
 ] 
 };
@@ -166,6 +174,7 @@ function App() {
 
   const addUser = (newUser) => {
       setUser(newUser);
+      return <Redirect to="/#/"/>
   }
   const addError = (msg) => {
     setError(msg);
@@ -202,7 +211,6 @@ function App() {
   const logoutUser = () => {
     setUser("")
   };
-
  
   //import ReactDOM from "react-dom";
   return (
@@ -211,13 +219,14 @@ function App() {
             <NavBar user={user} onClick={logoutUser}/>
             <PatientNotifications />
               <div>
-                <p><NavLink to="/cv-map">Map</NavLink></p>
+                {/* <p><NavLink to="/cv-map">Map</NavLink></p> */}
                   {/* <PatientSettings/> */}
               
                   <p>This is User: {user.name}</p>
                   {/* <SignUp addUser={validateSignUp} user={user} error={error}/> */}
                 </div>
                 <main>
+
                 {/* <Route path='/' render={props =>
                                     <Fragment>
                                       <SignUp addUser={validateSignUp} user={user} error={error} />
@@ -226,9 +235,13 @@ function App() {
                                   } /> */}
                 {/* <Route exact path="/" component={HomepageCarousel}/> */}
                 {/* <Route exact path="/" component={() => <SignUp  />}/> */}
-                <Route exact path="/" component={()=><Main addUser={validateSignUp} user={user} error={error}/>}/>
-                <Route path="/sign-up" component={() => <SignUp addUser={validateSignUp} user={user} error={error} />}/>
-                <Route path="/sign-in" component={() => <SignIn addUser={validate} user={user} error={error}/>}/>
+                <Route exact path="/" component={()=>
+                  // user ? Home : LandingPage
+                  <Main addUser={validateSignUp} user={user} error={error}/>
+                  }/>
+                <Route exact path="/#/" component={() => <Main addUser={validateSignUp} user={user} error={error} />}/>
+                <Route exact path="/sign-up" component={() => <SignUp addUser={validateSignUp} user={user} error={error} />}/>
+                <Route exact path="/sign-in" component={() => <SignIn addUser={validate} user={user} error={error}/>}/>
                 <Route path="/cv-map" component={Map}/>
                 <Route path="/settings" component={PatientSettings}/>
                 <Route path="/calendar" component={() => <Calendar className='CalendarBox'
