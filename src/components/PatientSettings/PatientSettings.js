@@ -70,9 +70,8 @@ export default function PatientSettings(props) {
       settingsSave.code = code
       setToggleVisibility(true);
     }
-    console.log("THIS IS>>>>", settingsSave)
   }
-  const settings={user_id: 2, address1: '662 King Street West', address2: "", city: "Toronto", province:"ON", country: "Canada", auth_code: code, is_patient: false}
+
   const save = () => {
     settingsSave.addressOne = addressOne 
     settingsSave.addressTwo = addressTwo

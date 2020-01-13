@@ -31,7 +31,7 @@ export default function SideMenu(props) {
   const [toggleNotification, setNotification] = useState({
     notification: false,
   });
-  console.log("HELLO GEO",props.geofence);
+  console.log("HELLO GEO", props.geofence);
   const [toggleGeofence, setGeofence] = useState({
     geofence: props.geofence.radius_on,
   });
@@ -46,6 +46,27 @@ export default function SideMenu(props) {
     setNotification({ ...toggleNotification, [name]: event.target.checked });
     setGeofence({ ...toggleGeofence, [name]: event.target.checked });
   };
+
+  const isPatient = (patient) => {
+    if (!patient){
+      return (
+        <div>
+          <ListItem button>
+              <ListItemText primary="Geofence" />
+              <ListItemIcon>
+                <GeofenceToggleButton checked={toggleGeofence.geofence} onChange={handleChange('geofence')} />
+              </ListItemIcon>
+            </ListItem>
+              <ListItem button>
+              <ListItemText primary="Disable Notifications" />
+              <ListItemIcon>
+                <NotificationToggleButton checked={toggleNotification.notification} onChange={handleChange('notification')} />
+              </ListItemIcon>
+          </ListItem>
+      </div>
+      )
+    }
+  }
 
   return (
     <div className={classes.list}>
@@ -72,18 +93,14 @@ export default function SideMenu(props) {
             <DateRangeIcon />
           </ListItemIcon>
         </ListItem>
-        <ListItem button>
-          <ListItemText primary="Disable Notifications" />
-          <ListItemIcon>
-            <NotificationToggleButton checked={toggleNotification.notification} onChange={handleChange('notification')} />
-          </ListItemIcon>
-        </ListItem>
-        <ListItem button>
+      
+         {isPatient(props.user.is_patient)}
+        {/* <ListItem button>
           <ListItemText primary="Geofence" />
           <ListItemIcon>
             <GeofenceToggleButton checked={toggleGeofence.geofence} onChange={handleChange('geofence')} />
           </ListItemIcon>
-        </ListItem>
+        </ListItem> */}
       </List>
     </div>
   );
