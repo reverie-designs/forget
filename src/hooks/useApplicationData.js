@@ -21,11 +21,9 @@ export default function useApplicationData() {
   const splitDate =(fullDate) =>{
     const dateArray = fullDate.toString().split(" ");
     const date = [];
-    // date.push(dateArray[0]);
     date.push(dateArray[1]);
     date.push(dateArray[2]);
     date.push(dateArray[3]);
-    console.log("adding to query",date.join(" "));
     return date.join(" ");
   }
 
