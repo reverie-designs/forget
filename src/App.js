@@ -143,6 +143,7 @@ function App() {
     <HashRouter>
           <div>
             <NavBar user={state.user} onClick={logout}/>
+            <Map radius={state} geofence={state.geofence} user={state.user} settings={state.settings} location={state.location} getLocation={state.getLocation} />
             <PatientNotifications />
               <div>
               
