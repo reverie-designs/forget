@@ -18,8 +18,8 @@ import HomePageCarousel from './HomepageCarousel/HomepageCarousel';
 
 export default function Main(props) {
   const loggedIn = (props.user);
-  const isCareGiver = loggedIn && props.user.patient === false;
-  const isPatient = loggedIn && props.user.patient === true;
+  const isCareGiver = loggedIn && props.user.is_patient === false;
+  const isPatient = loggedIn && props.user.is_patient === true;
 
   return (
     <div>

@@ -152,14 +152,14 @@ const data = {
     id: 1,
     name: "Dasha",
     password: "xxx",
-    patient: false,
+    is_patient: false,
     authorizationCode: null
   },
   {
     id: 2,
     name: "Fatima",
     password: "123",
-    patient: true,
+    is_patient: true,
     authorizationCode: null
   }
 ] 
@@ -242,7 +242,7 @@ function App() {
                   }/>
                 {/* <Route exact path="/#/" component={() => <Main addUser={validateSignUp} user={user} error={error} />}/> */}
                 <Route exact path="/sign-up" component={() => (!user) ? <SignUp addUser={validateSignUp} user={user} error={error} /> : <Redirect to="/" />}/>
-                <Route exact path="/sign-in" component={() => (!user) ? <SignIn addUser={validate} user={user} error={error}/> : <Redirect to="/" />}/>
+                <Route exact path="/sign-in" component={() => (!user) ? <SignIn addUser={validate} user={user} error={error}/> : <Redirect to="/"/>}/>
                 <Route path="/cv-map" component={Map}/>
                 <Route path="/settings" component={PatientSettings}/>
                 <Route path="/calendar" component={() => <Calendar className='CalendarBox'
