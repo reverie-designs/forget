@@ -174,7 +174,8 @@ function App() {
 
   const addUser = (newUser) => {
       setUser(newUser);
-      return <Redirect to="/#/"/>
+      console.log('yop')
+      return <Redirect to='/bob' />
   }
   const addError = (msg) => {
     setError(msg);
@@ -237,11 +238,11 @@ function App() {
                 {/* <Route exact path="/" component={() => <SignUp  />}/> */}
                 <Route exact path="/" component={()=>
                   // user ? Home : LandingPage
-                  <Main addUser={validateSignUp} user={user} error={error}/>
+                  <Main user={user} error={error}/>
                   }/>
-                <Route exact path="/#/" component={() => <Main addUser={validateSignUp} user={user} error={error} />}/>
-                <Route exact path="/sign-up" component={() => <SignUp addUser={validateSignUp} user={user} error={error} />}/>
-                <Route exact path="/sign-in" component={() => <SignIn addUser={validate} user={user} error={error}/>}/>
+                {/* <Route exact path="/#/" component={() => <Main addUser={validateSignUp} user={user} error={error} />}/> */}
+                <Route exact path="/sign-up" component={() => (!user) ? <SignUp addUser={validateSignUp} user={user} error={error} /> : <Redirect to="/" />}/>
+                <Route exact path="/sign-in" component={() => (!user) ? <SignIn addUser={validate} user={user} error={error}/> : <Redirect to="/" />}/>
                 <Route path="/cv-map" component={Map}/>
                 <Route path="/settings" component={PatientSettings}/>
                 <Route path="/calendar" component={() => <Calendar className='CalendarBox'

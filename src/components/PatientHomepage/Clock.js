@@ -28,8 +28,11 @@ class Clock extends Component {
      });
      this.props.handleUpdate(date);
     
-     //TEST
-     // let date = this.state.time;
+    //  TEST
+    //  let date = this.state.time;
+    //    this.setState({
+    //    time: date
+    //  });
     // date.setTime(date.getTime() + (1*60*60*1000));
   }
 

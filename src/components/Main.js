@@ -1,7 +1,8 @@
 import React from 'react';
 import Map from './MapComponent/component/Map';
 import PatientHomepageDay from './PatientHomepage/PatientHomepageDay';
-import MainHomepage from "./MainHomepage"
+import SignUp from "./SignUp";
+import HomePageCarousel from './HomepageCarousel/HomepageCarousel';
 
 //  const checkForPatient = () => {
 //   if (user === "") {
@@ -16,14 +17,18 @@ import MainHomepage from "./MainHomepage"
 // };
 
 export default function Main(props) {
-  const loggedIn = !!props.user;
+  const loggedIn = (props.user);
   const isCareGiver = loggedIn && props.user.patient === false;
   const isPatient = loggedIn && props.user.patient === true;
 
   return (
     <div>
-      { !loggedIn && <MainHomepage addUser={props.addUser} user={props.user} error={props.error}/> }
-      { isCareGiver &&  <Map /> }
+      { !loggedIn && <div>
+        <SignUp addUser={props.addUser} error={props.error}/>
+        <HomePageCarousel/>
+        </div>
+      }
+      { isCareGiver && <Map /> }
       { isPatient && <PatientHomepageDay />}
     </div>
   );
