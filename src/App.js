@@ -1,5 +1,4 @@
-import React,{useState, Fragment} from 'react';
-import logo from './forgetmenot.png';
+import React from 'react';
 import Map from './components/MapComponent/component/Map';
 import './App.scss';
 import { Calendar, momentLocalizer } from 'react-big-calendar'
@@ -9,25 +8,13 @@ import "react-big-calendar/lib/css/react-big-calendar.css"
 import NavBar from './components/NavBar';
 import SignUp from './components/SignUp';
 import PatientSettings from './components/PatientSettings/PatientSettings';
-import { MuiPickersUtilsProvider } from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
-// import CalendarView from './components/Notification/CalendarView'
-// import Time from './components/Notification/Time'
-// import MyButton from './components/Notification/Button'
-import Form from './components/Notification/Form'
 import SignIn from './components/SignIn';
-// import HomepageCarousel from './components/HomepageCarousel/HomepageCarousel';
-// import { MuiPickersUtilsProvider } from '@material-ui/pickers';
-// import DateFnsUtils from '@date-io/date-fns';
 import Notification from './components/Notification/index'
-// import ReactDOM from "react-dom";
-// import { Link } from 'react-router-dom';
 import Main from './components/Main';
 import PatientNotifications from './components/PatientNotifications/PatientNotifications';
 import {
   Route,
-  HashRouter,
-  Redirect
+  HashRouter
 } from "react-router-dom";
 
 import useApplicationData from "./hooks/useApplicationData";

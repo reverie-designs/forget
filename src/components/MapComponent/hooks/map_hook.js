@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
+// import ReactDOM from "react-dom";
 import useGoogleMap from "./useGoogleMap"
 import createMarker from "../helper/createMarker"
 import createFence from "../helper/createFence"
