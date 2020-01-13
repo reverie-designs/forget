@@ -38,11 +38,11 @@ export default function PatientSettings(props) {
   const [postalCode, setPostalCode] = useState("")
   const [country, setCountry] = useState("")  
   const [code, setCode] = useState(props.user.auth_code);
-  const [disableButton, setDisableButton] = useState(false);
+  const [disableButton, setDisableButton] = useState(!props.user.is_patient && props.user.auth_code ? true : false);
   const [togglePatient, setPatient] = useState({
     patient: false,
   });
-  const [isToggleVisisble, setToggleVisibility] = useState(false);
+  const [isToggleVisisble, setToggleVisibility] = useState(!props.user.is_patient && props.user.auth_code? true : false);
 
   const handleChange = name => event => {
     setPatient({ ...togglePatient, [name]: event.target.checked });
@@ -50,6 +50,7 @@ export default function PatientSettings(props) {
 
   const settingsSave = {}
 
+  
   const add = () => {
     //send axios 
     //is success
@@ -84,7 +85,7 @@ export default function PatientSettings(props) {
           onClick={() => randomCodeGenerator(5, setCode, setDisableButton)}
           onChange={setCode}
           />
-        <AddCode onClick={add} />
+        <AddCode onClick={add} disableButton={disableButton} />
         { isToggleVisisble === true && <div>
         <PatientToggle checked={togglePatient.patient} onChange={handleChange('patient')} />
         {togglePatient.patient === false && <div>

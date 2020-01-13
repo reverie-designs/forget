@@ -26,6 +26,7 @@ export default function AddCode(props) {
             color="primary"
             className={classes.submit}
             onClick={props.onClick}
+            disabled={props.disableButton}
           >
             Add Code
           </Button>
