@@ -56,7 +56,7 @@ export default function useApplicationData() {
               console.log("notifications for today", all[2].data)
 
               dispatch({type: SET_SETTINGS, settings: all[0].data[0]})
-              dispatch({type: SET_GEOFENCE, geofence: all[0].data[1]})
+              dispatch({type: SET_GEOFENCE, geofence: all[1].data[0]})
               dispatch({type: SET_NOTIFICATIONS_DAY, todays_notifications: all[2].data[0]})
             })
           } else if (!is_patient && res.data[0].name){
@@ -105,6 +105,13 @@ const logout = () => {
   return dispatch({type: SET_USER, user: ""})
 }
 
+const updateRadius = (radius) => {
+  api.post("api/settings/geofence", {params:radius})
+  .then((res)=>{
+    dispatch({type: SET_GEOFENCE, geofence: radius})
+  })
+}
+
 const addNotification = (notification) => {
   // const notification={date:"Jan 17 2020", time: "15:00:00", pills: true, appointment: false, food: true, info:"hello sunshine", daily:false , user_id: 1, auth_code: "V|R|FAMILY"}
   api.post("api/notifications", {notification})
@@ -139,5 +146,5 @@ const updateLocation = (locationInfo) =>{
   // })
 
 
-  return {state, logout, getUser, addNotification, updateLocation}
+  return {state, logout, getUser, addNotification, updateLocation, updateRadius}
 }
