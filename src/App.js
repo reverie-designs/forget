@@ -136,29 +136,8 @@ const myNotificationList = [{
 },
 ]
 
-const data = {
- users: [{
-    id: 1,
-    name: "Dasha",
-    password: "xxx",
-    patient: false,
-    authorizationCode: null
-  },
-  {
-    id: 2,
-    name: "Fatima",
-    password: "123",
-    patient: true,
-    authorizationCode: null
-  }
-] 
-};
-
-// const errors = {signIn: "username password didn't match", signUp: "We already have a user with that username"};
-
- /* <Form categories = {data.categories}/> */
 function App() {
-  const {state, logout, getUser} = useApplicationData();
+  const {state, logout, getUser, addNotification} = useApplicationData();
 
   return (
     <HashRouter>
@@ -186,7 +165,7 @@ function App() {
                                                     endAccessor="end"
                                                     style={{height: 500}}/>}
                 />
-                <Route path="/create-notification" component={Notification}/>
+                <Route path="/create-notification" component={() => <Notification addNotification={addNotification} user={state.user} error={state.error} />}/>
              
                   {/* <p>This is User: {user.name}</p> */}
                   {/* <SignIn  addUser={validate} user={user} error={error}/> */}
