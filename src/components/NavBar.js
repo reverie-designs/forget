@@ -54,7 +54,7 @@ export default function ButtonAppBar(props) {
     }
   }
   
-  // (props.user) && - use this before icon button to disable menu when not logged in. Do not delete
+  // (props.user) && - use this before IconButton to disable menu when not logged in. Do not delete
 
   return (
     <div className={classes.root}>
