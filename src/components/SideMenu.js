@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
@@ -31,10 +31,15 @@ export default function SideMenu(props) {
   const [toggleNotification, setNotification] = useState({
     notification: false,
   });
-
+  console.log("HELLO GEO",props.geofence);
   const [toggleGeofence, setGeofence] = useState({
-    geofence: false,
+    geofence: !props.geofence.radius_on,
   });
+  // console.log(props)
+  useEffect(()=>{
+    const radiusToggleObject = {user_id: props.user_id, radius_on: !toggleGeofence, radius: props.geofence.radius, patient_id: props.user.patient_id}
+    props.updateRadius(radiusToggleObject);
+  },[toggleGeofence])
 
   const handleChange = name => event => {
     setNotification({ ...toggleNotification, [name]: event.target.checked });

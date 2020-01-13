@@ -138,12 +138,12 @@ const myNotificationList = [{
 ]
 
 function App() {
-  const {state, logout, getUser, addNotification} = useApplicationData();
-
+  const {state, logout, getUser, addNotification, updateRadius} = useApplicationData();
+  console.log(state);
   return (
     <HashRouter>
           <div>
-            <NavBar user={state.user} onClick={logout}/>
+            <NavBar user={state.user} onClick={logout} geofence={state.geofence} updateRadius={updateRadius}/>
             <PatientNotifications />
               <div>
               
@@ -163,7 +163,7 @@ function App() {
                 {/* <Route exact path="/#/" component={() => <Main addUser={addUser} user={user} error={error} />}/> */}
                 <Route exact path="/sign-up" component={() => (!state.user) ? <SignUp addUser={getUser} user={state.user} error={state.error} /> : <Redirect to="/" />}/>
                 <Route exact path="/sign-in" component={() => (!state.user) ? <SignIn addUser={getUser} user={state.user} error={state.error}/> : <Redirect to="/" />}/>
-                <Route path="/cv-map" component={() => <Map radius={state} geofence={state.geofence} user={state.user} settings={state.settings} location={state.location} getLocation={state.getLocation} />}/>
+                <Route path="/cv-map" component={() => <Map  geofence={state.geofence} user={state.user} settings={state.settings} location={state.location} getLocation={state.getLocation} />}/>
                 <Route path="/settings" component={PatientSettings}/>
                 <Route path="/calendar" component={() => <Calendar className='CalendarBox'
                                                     localizer={localizer}
