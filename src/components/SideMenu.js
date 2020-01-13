@@ -50,7 +50,7 @@ export default function SideMenu(props) {
   return (
     <div className={classes.list}>
       <ImageAvatars></ImageAvatars>
-      <ListItemText primary={"Hello:",props.user.name} className="userName"/>
+      <ListItemText primary={`Hello: ${props.user.name}`} className="userName"/>
       {/* <ListItemText primary={props.user.username} /> */}
          <Divider></Divider>
       <List component="nav" aria-label="main mailbox folders"> 
