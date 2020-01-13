@@ -144,7 +144,7 @@ function App() {
     <HashRouter>
           <div>
             <NavBar user={state.user} onClick={logout}/>
-            <PatientNotifications />
+            {/* <PatientNotifications todays_notifications={state.todays_notifications} /> */}
               <div>
               
                   <p>This is User: {state.user.name}</p>
@@ -153,7 +153,7 @@ function App() {
 
                 <Route exact path="/" component={()=>
                   // user ? Home : LandingPage
-                  <Main addUser={getUser} user={state.user} error={state.error}/>
+                  <Main addUser={getUser} user={state.user} error={state.error} todays_notifications={state.todays_notifications}/>
                   }/>
                   {/* <Main user={user} error={error}/>
                   }/> */}

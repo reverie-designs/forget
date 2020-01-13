@@ -4,47 +4,6 @@ import React from 'react';
 // import MuiAlert from '@material-ui/lab/Alert';
 // import { makeStyles } from '@material-ui/core/styles';
 
-const d = new Date();
-
-const data = {
-  notifications: [{
-    id: 1,
-    date: "Jan 11 2020",
-    time: "14:00:00",
-    pills: false,
-    appointment: true,
-    food: true,
-    patient: true
-  },
-  {
-    id: 2,
-    date: "Jan 11 2020",
-    time: `${d.getHours()}:0${d.getMinutes()}:${d.getSeconds()}`,
-    pills: false,
-    appointment: true,
-    food: true,
-    patient: true
-  },
-  {
-    id: 3,
-    date: "Jan 14 2020",
-    time: "14:45:00",
-    pills: false,
-    appointment: true,
-    food: true,
-    patient: true
-  },
-  {
-    id: 4,
-    date: "Jan 17 2020",
-    time: "21:30:00",
-    pills: false,
-    appointment: true,
-    food: true,
-    patient: true
-  }
-]
-}
 
 // const checkPatientTime = () => {
 //   const today = new Date()
@@ -59,23 +18,44 @@ const data = {
 //   return timeArray[0]
 // }
 
-function shouldShowNotifcation(notification) {
-  return new Date() >= new Date(`${notification.date} ${notification.time}`);
-}
 
-export default function PatientNotifications() {
+export default function PatientNotifications(props) {
+  
+  const notifications = props.today
+  // console.log("THIS IS NOTIFICATIONS...", notifications) // Array of notification objects
+  // console.log("THIS IS TIME AND DATE...", props.today.time, props.today.date)
 
+  const shouldShowNotifcation = (notification) => {
+    console.log("this is a notification part 2", notification)
+    console.log("this is something...", new Date() >= new Date(`${notification.date} ${notification.time}`), new Date(), new Date(`${notification.date} ${notification.time}`))
+    return new Date() >= new Date(`${notification.date} ${notification.time}`);
+  }
+
+  const setPopUps = (notifications) => {
+    const newNotifications = notifications.map((notification) => {
+      // console.log("This is a notification......", notification)
+      console.log("does today have notifications", shouldShowNotifcation(notification));
+        if (shouldShowNotifcation(notification)) {
+          console.log("Found notifications for Today", notification);
+          return <p key={notification.id}>id: {notification.id}</p>
+        }
+        return null;
+      }
+    )
+    console.log("these are newwww...", newNotifications)
+    return newNotifications
+  };
+
+  // setPopUps(props.today)
+  
   return (
     <div>
       {/* iterate through notification, if (shouldShowNotification()), show it */}
-      {data.notifications.map((notification) => {
-        if (shouldShowNotifcation(notification)) {
-          return <p key={notification.id}>id: {notification.id}</p>
-        }
-      })}
+      {setPopUps(notifications)}
     </div>
-  )
+  );
 }
+
 
 
   // function PatientNotification(props) {

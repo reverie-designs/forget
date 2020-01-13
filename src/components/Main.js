@@ -29,7 +29,7 @@ export default function Main(props) {
         </div>
       }
       { isCareGiver && <Map /> }
-      { isPatient && <PatientHomepage />}
+      { isPatient && <PatientHomepage user={props.user} today={props.todays_notifications}/>}
     </div>
   );
 }
