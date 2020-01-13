@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Clock from './Clock';
-import './PatientHomepageDay.scss'
+import './PatientHomepage.scss'
 
 export default function PatientHomepage() {
 

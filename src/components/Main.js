@@ -1,6 +1,6 @@
 import React from 'react';
 import Map from './MapComponent/component/Map';
-import PatientHomepageDay from './PatientHomepage/PatientHomepageDay';
+import PatientHomepage from './PatientHomepage/PatientHomepage';
 import SignUp from "./SignUp";
 import HomePageCarousel from './HomepageCarousel/HomepageCarousel';
 
@@ -29,7 +29,7 @@ export default function Main(props) {
         </div>
       }
       { isCareGiver && <Map /> }
-      { isPatient && <PatientHomepageDay />}
+      { isPatient && <PatientHomepage />}
     </div>
   );
 }
