@@ -33,11 +33,12 @@ export default function SideMenu(props) {
   });
   console.log("HELLO GEO",props.geofence);
   const [toggleGeofence, setGeofence] = useState({
-    geofence: !props.geofence.radius_on,
+    geofence: props.geofence.radius_on,
   });
-  // console.log(props)
+  console.log("toggle on or off", toggleGeofence.geofence)
   useEffect(()=>{
-    const radiusToggleObject = {user_id: props.user_id, radius_on: !toggleGeofence, radius: props.geofence.radius, patient_id: props.user.patient_id}
+    const radiusToggleObject = {user_id: props.user.user_id, radius_on: toggleGeofence.geofence, radius: props.geofence.radius, patient_id: props.user.patient_id}
+    console.log("radius object",radiusToggleObject);
     props.updateRadius(radiusToggleObject);
   },[toggleGeofence])
 
@@ -78,7 +79,7 @@ export default function SideMenu(props) {
           </ListItemIcon>
         </ListItem>
         <ListItem button>
-          <ListItemText primary="Disable Geofence" />
+          <ListItemText primary="Geofence" />
           <ListItemIcon>
             <GeofenceToggleButton checked={toggleGeofence.geofence} onChange={handleChange('geofence')} />
           </ListItemIcon>
