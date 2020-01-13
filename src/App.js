@@ -245,14 +245,14 @@ function App() {
                 <Route exact path="/sign-in" component={() => (!user) ? <SignIn addUser={validate} user={user} error={error}/> : <Redirect to="/"/>}/>
                 <Route path="/cv-map" component={Map}/>
                 <Route path="/settings" component={PatientSettings}/>
-                <Route path="/calendar" component={() => <Calendar className='CalendarBox'
+                <Route path="/calendar" component={() => (user.is_patient === false) ? <Calendar className='CalendarBox'
                                                     localizer={localizer}
                                                     events={myNotificationList}
                                                     startAccessor="start"
                                                     endAccessor="end"
-                                                    style={{height: 500}}/>}
-                />
-                <Route path="/create-notification" component={Notification}/>
+                                                    style={{height: 500}}/> : <Redirect to="/#/" />} //Redirect patient to their homepage
+                /> 
+                <Route path="/create-notification" component={() => (user.is_patient === false) ? <Notification/> : <Redirect to="/#/" />}/>
              
                   {/* <p>This is User: {user.name}</p> */}
                   {/* <SignIn  addUser={validate} user={user} error={error}/> */}
