@@ -1,5 +1,22 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 
+.patient-homepage-day{
+  background-image: url("../../1092.jpg");
+  height: 700px;
+  text-align: center;
+  font-size: 200%;
+  font-family: 'Open Sans' !important;
+}
+
+.greeting {
+  text-align: center;
+  font-size: 100%;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 30%;
+  font-family: 'Open sans' !important;
+}
+
 .patient-homepage-night{
   background-image: url("../../2709893.jpg");
   height: 700px;
@@ -10,11 +27,5 @@
 }
 
 .greeting-night{
-  text-align: center;
-  font-size: 100%;
-  margin-top: 0;
-  margin-bottom: 0;
-  padding-top: 30%;
-  font-family: 'Open sans' !important;
   color: white;
 }

@@ -14,7 +14,8 @@ import Main from './components/Main';
 import PatientNotifications from './components/PatientNotifications/PatientNotifications';
 import {
   Route,
-  HashRouter
+  HashRouter,
+  Redirect
 } from "react-router-dom";
 
 import useApplicationData from "./hooks/useApplicationData";
@@ -143,7 +144,6 @@ function App() {
     <HashRouter>
           <div>
             <NavBar user={state.user} onClick={logout}/>
-            <Map radius={state} geofence={state.geofence} user={state.user} settings={state.settings} location={state.location} getLocation={state.getLocation} />
             <PatientNotifications />
               <div>
               
@@ -152,12 +152,18 @@ function App() {
                 <main>
 
                 <Route exact path="/" component={()=>
+                  // user ? Home : LandingPage
                   <Main addUser={getUser} user={state.user} error={state.error}/>
                   }/>
+                  {/* <Main user={user} error={error}/>
+                  }/> */}
+                {/* <Route exact path="/#/" component={() => <Main addUser={validateSignUp} user={user} error={error} />}/> */}
+                {/* <Route exact path="/sign-up" component={() => (!user) ? <SignUp addUser={validateSignUp} user={user} error={error} /> : <Redirect to="/" />}/> //old code
+                <Route exact path="/sign-in" component={() => (!user) ? <SignIn addUser={validate} user={user} error={error}/> : <Redirect to="/"/>}/> */}
                 {/* <Route exact path="/#/" component={() => <Main addUser={addUser} user={user} error={error} />}/> */}
-                <Route exact path="/sign-up" component={() => <SignUp addUser={getUser} user={state.user} error={state.error} />}/>
-                <Route exact path="/sign-in" component={() => <SignIn addUser={getUser} user={state.user} error={state.error}/>}/>
-                <Route path="/cv-map" component={Map}/>
+                <Route exact path="/sign-up" component={() => (!state.user) ? <SignUp addUser={getUser} user={state.user} error={state.error} /> : <Redirect to="/" />}/>
+                <Route exact path="/sign-in" component={() => (!state.user) ? <SignIn addUser={getUser} user={state.user} error={state.error}/> : <Redirect to="/" />}/>
+                <Route path="/cv-map" component={() => <Map radius={state} geofence={state.geofence} user={state.user} settings={state.settings} location={state.location} getLocation={state.getLocation} />}/>
                 <Route path="/settings" component={PatientSettings}/>
                 <Route path="/calendar" component={() => <Calendar className='CalendarBox'
                                                     localizer={localizer}
