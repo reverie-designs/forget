@@ -8,7 +8,6 @@ import "react-big-calendar/lib/addons/dragAndDrop/styles.css"
 import "react-big-calendar/lib/css/react-big-calendar.css"
 import NavBar from './components/NavBar';
 import SignUp from './components/SignUp';
-import HomepageCarousel from './components/HomepageCarousel/HomepageCarousel';
 import PatientSettings from './components/PatientSettings/PatientSettings';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
@@ -27,11 +26,14 @@ import Main from './components/Main';
 import PatientNotifications from './components/PatientNotifications/PatientNotifications';
 import {
   Route,
-  NavLink,
   HashRouter,
   Redirect
 } from "react-router-dom";
+
+import useApplicationData from "./hooks/useApplicationData";
 const localizer = momentLocalizer(moment);
+
+
 
 const myNotificationList = [{
   id: 0,
@@ -165,72 +167,29 @@ const data = {
 ] 
 };
 
-const errors = {signIn: "username password didn't match", signUp: "We already have a user with that username"};
+// const errors = {signIn: "username password didn't match", signUp: "We already have a user with that username"};
 
  /* <Form categories = {data.categories}/> */
 function App() {
-  const [user, setUser] = useState("");
-  const [error, setError] = useState("");
+  const {state, logout, getUser} = useApplicationData();
 
-  const addUser = (newUser) => {
-      setUser(newUser);
-      return <Redirect to="/#/"/>
-  }
-  const addError = (msg) => {
-    setError(msg);
-  }
-  // const findUser = (newUser) => {
-  //   return data.users.find(user=> user.name === newUser.username && user.password === newUser.password);
-  // }
-  const validate = (newUser) => {
-    // console.log(data.users.name, newUser.username);
-    // console.log(data.users.password, newUser.password);
-    // console.log("THIS IS",data.users[0].name);
-    // let result = findUser(newUser);
-    // console.log("This is result", result);
-    addError("");
-    if(newUser.name) {
-      console.log("BANG");
-      addUser(newUser);
-    }
-    else {
-      console.log("PEW");
-      addError(errors.signIn);
-    }
-  }
-
-  // const validateSignUp = (newUser) => {
-  //       // let result = findUser(newUser);
-  //       if(result === undefined){
-  //         data.users.push(newUser);
-  //         setUser(newUser);
-  //       } else {
-  //         addError(errors.signUp);
-  //       }
-  // }
-
-  const logoutUser = () => {
-    setUser("")
-  };
- 
-  //import ReactDOM from "react-dom";
   return (
     <HashRouter>
           <div>
-            <NavBar user={user} onClick={logoutUser}/>
+            <NavBar user={state.user} onClick={logout}/>
             <PatientNotifications />
               <div>
               
-                  <p>This is User: {user.name}</p>
+                  <p>This is User: {state.user.name}</p>
                 </div>
                 <main>
 
                 <Route exact path="/" component={()=>
-                  <Main addUser={addUser} user={user} error={error}/>
+                  <Main addUser={getUser} user={state.user} error={state.error}/>
                   }/>
-                <Route exact path="/#/" component={() => <Main addUser={addUser} user={user} error={error} />}/>
-                <Route exact path="/sign-up" component={() => <SignUp addUser={addUser} user={user} error={error} />}/>
-                <Route exact path="/sign-in" component={() => <SignIn addUser={validate} user={user} error={error}/>}/>
+                {/* <Route exact path="/#/" component={() => <Main addUser={addUser} user={user} error={error} />}/> */}
+                <Route exact path="/sign-up" component={() => <SignUp addUser={getUser} user={state.user} error={state.error} />}/>
+                <Route exact path="/sign-in" component={() => <SignIn addUser={getUser} user={state.user} error={state.error}/>}/>
                 <Route path="/cv-map" component={Map}/>
                 <Route path="/settings" component={PatientSettings}/>
                 <Route path="/calendar" component={() => <Calendar className='CalendarBox'
