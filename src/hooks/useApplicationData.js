@@ -143,10 +143,19 @@ const updateLocation = (locationInfo) =>{
     console.log("Location Set", res.status);
   })
 }
+
+const updateSettings = (settings)=> {
+  // const settings={user_id: 2, address1: '662 King Street West', address2: "", city: "Toronto", province:"ON", country: "Canada", auth_code: code, is_patient: false}
+  const user_id = {user_id: settings.user_id};
+  api.post('api/settings', {params: settings})
+  .then((res)=>{
+    api.get('api/settings', {params: user_id})
+  })
+}
   // useEffect(()=>{
 
   // })
 
 
-  return {state, logout, getUser, addNotification, updateLocation, updateRadius}
+  return {state, logout, getUser, addNotification, updateLocation, updateRadius, updateSettings}
 }
