@@ -10,12 +10,13 @@ import RestaurantIcon from '@material-ui/icons/Restaurant';
 import EnhancedEncryptionIcon from '@material-ui/icons/EnhancedEncryption';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 
-const formResult = {};
+// const formResult = {};
 //date:"", time:"", categories:[pills:T/F, appointment:T/F, food:T/F], info:"", daily:T/F 
 
 
 function Form(props) {
-
+console.log("This is user", props.user);
+// console.log("This is addNoti", addNotification);
   //DATE TIME
   const [selectedDateTime, handleDateChange] = useState(new Date());
 
@@ -64,7 +65,7 @@ function Form(props) {
     const splitDate =(fullDate) =>{
       const dateArray = fullDate.toString().split(" ");
       const date = [];
-      date.push(dateArray[0]);
+      // date.push(dateArray[0]);
       date.push(dateArray[1]);
       date.push(dateArray[2]);
       date.push(dateArray[3]);
@@ -74,30 +75,36 @@ function Form(props) {
     //SAVE BUTTON
     const [test, setTest] = useState("");
     const save = () => {
+      let notification = {};
       // const newInfo = info.toString();
-      formResult.info = info;
+      notification.info = info;
       // formResult.categories = {pills: pills, appointment: appointment, food: food};
-      formResult.pills = pills;
-      formResult.appointment = appointment;
-      formResult.food = food;
-      formResult.daily = dailyToggle;
-      formResult.time = splitTime(selectedDateTime)
-      formResult.date = splitDate(selectedDateTime);
+      notification.pills = pills;
+      notification.appointment = appointment;
+      notification.food = food;
+      notification.daily = dailyToggle;
+      notification.time = splitTime(selectedDateTime)
+      notification.date = splitDate(selectedDateTime);
+      notification.user_id = props.user.user_id;
+      notification.auth_code = props.user.auth_code;
       // console.log(formResult.info);
       // console.log(formResult.pills);
       // console.log(formResult.daily);
       // console.log(formResult.date);
       // console.log(formResult.time);
+      console.log("Form", notification);
+      // console.log(props);
+      props.addNotification(notification);
     }
  
-    //Checks TIME
-     useEffect(() => {
-      //  console.log(selectedDate)
-      if(selectedDateTime){
-        setTest(selectedDateTime)
-      }   
-      }, [selectedDateTime])
-      console.log("THIS IS TEST",test);
+    // //Checks TIME
+    //  useEffect(() => {
+    //   //  console.log(selectedDate)
+    //   if(selectedDateTime){
+    //     setTest(selectedDateTime)
+    //   }   
+    //   }, [selectedDateTime])
+    //   console.log("THIS IS TEST",test);
   return (
     <div className="formBox">
 

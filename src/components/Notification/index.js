@@ -8,7 +8,7 @@ function Notification(props) {
 <section className="notification-box">
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <div>
-        <Form/>
+        <Form user={props.user} addNotification={props.addNotification}/>
       </div>
     </MuiPickersUtilsProvider>
                       
