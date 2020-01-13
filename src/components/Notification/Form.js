@@ -4,19 +4,14 @@ import StateTextFields from "./TextField";
 import FormControlLabel from "./CheckBox";
 import Switch from "./Switch";
 import DateTimePicker from "./DateTime";
-// Icons
 
 import RestaurantIcon from '@material-ui/icons/Restaurant';
 import EnhancedEncryptionIcon from '@material-ui/icons/EnhancedEncryption';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 
-const formResult = {};
-//date:"", time:"", categories:[pills:T/F, appointment:T/F, food:T/F], info:"", daily:T/F 
-
-
 function Form(props) {
 
-  //DATE TIME
+  //DATE TIME STATE
   const [selectedDateTime, handleDateChange] = useState(new Date());
 
   // TEXT BOX STATE
@@ -25,9 +20,11 @@ function Form(props) {
     setInfo(event.target.value);
   };
 
+  //CATEGORY STATE
   const [pills, setPills] = useState(false);
   const [food, setFood] = useState(false);
   const [appointment, setAppointment] = useState(false);
+
   const pillsChange = event => {
     setPills(event.target.checked);
   };
@@ -54,50 +51,49 @@ function Form(props) {
     handleDateChange(new Date());
   }
 
-    const splitTime =(fullDate) =>{
-      const dateArray = fullDate.toString().split(" ");
-      const time = [];
-      time.push(dateArray[4]);
-      return time.toString();
-    }
+  // 15:00:00
+  const splitTime =(fullDate) =>{
+    const dateArray = fullDate.toString().split(" ");
+    const time = [];
+    time.push(dateArray[4]);
+    return time.toString();
+  }
 
-    const splitDate =(fullDate) =>{
-      const dateArray = fullDate.toString().split(" ");
-      const date = [];
-      date.push(dateArray[0]);
-      date.push(dateArray[1]);
-      date.push(dateArray[2]);
-      date.push(dateArray[3]);
-      return date.join(" ");
-    }
+  // 'Jan 19 2020'
+  const splitDate =(fullDate) =>{
+    const dateArray = fullDate.toString().split(" ");
+    const date = [];
+    date.push(dateArray[1]);
+    date.push(dateArray[2]);
+    date.push(dateArray[3]);
+    return date.join(" ");
+  }
     
-    //SAVE BUTTON
-    const [test, setTest] = useState("");
-    const save = () => {
-      // const newInfo = info.toString();
-      formResult.info = info;
-      // formResult.categories = {pills: pills, appointment: appointment, food: food};
-      formResult.pills = pills;
-      formResult.appointment = appointment;
-      formResult.food = food;
-      formResult.daily = dailyToggle;
-      formResult.time = splitTime(selectedDateTime)
-      formResult.date = splitDate(selectedDateTime);
-      // console.log(formResult.info);
-      // console.log(formResult.pills);
-      // console.log(formResult.daily);
-      // console.log(formResult.date);
-      // console.log(formResult.time);
-    }
+  // const [test, setTest] = useState("");
+  //SAVE BUTTON
+  const save = () => {
+    let notification = {};
+    notification.info = info;
+    notification.pills = pills;
+    notification.appointment = appointment;
+    notification.food = food;
+    notification.daily = dailyToggle;
+    notification.time = splitTime(selectedDateTime)
+    notification.date = splitDate(selectedDateTime);
+    notification.user_id = props.user.user_id;
+    notification.auth_code = props.user.auth_code;
+    console.log("Form", notification);
+    props.addNotification(notification);
+  }
  
-    //Checks TIME
-     useEffect(() => {
-      //  console.log(selectedDate)
-      if(selectedDateTime){
-        setTest(selectedDateTime)
-      }   
-      }, [selectedDateTime])
-      console.log("THIS IS TEST",test);
+    // //Checks TIME
+    //  useEffect(() => {
+    //   //  console.log(selectedDate)
+    //   if(selectedDateTime){
+    //     setTest(selectedDateTime)
+    //   }   
+    //   }, [selectedDateTime])
+    //   console.log("THIS IS TEST",test);
   return (
     <div className="formBox">
 
