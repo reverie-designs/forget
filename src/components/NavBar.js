@@ -53,12 +53,14 @@ export default function ButtonAppBar(props) {
       return (<LogoutButton onClick={props.onClick}/>)
     }
   }
+  
+  // (props.user) && - use this before icon button to disable menu when not logged in. Do not delete
 
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          { (props.user) && <IconButton onClick={toggleDrawer('left', true)} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          { <IconButton onClick={toggleDrawer('left', true)} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>}
           <NavLink to="/"><img alt="Forget me Not Logo" src={Logo} className="logo"/></NavLink>
