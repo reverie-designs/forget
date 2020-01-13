@@ -1,6 +1,6 @@
 import React, {useEffect, useReducer} from "react"
 import api from "../helpers/api"
-import reducer, {SET_USER, SET_ERROR, SET_NOTIFICATIONS_DATA,SET_NOTIFICATIONS_DAY, SET_SETTINGS, SET_GEOFENCE} from "../reducers/application"
+import reducer, {SET_USER, SET_ERROR, SET_NOTIFICATIONS_DATA,SET_NOTIFICATIONS_DAY, SET_SETTINGS, SET_GEOFENCE, SET_LOCATION} from "../reducers/application"
 // import { Z_STREAM_ERROR } from "zlib"
 
 
@@ -15,7 +15,8 @@ export default function useApplicationData() {
     settings:{},
     today: new Date(),
     error: "",
-    geofence: ""
+    geofence: "",
+    location: ""
   })
   
   const splitDate =(fullDate) =>{
@@ -66,24 +67,29 @@ export default function useApplicationData() {
             console.log(auth_code)
             dispatch({type: SET_USER, user: res.data[0], error: ""})
             const today = splitDate(new Date());
-            console.log("This is today", today);
-            // const today = "Jan 17 2020"
-            note_day_query = {auth_code: res.data[0].auth_code, day: today}
+            // console.log("This is today", today);
+            // const today = "Jan 13 2020"
+            const notification = {auth_code: res.data[0].auth_code, day: today}
             Promise.all([
               api.get("api/settings", {params: user_id}),
               api.get("api/settings/geofence", {params: user_id}),
-              api.get("api/notifications",{params: auth_code}),
-              api.get("api/notifications/day",{params: note_day_query}),
+              api.get("api/notifications",{params: auth_code}),  
             ])
             .then((all)=>{
+
               console.log("Settings", all[0].data[0])
               console.log("geofence", all[1].data[0])
               console.log("ALL NOTIFICATIONS", all[2].data)
-              console.log("notifications for today", all[3].data)
-              dispatch({type: SET_SETTINGS, settings: all[0].data[0]})
+              console.log("TOday's request", notification);
+                dispatch({type: SET_SETTINGS, settings: all[0].data[0]})
               dispatch({type: SET_GEOFENCE, geofence: all[1].data[0]})
               dispatch({type: SET_NOTIFICATIONS_DATA, notifications: all[2].data})
-              dispatch({type: SET_NOTIFICATIONS_DAY, todays_notifications: all[3].data})
+              return api.get("api/notifications/day",{params: notification})
+              .then((res)=>{
+                console.log("TODAY's NOTIFICATIONS", res.data);
+                //current location for patient
+                getLocation(auth_code);
+              })
             })
           } else if (!res.data[0].name){
             dispatch({type: SET_ERROR, error:"Couldn't find matching user"})
@@ -93,9 +99,7 @@ export default function useApplicationData() {
       dispatch({type: SET_ERROR, error:"user name and password must be more than one character"})
     }
   }  
-    // const user = {name: newUser.name, password: newUserpassword};
 
-    // (newUser.name.length > 1) ? dispatch({type: SET_USER, user: newUser, error: ""}) : 
 
 const logout = () => {
   return dispatch({type: SET_USER, user: ""})
@@ -112,11 +116,28 @@ const addNotification = (notification) => {
     })
   })
 }
+
+//CAREGIVER FROM PATIENT pass in object {auth_code: xxxxx}
+const getLocation = (auth_code) =>{
+  api.get("api/locations", {params:auth_code})
+  .then((res)=>{
+      console.log("recieved current location of patient", res.data[0])
+      dispatch({type: SET_LOCATION, location: res.data[0]})
+  })
+}
+
+//PATIENT TO CAREGIVER
+const updateLocation = (locationInfo) =>{
+
+  api.post(`api/locations`, {params:locationInfo})
+  .then((res)=>{
+    console.log("Location Set", res.status);
+  })
+}
   // useEffect(()=>{
 
   // })
 
 
-  return {state, logout, getUser, addNotification}
-  // return {state, logout, getUser, setNotifications, setTodaysNotifications, setSettings}
+  return {state, logout, getUser, addNotification, updateLocation}
 }
