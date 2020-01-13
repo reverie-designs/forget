@@ -13,9 +13,7 @@ import NotificationToggleButton from './DisableNotification';
 import ImageAvatars from './Avatar';
 import './SideMenu.scss';
 import {
-  Route,
-  NavLink,
-  HashRouter
+  NavLink
 } from "react-router-dom";
 
 const useStyles = makeStyles({

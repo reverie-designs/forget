@@ -17,27 +17,37 @@ const Map = (props) => {
   const { latitude, longitude, timestamp } = useGeolocation(true, {enableHighAccuracy: true});
   useEffect(() => {
     if (latitude && longitude) {
-      initialConfig.center.lat = latitude;
-      initialConfig.center.lng = longitude;
-      initialConfig.type = 'Geolocation'
+      config.center.lat = latitude;
+      config.center.lng = longitude;
+      config.type = 'Geolocation'
     }
   }, [latitude, longitude])
   
-
+  
   const googleMap = useGoogleMap(mapApiKey);
   const mapContainerRef = useRef(null);
   useMap({ googleMap, mapContainerRef, config, homePosition, radius, geofence });
   return (
     <div
-      style={{
-        height: "400px",
-        width: "80%",
-        margin: "auto",
-        marginTop: "10px"
-      }}
-      ref={mapContainerRef}
+    style={{
+      height: "400px",
+      width: "80%",
+      margin: "auto",
+      marginTop: "10px"
+    }}
+    ref={mapContainerRef}
     />
-  );
-};
-
-export default Map;
+    );
+  };
+  
+  export default Map;
+    
+  
+  //const Map = () => {
+  //    const { latitude, longitude} = useGeolocation(true, {enableHighAccuracy: true});
+  //    // const { latitude, longitude, timestamp } = useGeolocation(true, {enableHighAccuracy: true});
+  //    if (latitude && longitude) {
+  //      initialConfig.center.lat = latitude;
+  //      initialConfig.center.lng = longitude;
+  //      initialConfig.type = 'Geolocation'
+  //    }

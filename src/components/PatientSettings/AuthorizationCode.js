@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(1),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    marginTop: theme.spacing(1),
   },
 }));
 
@@ -33,7 +33,6 @@ export default function AuthorizationCode(props) {
         </form>
         <Button
             type="submit"
-            width={1/4}
             variant="contained"
             color="primary"
             className={classes.submit}
@@ -42,16 +41,6 @@ export default function AuthorizationCode(props) {
           >
             Generate Code
           </Button>
-        {/* <Button
-          type="submit"
-          width={1/4}
-          variant="contained"
-          color="primary"
-          className={classes.submit}
-          onClick={}
-        >
-          Add Code
-        </Button> */}
       </div>
   );
 }

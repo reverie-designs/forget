@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import './SignIn.scss';
+import { Redirect } from 'react-router-dom';
 
 function Copyright() {
   return (
@@ -42,6 +43,9 @@ const useStyles = makeStyles(theme => ({
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
   },
+  button: {
+    
+  },
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
@@ -50,13 +54,13 @@ const useStyles = makeStyles(theme => ({
 export default function SignIn(props) {
   const classes = useStyles();
   
-  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
   const newUser = {}
   
   const save = () => {
-    newUser.username = username
+    newUser.name = name
     newUser.password = password
     props.addUser(newUser);
   }
@@ -80,10 +84,10 @@ export default function SignIn(props) {
             fullWidth
             id="username"
             label="Username"
-            name={username}
+            name="username"
             autoComplete="username"
             autoFocus
-            onChange={event => setUsername(event.target.value)}
+            onChange={event => setName(event.target.value)}
           />
           <TextField
             variant="outlined"

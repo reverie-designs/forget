@@ -49,12 +49,12 @@ const useStyles = makeStyles(theme => ({
 
 export default function SignUp(props) {
   const classes = useStyles();
-  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
   const signup = {}
   const save = () => {
-    signup.name = username
+    signup.name = name
     signup.password = password
     props.addUser(signup);
   }
@@ -81,7 +81,7 @@ export default function SignUp(props) {
                 label="Username"
                 name="username"
                 autoComplete="username"
-                onChange={event => setUsername(event.target.value)}
+                onChange={event => setName(event.target.value)}
               />
             </Grid>
             <Grid item xs={12}>

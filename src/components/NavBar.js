@@ -13,9 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Drawer from '@material-ui/core/Drawer';
 import {
-  Route,
-  NavLink,
-  HashRouter
+  NavLink
 } from "react-router-dom";
 const useStyles = makeStyles(theme => ({
   root: {
@@ -53,14 +51,16 @@ export default function ButtonAppBar(props) {
       return (<LogoutButton onClick={props.onClick}/>)
     }
   }
+  
+  // (props.user) && - use this before IconButton to disable menu when not logged in. Do not delete
 
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton onClick={toggleDrawer('left', true)} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          { <IconButton onClick={toggleDrawer('left', true)} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
-          </IconButton>
+          </IconButton>}
           <NavLink to="/"><img alt="Forget me Not Logo" src={Logo} className="logo"/></NavLink>
           <Typography variant="h6" className={classes.title}>
             Forget Me Not
