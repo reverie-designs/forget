@@ -28,16 +28,16 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SignIn() {
+export default function PatientSettings(props) {
   const classes = useStyles();
-
+  console.log("SETTINGS OBJECT",props.settings)
   const [addressOne, setAddressOne] = useState("")
   const [addressTwo, setAddressTwo] = useState("")
   const [city, setCity] = useState("")
   const [province, setProvince] = useState("")
   const [postalCode, setPostalCode] = useState("")
   const [country, setCountry] = useState("")  
-  const [code, setCode] = useState("");
+  const [code, setCode] = useState(props.user.auth_code);
   const [disableButton, setDisableButton] = useState(false);
   const [togglePatient, setPatient] = useState({
     patient: false,

@@ -108,7 +108,9 @@ const logout = () => {
 const updateRadius = (radius) => {
   api.post("api/settings/geofence", {params:radius})
   .then((res)=>{
+    const user_id = {user_id: radius.user_id}
     dispatch({type: SET_GEOFENCE, geofence: radius})
+    api.get("api/settings", {params: user_id})
   })
 }
 
