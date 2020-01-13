@@ -4,6 +4,7 @@ export const SET_NOTIFICATIONS_DAY = "SET_NOTIFICATIONS_DAY"
 export const SET_SETTINGS = "SET_SETTINGS"
 export const SET_ERROR = "SET_ERROR"
 export const SET_GEOFENCE = "SET_GEOFENCE"
+export const SET_LOCATION = "SET_LOCATION"
 
 export default function reducer(state, action) {
 
@@ -26,6 +27,9 @@ export default function reducer(state, action) {
 
     case SET_GEOFENCE:
       return {...state, geofence: action.geofence }
+
+    case SET_LOCATION:
+        return {...state, location: action.location }
     default:
       throw new Error(
         `Tried to reduce with unsupported action type: ${action.type}`
