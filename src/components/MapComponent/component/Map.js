@@ -16,8 +16,8 @@ const initialConfig = {
 const homePosition = {lat:43.715251, lng: -79.722510}; // BCC mall
 
 const Map = () => {
-  const { latitude, longitude, timestamp } = useGeolocation(true, {enableHighAccuracy: true});
-
+  const { latitude, longitude} = useGeolocation(true, {enableHighAccuracy: true});
+  // const { latitude, longitude, timestamp } = useGeolocation(true, {enableHighAccuracy: true});
   if (latitude && longitude) {
     initialConfig.center.lat = latitude;
     initialConfig.center.lng = longitude;

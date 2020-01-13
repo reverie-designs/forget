@@ -13,9 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Drawer from '@material-ui/core/Drawer';
 import {
-  Route,
-  NavLink,
-  HashRouter
+  NavLink
 } from "react-router-dom";
 const useStyles = makeStyles(theme => ({
   root: {
