@@ -19,10 +19,9 @@ import {
 } from "react-router-dom";
 
 import useApplicationData from "./hooks/useApplicationData";
+
+
 const localizer = momentLocalizer(moment);
-
-
-
 const myNotificationList = [{
   id: 0,
   title: 'All Day Event very long title',
@@ -153,14 +152,9 @@ function App() {
 
                 <Route exact path="/" component={()=>
                   // user ? Home : LandingPage
-                  <Main addUser={getUser} user={state.user} error={state.error}  geofence={state.geofence} settings={state.settings} location={state.location} getLocation={state.getLocation}/>
-                  }/>
-                  {/* <Main user={user} error={error}/>
-                  }/> */}
-                {/* <Route exact path="/#/" component={() => <Main addUser={validateSignUp} user={user} error={error} />}/> */}
-                {/* <Route exact path="/sign-up" component={() => (!user) ? <SignUp addUser={validateSignUp} user={user} error={error} /> : <Redirect to="/" />}/> //old code
-                <Route exact path="/sign-in" component={() => (!user) ? <SignIn addUser={validate} user={user} error={error}/> : <Redirect to="/"/>}/> */}
-                {/* <Route exact path="/#/" component={() => <Main addUser={addUser} user={user} error={error} />}/> */}
+                  <Main addUser={getUser} user={state.user} error={state.error}  geofence={state.geofence} settings={state.settings} location={state.location} getLocation={state.getLocation}/>}
+                />
+               
                 <Route exact path="/sign-up" component={() => (!state.user) ? <SignUp addUser={getUser} user={state.user} error={state.error} /> : <Redirect to="/" />}/>
                 <Route exact path="/sign-in" component={() => (!state.user) ? <SignIn addUser={getUser} user={state.user} error={state.error}/> : <Redirect to="/" />}/>
                 <Route path="/cv-map" component={() => <Map  geofence={state.geofence} user={state.user} settings={state.settings} location={state.location} getLocation={state.getLocation} />}/>
