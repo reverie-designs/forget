@@ -104,9 +104,9 @@ function Form(props) {
          <h3 className="formTitle">NEW NOTIFICATION</h3>
          
         <section>
-          <p> 
+          <div> 
            <StateTextFields value={info} name="info" onChange={setTextChange} id="standard-name" className="text"/>
-          </p>
+          </div>
           <p>Set Date: <DateTimePicker value={selectedDateTime} onChange={handleDateChange}/></p>
           <div className="flex-center"> 
                 
