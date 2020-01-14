@@ -16,7 +16,7 @@ export default function GeofenceToggleButton(props) {
             color="primary"
           />
         }
-        label="Off"
+        label="ON"
       />
     </FormGroup>
   );

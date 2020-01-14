@@ -138,17 +138,8 @@ const myNotificationList = [{
 ]
 
 function App() {
-  const {
-    state,
-    logout,
-    getUser,
-    addNotification,
-    updateRadius,
-    getLocation
-  } = useApplicationData();
-
-  console.log('App.js state', state);
-
+  const {state, logout, getUser, addNotification, updateRadius, updateSettings} = useApplicationData();
+  console.log(state);
   return (
     <HashRouter>
           <div>
@@ -173,7 +164,7 @@ function App() {
                 <Route exact path="/sign-up" component={() => (!state.user) ? <SignUp addUser={getUser} user={state.user} error={state.error} /> : <Redirect to="/" />}/>
                 <Route exact path="/sign-in" component={() => (!state.user) ? <SignIn addUser={getUser} user={state.user} error={state.error}/> : <Redirect to="/" />}/>
                 <Route path="/cv-map" component={() => <Map  geofence={state.geofence} user={state.user} settings={state.settings} location={state.location} getLocation={state.getLocation} />}/>
-                <Route path="/settings" component={PatientSettings}/>
+                <Route path="/settings" component={() => <PatientSettings user={state.user} settings={state.settings} updateSettings={updateSettings}/>}/>
                 <Route path="/calendar" component={() => <Calendar className='CalendarBox'
                                                     localizer={localizer}
                                                     events={myNotificationList}
