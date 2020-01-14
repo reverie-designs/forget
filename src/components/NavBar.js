@@ -53,7 +53,6 @@ export default function ButtonAppBar(props) {
   }
   
   // (props.user) && - use this before IconButton to disable menu when not logged in. Do not delete
-
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -74,7 +73,7 @@ export default function ButtonAppBar(props) {
       </AppBar> 
 
       <Drawer open={drawerOpen.left} onClose={toggleDrawer('left', false)}>
-      <SideMenu toggleDrawer={toggleDrawer} user={props.user}/>
+      <SideMenu toggleDrawer={toggleDrawer} user={props.user} geofence={props.geofence} updateRadius={props.updateRadius}/>
       </Drawer>    
     </div>
   );

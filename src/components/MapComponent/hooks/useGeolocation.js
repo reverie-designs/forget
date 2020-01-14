@@ -4,7 +4,6 @@ const defaultSettings = {
   enableHighAccuracy: false,
   timeout: 5000,
   maximumAge: 0,
-  frequency: 1000*60
 };
 
 export const useGeolocation = (watch = false, settings = defaultSettings) => {
@@ -33,6 +32,7 @@ export const useGeolocation = (watch = false, settings = defaultSettings) => {
     let watcher = null;
     if (watch) {
       watcher = geo.watchPosition(onChange, onError, settings);
+      console.info('setting a watcher', watcher);
     } else {
       geo.getCurrentPosition(onChange, onError, settings);
     }

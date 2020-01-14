@@ -105,6 +105,15 @@ const logout = () => {
   return dispatch({type: SET_USER, user: ""})
 }
 
+const updateRadius = (radius) => {
+  api.post("api/settings/geofence", {params:radius})
+  .then((res)=>{
+    const user_id = {user_id: radius.user_id}
+    dispatch({type: SET_GEOFENCE, geofence: radius})
+    api.get("api/settings", {params: user_id})
+  })
+}
+
 const addNotification = (notification) => {
   // const notification={date:"Jan 17 2020", time: "15:00:00", pills: true, appointment: false, food: true, info:"hello sunshine", daily:false , user_id: 1, auth_code: "V|R|FAMILY"}
   api.post("api/notifications", {notification})
@@ -121,7 +130,7 @@ const addNotification = (notification) => {
 const getLocation = (auth_code) =>{
   api.get("api/locations", {params:auth_code})
   .then((res)=>{
-      console.log("recieved current location of patient", res.data[0])
+      console.log("received current location of patient", res.data[0])
       dispatch({type: SET_LOCATION, location: res.data[0]})
   })
 }
@@ -134,10 +143,19 @@ const updateLocation = (locationInfo) =>{
     console.log("Location Set", res.status);
   })
 }
+
+const updateSettings = (settings)=> {
+  // const settings={user_id: 2, address1: '662 King Street West', address2: "", city: "Toronto", province:"ON", country: "Canada", auth_code: code, is_patient: false}
+  const user_id = {user_id: settings.user_id};
+  api.post('api/settings', {params: settings})
+  .then((res)=>{
+    api.get('api/settings', {params: user_id})
+  })
+}
   // useEffect(()=>{
 
   // })
 
 
-  return {state, logout, getUser, addNotification, updateLocation}
+  return {state, logout, getUser, addNotification, updateLocation, updateRadius, getLocation}
 }
