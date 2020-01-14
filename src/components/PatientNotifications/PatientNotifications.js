@@ -1,5 +1,7 @@
 import React from 'react';
 import moment from 'moment';
+import PopUpNotification from './PopUpNotification';
+
 // import Button from '@material-ui/core/Button';
 // import Snackbar from '@material-ui/core/Snackbar';
 // import MuiAlert from '@material-ui/lab/Alert';
@@ -96,7 +98,7 @@ export default function PatientNotifications(props) {
   const ourNotifications = props.today;
   const setPopUps = (notifications) => {
      let today = new Date();
-    let prior = today
+    // let prior = today
     console.log("TIME NOW",today)
 
     today = today.getTime();
@@ -104,31 +106,36 @@ export default function PatientNotifications(props) {
     // console.log(today)
     // console.log(updateHour);
 
-    let updateHour = new Date(prior.setHours(prior.getHours() + 1)); //it works-ish. Off by 1/2 hour
-    let minusHour = new Date(prior.setHours(prior.getHours() - 1)); 
+    // let updateHour = new Date(prior.setHours(prior.getHours() + 1)); //it works-ish. Off by 1/2 hour
+    
+    // let minusHour = new Date(prior.setHours(prior.getHours() - 1)); 
     // moment(prior).add(30, 'm').toDate();
 
-    updateHour = updateHour.getTime();
-    console.log("this is update hour...", updateHour);
-    console.log("update hour to date", new Date(updateHour))
+    // updateHour = updateHour.getTime();
+    // console.log("this is update hour...", updateHour);
+    // console.log("update hour to date", new Date(updateHour))
 
     
     const newNotifications = notifications.map((notification) => {return deconstructedNotification(notification)});
     return newNotifications.map((notification) => {
       // console.log("notification time",notification.time);
-      let time = notification.time.getTime()
-      console.log("This is notification time", time);
-      console.log("This is time now", today)
-      console.log(notification.completed)
-      console.log("boolean",(notification.completed === false))
-      if ((time >= today && (!notification.completed) && time <= updateHour)||(time <= today && (!notification.completed) && time >= minusHour)){
-        // 
+      let startTime = notification.time.getTime()
+      let endTime = startTime + 1000 * 60 * 60;
+      console.log("This is notification time", startTime);
+      // console.log("This is time now", today)
+      // console.log(notification.completed)
+      // console.log("boolean",(notification.completed === false))
+      // Show Conditions
+      // if ((today >= minusHour && (!notification.completed) && time <= updateHour) || (time <= today && (!notification.completed) && time >= minusHour)){
+        if (today >= startTime && today <= endTime && !notification.completed) {
+
           console.log("Found notifications for Today", notification);
-          return <p key={notification.id}>{notification.id}</p>
+          return <p key={notification.id}> <PopUpNotification info={notification.info} pills={notification.pills} appointment={notification.appointment} food={notification.food} completed={notification.completed} />{notification.id}</p>
         }
-        if (time > updateHour || time < today || notification.completed){
-          console.log("nope");
-        }
+        // Not show conditions 
+        // else (today > updateHour || time < today || notification.completed){
+        //   console.log("nope");
+        // }
         //  else {
         //   console.log("You lose")
         // }
