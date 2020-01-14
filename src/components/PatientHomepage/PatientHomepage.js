@@ -3,6 +3,7 @@ import Clock from './Clock';
 import './PatientHomepage.scss'
 import PatientNotifications from '../PatientNotifications/PatientNotifications'
 
+
 export default function PatientHomepage(props) {
 
   // Messages

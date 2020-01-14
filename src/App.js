@@ -14,6 +14,7 @@ import Main from './components/Main';
 import PatientNotifications from './components/PatientNotifications/PatientNotifications';
 import PopUpNotification from './components/PatientNotifications/PopUpNotification';
 import useApplicationData from "./hooks/useApplicationData";
+import ToastifyPopUp from './components/PatientNotifications/ToastifyPopUp';
 
 
 import {
@@ -146,6 +147,7 @@ function App() {
     <HashRouter>
           <div>
             <NavBar user={state.user} onClick={logout}/>
+            <ToastifyPopUp />
             {/* <PatientNotifications todays_notifications={state.todays_notifications} /> */}
               <div>
               
@@ -155,6 +157,7 @@ function App() {
 
                 <Route exact path="/" component={()=>
                   // user ? Home : LandingPage
+                  
                   <Main addUser={getUser} user={state.user} error={state.error} todays_notifications={state.todays_notifications}/>
                   }/>
                   {/* <Main user={user} error={error}/>

@@ -28,6 +28,7 @@
     "react-scripts": "3.3.0",
     "react-swipeable-views": "^0.13.3",
     "react-tackle-box": "^2.1.0",
+    "react-toastify": "^5.5.0",
     "typescript": "^3.7.4"
   },
   "scripts": {
