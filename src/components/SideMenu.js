@@ -31,13 +31,14 @@ export default function SideMenu(props) {
   const [toggleNotification, setNotification] = useState({
     notification: false,
   });
-  console.log("HELLO GEO",props.geofence);
+  console.log("HELLO GEO", props.geofence);
   const [toggleGeofence, setGeofence] = useState({
-    geofence: !props.geofence.radius_on,
+    geofence: props.geofence.radius_on,
   });
-  // console.log(props)
+  console.log("toggle on or off", toggleGeofence.geofence)
   useEffect(()=>{
-    const radiusToggleObject = {user_id: props.user_id, radius_on: !toggleGeofence, radius: props.geofence.radius, patient_id: props.user.patient_id}
+    const radiusToggleObject = {user_id: props.user.user_id, radius_on: toggleGeofence.geofence, radius: props.geofence.radius, patient_id: props.user.patient_id}
+    console.log("radius object",radiusToggleObject);
     props.updateRadius(radiusToggleObject);
   },[toggleGeofence])
 
@@ -46,10 +47,31 @@ export default function SideMenu(props) {
     setGeofence({ ...toggleGeofence, [name]: event.target.checked });
   };
 
+  const isPatient = (patient) => {
+    if (!patient){
+      return (
+        <div>
+          <ListItem button>
+              <ListItemText primary="Geofence" />
+              <ListItemIcon>
+                <GeofenceToggleButton checked={toggleGeofence.geofence} onChange={handleChange('geofence')} />
+              </ListItemIcon>
+            </ListItem>
+              <ListItem button>
+              <ListItemText primary="Disable Notifications" />
+              <ListItemIcon>
+                <NotificationToggleButton checked={toggleNotification.notification} onChange={handleChange('notification')} />
+              </ListItemIcon>
+          </ListItem>
+      </div>
+      )
+    }
+  }
+
   return (
     <div className={classes.list}>
       <ImageAvatars></ImageAvatars>
-      <ListItemText primary={"Hello:",props.user.name} className="userName"/>
+      <ListItemText primary={`Hello: ${props.user.name}`} className="userName"/>
       {/* <ListItemText primary={props.user.username} /> */}
          <Divider></Divider>
       <List component="nav" aria-label="main mailbox folders"> 
@@ -71,18 +93,14 @@ export default function SideMenu(props) {
             <DateRangeIcon />
           </ListItemIcon>
         </ListItem>
-        <ListItem button>
-          <ListItemText primary="Disable Notifications" />
-          <ListItemIcon>
-            <NotificationToggleButton checked={toggleNotification.notification} onChange={handleChange('notification')} />
-          </ListItemIcon>
-        </ListItem>
-        <ListItem button>
-          <ListItemText primary="Disable Geofence" />
+      
+         {isPatient(props.user.is_patient)}
+        {/* <ListItem button>
+          <ListItemText primary="Geofence" />
           <ListItemIcon>
             <GeofenceToggleButton checked={toggleGeofence.geofence} onChange={handleChange('geofence')} />
           </ListItemIcon>
-        </ListItem>
+        </ListItem> */}
       </List>
     </div>
   );
