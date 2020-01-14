@@ -12,23 +12,12 @@ const initialConfig = {
   type: null,
 };
 
-
-function updatePosition() {
-  navigator.geolocation.getCurrentPosition(function (position) {
-      var myLatLng = {lat: position.coords.latitude, lng: position.coords.longitude};
-      console.log('-------------->LATLNG',myLatLng);
-    setInterval(updatePosition, 60000);
-  });
-}
-updatePosition();
-
-// const homePosition = {lat:43.644174, lng: -79.402206}; // light house labs
-// const homePosition = {lat:43.715251, lng: -79.722510}; // BCC mall
-
 const Map = (props) => {
-  console.log(props.settings.lat)
+  console.log(props)
 
-  const [homePosition, setLocation] = useState(props.settings.lat && props.settings.lng ? {lat: parseFloat(props.settings.lat), lng: parseFloat(props.settings.lng) } : 'jnknk')
+  const [homePosition, setLocation] = useState(props.settings.lat && props.settings.lng ? {lat: parseFloat(props.settings.lat), lng: parseFloat(props.settings.lng) } : '')
+  const [radius, setradius] = useState(props.geofence.radius ? Number(props.geofence.radius) : '');
+  const [geofence, applyGeofence] = useState(props.geofence.radius_on ? props.geofence.radius_on : '')
   
   const { latitude, longitude, timestamp} = useGeolocation(true, {enableHighAccuracy: true});
   // const { latitude, longitude, timestamp } = useGeolocation(true, {enableHighAccuracy: true});
@@ -40,14 +29,13 @@ const Map = (props) => {
 
   const googleMap = useGoogleMap(mapApiKey);
   const mapContainerRef = useRef(null);
-  console.log('---------------------->>>>>>>>>>>>',homePosition)
-  useMap({ googleMap, mapContainerRef, initialConfig, homePosition });
-  // useMap({ googleMap, mapContainerRef, initialConfig, homePosition, radius, applyGeofence });
+  // useMap({ googleMap, mapContainerRef, initialConfig, homePosition });
+  useMap({ googleMap, mapContainerRef, initialConfig, homePosition, radius, geofence });
   return (
     <div
       style={{
-        height: "400px",
-        width: "80%",
+        height: "450px",
+        width: "90%",
         margin: "auto",
         marginTop: "10px"
       }}

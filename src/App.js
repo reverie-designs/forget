@@ -153,7 +153,7 @@ function App() {
 
                 <Route exact path="/" component={()=>
                   // user ? Home : LandingPage
-                  <Main addUser={getUser} user={state.user} error={state.error}  geofence={state.geofence} settings={state.settings} location={state.location} getLocation={getLocation}/>
+                  <Main addUser={getUser} user={state.user} error={state.error}  geofence={state.geofence} settings={state.settings} location={state.location} getLocation={state.getLocation}/>
                   }/>
                   {/* <Main user={user} error={error}/>
                   }/> */}
