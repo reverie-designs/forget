@@ -24,6 +24,7 @@ const Main = ({
   location,
   settings,
   user,
+  cookie
 }) => (
   <div>
     {user

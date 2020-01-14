@@ -5,6 +5,7 @@ export const SET_SETTINGS = "SET_SETTINGS"
 export const SET_ERROR = "SET_ERROR"
 export const SET_GEOFENCE = "SET_GEOFENCE"
 export const SET_LOCATION = "SET_LOCATION"
+export const SET_COOKIE= "SET_COOKIE"
 
 export default function reducer(state, action) {
 
@@ -12,7 +13,10 @@ export default function reducer(state, action) {
 
     case SET_USER:
       return { ...state, user: action.user }
-
+      
+    case SET_COOKIE:
+      return {...state, cookie: action.cookie}
+       
     case SET_NOTIFICATIONS_DATA:
       return { ...state, notifications: action.notifications}
 
