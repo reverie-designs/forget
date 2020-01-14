@@ -12,15 +12,18 @@ import SignIn from './components/SignIn';
 import Notification from './components/Notification/index'
 import Main from './components/Main';
 import PatientNotifications from './components/PatientNotifications/PatientNotifications';
+import PopUpNotification from './components/PatientNotifications/PopUpNotification';
+import useApplicationData from "./hooks/useApplicationData";
+import { SnackbarProvider } from 'notistack';
+
+
 import {
   Route,
   HashRouter,
   Redirect
 } from "react-router-dom";
 
-import useApplicationData from "./hooks/useApplicationData";
 const localizer = momentLocalizer(moment);
-
 
 
 const myNotificationList = [{
@@ -144,6 +147,9 @@ function App() {
     <HashRouter>
           <div>
             <NavBar user={state.user} onClick={logout}/>
+            <SnackbarProvider maxSnack={4}>
+              <PopUpNotification />
+            </SnackbarProvider>
             {/* <PatientNotifications todays_notifications={state.todays_notifications} /> */}
               <div>
               
