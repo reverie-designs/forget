@@ -14,7 +14,6 @@ import Main from './components/Main';
 import PatientNotifications from './components/PatientNotifications/PatientNotifications';
 import PopUpNotification from './components/PatientNotifications/PopUpNotification';
 import useApplicationData from "./hooks/useApplicationData";
-import { SnackbarProvider } from 'notistack';
 
 
 import {
@@ -147,9 +146,6 @@ function App() {
     <HashRouter>
           <div>
             <NavBar user={state.user} onClick={logout}/>
-            <SnackbarProvider maxSnack={4}>
-              <PopUpNotification />
-            </SnackbarProvider>
             {/* <PatientNotifications todays_notifications={state.todays_notifications} /> */}
               <div>
               
