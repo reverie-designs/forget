@@ -138,8 +138,17 @@ const myNotificationList = [{
 ]
 
 function App() {
-  const {state, logout, getUser, addNotification, updateRadius} = useApplicationData();
-  console.log(state);
+  const {
+    state,
+    logout,
+    getUser,
+    addNotification,
+    updateRadius,
+    getLocation
+  } = useApplicationData();
+
+  console.log('App.js state', state);
+
   return (
     <HashRouter>
           <div>
@@ -153,7 +162,7 @@ function App() {
 
                 <Route exact path="/" component={()=>
                   // user ? Home : LandingPage
-                  <Main addUser={getUser} user={state.user} error={state.error}/>
+                  <Main addUser={getUser} user={state.user} error={state.error}  geofence={state.geofence} settings={state.settings} location={state.location} getLocation={getLocation}/>
                   }/>
                   {/* <Main user={user} error={error}/>
                   }/> */}
