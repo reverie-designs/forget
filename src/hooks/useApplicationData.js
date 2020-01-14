@@ -1,14 +1,20 @@
 import React, {useEffect, useReducer} from "react"
 import api from "../helpers/api"
-import reducer, {SET_USER, SET_ERROR, SET_NOTIFICATIONS_DATA,SET_NOTIFICATIONS_DAY, SET_SETTINGS, SET_GEOFENCE, SET_LOCATION} from "../reducers/application"
-// import { Z_STREAM_ERROR } from "zlib"
+import reducer, {SET_USER, SET_ERROR, SET_NOTIFICATIONS_DATA,SET_NOTIFICATIONS_DAY, SET_SETTINGS, SET_GEOFENCE, SET_LOCATION, SET_COOKIE} from "../reducers/application"
 
+// const cookies = new Cookies();
+// cookies.set('myCat', 'Pacman', { path: '/' });
+// console.log(cookies.get('myCat'));
+import Cookies from 'universal-cookie';
 
+const cookies = new Cookies();
+// console.log(cookies.get('myCat')); // Pacman
 export default function useApplicationData() {
 
   // ==== INITIAL STATE ==== //
   //manages all tracked states of the app 
   const [state, dispatch] = useReducer(reducer, {
+    cookie: "",
     user: "",
     notifications: [],
     todays_notifications: [],
@@ -27,7 +33,17 @@ export default function useApplicationData() {
     date.push(dateArray[3]);
     return date.join(" ");
   }
+  useEffect(()=>{
+    console.log("SOCKET URL", process.env.REACT_APP_WEBSOCKET_URL)
+    // console.log("THIS IS PROCESS", process.env)
+    const socket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL)
+    socket.addEventListener('open', () => {
+      console.log('connected to server')
+      socket.send('ping')
+    })
 
+
+  }, [state.user])
   const getUser = (newUser) => {
     let user_id;
     let auth_code;
@@ -37,71 +53,77 @@ export default function useApplicationData() {
       const user = {name: newUser.name, password: newUser.password}
       return api.get("/api/user", {params:user})
         .then((res)=> {
-          console.log("Found user", res.data[0])
-          if(res.data[0].is_patient && res.data[0].name){
-            auth_code = res.data[0].auth_code;
-            user_id = {user_id: res.data[0].user_id}
-            const today = splitDate(new Date());
-            // const today = "Jan 17 2020"
-            note_day_query = {auth_code: auth_code, day: today}
-            dispatch({type: SET_USER, user: res.data[0], error: ""})
-            Promise.all([
-              api.get("api/settings", {params: user_id}),
-              api.get("api/settings/geofence", {params: user_id}),
-              api.get("api/notifications/day",{params: note_day_query})
-            ])
-            .then((all)=>{
-              console.log("Settings", all[0].data[0])
-              console.log("geofence", all[1].data[0])
-              console.log("notifications for today", all[2].data)
+          if(res.data[0] === undefined) {
+            dispatch({type: SET_ERROR, error: "couldn't get user"})
+          } else {
+            console.log("SOCKET URL", process.env.REACT_APP_WEBSOCKET_URL)
+              console.log("Found user", res.data[0])
+              cookies.set('myCat', 'Pacman', { path: '/' });
+              dispatch({type: SET_COOKIE, cookie: cookies.get('myCat')})
+              if(res.data[0].is_patient && res.data[0].name){
+                auth_code = res.data[0].auth_code;
+                user_id = {user_id: res.data[0].user_id}
+                const today = splitDate(new Date());
+                // const today = "Jan 17 2020"
+                note_day_query = {auth_code: auth_code, day: today}
+                dispatch({type: SET_USER, user: res.data[0], error: ""})
+                Promise.all([
+                  api.get("api/settings", {params: user_id}),
+                  api.get("api/settings/geofence", {params: user_id}),
+                  api.get("api/notifications/day",{params: note_day_query})
+                ])
+                .then((all)=>{
+                  console.log("Settings", all[0].data[0])
+                  console.log("geofence", all[1].data[0])
+                  console.log("notifications for today", all[2].data)
 
-              dispatch({type: SET_SETTINGS, settings: all[0].data[0]})
-              dispatch({type: SET_GEOFENCE, geofence: all[1].data[0]})
-              dispatch({type: SET_NOTIFICATIONS_DAY, todays_notifications: all[2].data[0]})
-            })
-          } else if (!is_patient && res.data[0].name){
-            auth_code = {auth_code: res.data[0].auth_code}
-            console.log(auth_code);
-            user_id = {user_id: res.data[0].user_id}
-            console.log("NOPE")
-            console.log(auth_code)
-            dispatch({type: SET_USER, user: res.data[0], error: ""})
-            const today = splitDate(new Date());
-            // console.log("This is today", today);
-            // const today = "Jan 13 2020"
-            const notification = {auth_code: res.data[0].auth_code, day: today}
-            Promise.all([
-              api.get("api/settings", {params: user_id}),
-              api.get("api/settings/geofence", {params: user_id}),
-              api.get("api/notifications",{params: auth_code}),  
-            ])
-            .then((all)=>{
+                  dispatch({type: SET_SETTINGS, settings: all[0].data[0]})
+                  dispatch({type: SET_GEOFENCE, geofence: all[1].data[0]})
+                  dispatch({type: SET_NOTIFICATIONS_DAY, todays_notifications: all[2].data[0]})
+                })
+              } else if (!is_patient && res.data[0].name){
+                auth_code = {auth_code: res.data[0].auth_code}
+                console.log(auth_code);
+                user_id = {user_id: res.data[0].user_id}
+                console.log("NOPE")
+                console.log(auth_code)
+                dispatch({type: SET_USER, user: res.data[0], error: ""})
+                const today = splitDate(new Date());
+                // console.log("This is today", today);
+                // const today = "Jan 13 2020"
+                const notification = {auth_code: res.data[0].auth_code, day: today}
+                Promise.all([
+                  api.get("api/settings", {params: user_id}),
+                  api.get("api/settings/geofence", {params: user_id}),
+                  api.get("api/notifications",{params: auth_code}),  
+                ])
+                .then((all)=>{
 
-              console.log("Settings", all[0].data[0])
-              console.log("geofence", all[1].data[0])
-              console.log("ALL NOTIFICATIONS", all[2].data)
-              console.log("TOday's request", notification);
-                dispatch({type: SET_SETTINGS, settings: all[0].data[0]})
-              dispatch({type: SET_GEOFENCE, geofence: all[1].data[0]})
-              dispatch({type: SET_NOTIFICATIONS_DATA, notifications: all[2].data})
-              return api.get("api/notifications/day",{params: notification})
-              .then((res)=>{
-                console.log("TODAY's NOTIFICATIONS", res.data);
-                //current location for patient
-                getLocation(auth_code);
-              })
-            })
-          } else if (!res.data[0].name){
-            dispatch({type: SET_ERROR, error:"Couldn't find matching user"})
-          }
-        })
-    } else {
+                  console.log("Settings", all[0].data[0])
+                  console.log("geofence", all[1].data[0])
+                  console.log("ALL NOTIFICATIONS", all[2].data)
+                  console.log("TOday's request", notification);
+                    dispatch({type: SET_SETTINGS, settings: all[0].data[0]})
+                  dispatch({type: SET_GEOFENCE, geofence: all[1].data[0]})
+                  dispatch({type: SET_NOTIFICATIONS_DATA, notifications: all[2].data})
+                  return api.get("api/notifications/day",{params: notification})
+                  .then((res)=>{
+                    console.log("TODAY's NOTIFICATIONS", res.data);
+                    //current location for patient
+                    getLocation(auth_code);
+                  })
+                })
+              } else if (!res.data[0].name){
+                dispatch({type: SET_ERROR, error:"Couldn't find matching user"})
+              }
+    }})} else {
       dispatch({type: SET_ERROR, error:"user name and password must be more than one character"})
     }
   }  
 
 
 const logout = () => {
+  cookies.remove('myCat');
   return dispatch({type: SET_USER, user: ""})
 }
 
