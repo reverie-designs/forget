@@ -1,4 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, {
+  useState,
+  //useEffect
+} from "react";
 import MyButton from "./Button";
 import StateTextFields from "./TextField";
 import FormControlLabel from "./CheckBox";

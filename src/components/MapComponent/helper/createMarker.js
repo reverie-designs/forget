@@ -6,7 +6,8 @@
  * @param {string} markerIcon - file path or URL
  * @param {string} desc - info window description
  */
-const createMarker = (googleObj,LatLng,map,markerIcon,desc) => {
+const createMarker = (googleObj,LatLng,map,markerIcon,info) => {
+
   const marker = new googleObj.maps.Marker({
     position: LatLng,
     map: map,
@@ -16,10 +17,11 @@ const createMarker = (googleObj,LatLng,map,markerIcon,desc) => {
             scaledSize: new googleObj.maps.Size(30, 30)
     }
   });
+  // console.log("------------------------MARKER", marker);
   const InfoWindow = new googleObj.maps.InfoWindow({
     content: `<div id="content">
                 <button id="onBtn" class="btn btn-sm">
-                ${desc}
+                ${info}
                 </button>
               </div>`
   });

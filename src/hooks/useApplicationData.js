@@ -130,7 +130,7 @@ const addNotification = (notification) => {
 const getLocation = (auth_code) =>{
   api.get("api/locations", {params:auth_code})
   .then((res)=>{
-      console.log("recieved current location of patient", res.data[0])
+      console.log("received current location of patient", res.data[0])
       dispatch({type: SET_LOCATION, location: res.data[0]})
   })
 }
@@ -157,5 +157,5 @@ const updateSettings = (settings)=> {
   // })
 
 
-  return {state, logout, getUser, addNotification, updateLocation, updateRadius, updateSettings}
+  return {state, logout, getUser, addNotification, updateLocation, updateRadius, getLocation}
 }

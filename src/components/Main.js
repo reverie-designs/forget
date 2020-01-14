@@ -16,20 +16,32 @@ import HomePageCarousel from './HomepageCarousel/HomepageCarousel';
 //   }
 // };
 
-export default function Main(props) {
-  const loggedIn = (props.user);
-  const isCareGiver = loggedIn && props.user.is_patient === false;
-  const isPatient = loggedIn && props.user.is_patient === true;
+const Main = ({
+  addUser,
+  error,
+  geofence,
+  getLocation,
+  location,
+  settings,
+  user,
+}) => (
+  <div>
+    {user
+      ? (user.is_patient
+        ? <PatientHomepage />
+        : <Map
+            user={user} 
+            geofence={geofence} 
+            settings={settings} 
+            location={location} 
+            getLocation={getLocation}/>
+      )
+      : (
+        <div>
+          <SignUp addUser={addUser} error={error}/>
+          <HomePageCarousel/>
+        </div>)}
+  </div>
+);
 
-  return (
-    <div>
-      { !loggedIn && <div>
-        <SignUp addUser={props.addUser} error={props.error}/>
-        <HomePageCarousel/>
-        </div>
-      }
-      { isCareGiver && <Map /> }
-      { isPatient && <PatientHomepage />}
-    </div>
-  );
-}
+export default Main;
