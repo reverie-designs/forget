@@ -56,7 +56,7 @@ export default function ButtonAppBar(props) {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          { <IconButton onClick={toggleDrawer('left', true)} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          { (props.user) && <IconButton onClick={toggleDrawer('left', true)} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>}
           <NavLink to="/"><img alt="Forget me Not Logo" src={Logo} className="logo"/></NavLink>
