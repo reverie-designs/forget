@@ -156,7 +156,7 @@ function App() {
             {/* <PatientNotifications todays_notifications={state.todays_notifications} /> */}
               <div>
               
-                  <p>This is User: {state.user.name}</p>
+                  {/* <p>This is User: {state.user.name}</p> */}
                   {}
                 </div>
                 <main>

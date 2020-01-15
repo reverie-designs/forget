@@ -14,11 +14,11 @@ export default function PatientHomepage(props) {
 
 const getStatus = (time) => {
   const hour = time.getHours();
-  if (hour >= 3 && hour <= 12) { //Morning
+  if (hour >= 3 && hour <= 11) { //Morning
     return {isDay: true, greeting: MORNING} 
     // setIsDay(true);
     // setGreeting(MORNING);
-  } else if (hour >= 13 && hour <= 17) {//Afternoon
+  } else if (hour >= 12 && hour <= 17) {//Afternoon
     return {isDay: true, greeting: AFTERNOON} 
     // setIsDay(true); 
     // setGreeting(AFTERNOON);

@@ -1,13 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import moment from 'moment';
+import React, {useState} from 'react';
 import { ToastContainer, toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import PopUpNotification from './PopUpNotification';
 
-// import Button from '@material-ui/core/Button';
-// import Snackbar from '@material-ui/core/Snackbar';
-// import MuiAlert from '@material-ui/lab/Alert';
-// import { makeStyles } from '@material-ui/core/styles';
 
 export default function PatientNotifications(props) {
   // const [notificationCompleted, setNotificationCompleted] = useState(false);
@@ -39,9 +33,9 @@ export default function PatientNotifications(props) {
   }
 
   
-  const ourNotifications = props.today;
+const ourNotifications = props.today;
 console.log("These are out notifications", ourNotifications)
-  const [todayNotes, setTodayNotes ]= useState([]);
+  // const [todayNotes, setTodayNotes ]= useState([]);
 
   //generates POP UPS
   const setPopUps = (notifications) => {
@@ -53,30 +47,37 @@ console.log("These are out notifications", ourNotifications)
       // toast.dismiss()
       // dismissToast()
       const newNotifications = notifications.map((notification) => {return deconstructedNotification(notification)});
-      return newNotifications.map((notification) => {
+      newNotifications.map((notification) => {
         finalResults.push(notification);
         let startTime = notification.time.getTime()
         let endTime = startTime + 1000 * 60 * 60;
-
-        // const notificationPopUp = toast(notification.info, {containerId: `${notification.id}`})
         const notificationPopUp = toast(notification.info, {containerId: `${notification.id}`})
         // setTodayNotes
+        // setTodayNotes("")
         setTimeout(() => notificationPopUp, 3000);
         console.log("This is notification time", startTime);
-          if (today >= startTime && today <= endTime && !notification.completed) {
-            console.log("Found notifications for Today", notification);
-            console.log("IS THIS TRUE", todayNotes.length >= finalResults.length)
-            return (todayNotes.length >= finalResults.length ? printNotifications(notification) : finalResults.map((note)=>printNotifications(note))
-            && todayNotes.length <finalResults.length ? setTodayNotes(finalResults): null)
-          }
-          // return null;
+        if (today >= startTime && today <= endTime && !notification.completed) {
+       
+          console.log("Found notifications for Today", notification);
+          // console.log("IS THIS TRUE", todayNotes.length >= finalResults.length)
+          return (printNotifications(notification))
+          // && todayNotes.length <finalResults.length ? setTodayNotes(finalResults): null)
+
+          // return (todayNotes.length >= finalResults.length ? printNotifications(notification) : finalResults.map((note)=>printNotifications(note))
+          // && todayNotes.length <finalResults.length ? setTodayNotes(finalResults): null)
         }
-      )
+      }) 
     } else {
-      return null;
-    }
-    
+                return null;
+            } 
   }
+
+  // useEffect(()=>{
+
+  // }, [props.notifications])
+
+        // const notificationPopUp = toast(notification.info, {containerId: `${notification.id}`})
+        
   // if(toast.isActive)
   
   const printNotifications = (notification)=>{
@@ -93,8 +94,7 @@ console.log("These are out notifications", ourNotifications)
                         position={toast.POSITION.BOTTOM_LEFT} 
                         />
                         
-                        )
-                      }
+  )}
                       
   const saySomething = (id)=>{console.log("HELLO", id)}
                       
