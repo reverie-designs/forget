@@ -33,7 +33,7 @@ export default function SideMenu(props) {
   });
   console.log("HELLO GEO", props.geofence);
   const [toggleGeofence, setGeofence] = useState({
-    geofence: props.geofence.radius_on,
+    geofence: props.geofence.radius_on? props.geofence.radius_on: false,
   });
   console.log("toggle on or off", toggleGeofence.geofence)
   useEffect(()=>{
