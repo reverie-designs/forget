@@ -40,72 +40,90 @@ export default function PatientNotifications(props) {
 
   
   const ourNotifications = props.today;
-console.log("These are out notifications", ourNotifications)
-  const [todayNotes, setTodayNotes ]= useState([]);
 
+  const [todayNotes, setTodayNotes ]= useState([]);
   //generates POP UPS
   const setPopUps = (notifications) => {
-    let finalResults=[];
      let today = new Date();
       today = today.getTime();
       // console.log(today)
     if(notifications){
-      // toast.dismiss()
-      // dismissToast()
+      let finalResult = []
       const newNotifications = notifications.map((notification) => {return deconstructedNotification(notification)});
-      return newNotifications.map((notification) => {
-        finalResults.push(notification);
+      newNotifications.map((notification) => {
         let startTime = notification.time.getTime()
         let endTime = startTime + 1000 * 60 * 60;
-
-        // const notificationPopUp = toast(notification.info, {containerId: `${notification.id}`})
-        const notificationPopUp = toast(notification.info, {containerId: `${notification.id}`})
-        // setTodayNotes
-        setTimeout(() => notificationPopUp, 3000);
+        const notificationPopUp = toast(notification.info, {containerId: 'notification.id'})
+        setTimeout(notificationPopUp, 1000);
         console.log("This is notification time", startTime);
           if (today >= startTime && today <= endTime && !notification.completed) {
             console.log("Found notifications for Today", notification);
-            console.log("IS THIS TRUE", todayNotes.length >= finalResults.length)
-            return (todayNotes.length >= finalResults.length ? printNotifications(notification) : finalResults.map((note)=>printNotifications(note))
-            && todayNotes.length <finalResults.length ? setTodayNotes(finalResults): null)
+            finalResult.push(notification)
+            return printNotifications(notification);
+                        // setTimeout(setPopUps, 500, ourNotifications))
+            // return <PopUpNotification key={notification.id} notificationCompleted={notificationCompleted} onSetCompleted={setNotificationCompleted} info={notification.info} pills={notification.pills} appointment={notification.appointment} food={notification.food} completed={notification.completed} />
           }
           // return null;
         }
       )
+      return todayNotes.length < finalResult.length ? setTodayNotes(finalResult) : null;
     } else {
-      return null;
+      // return null;
     }
-    
   }
-  // if(toast.isActive)
-  
+    
   const printNotifications = (notification)=>{
     return (
       <ToastContainer 
                         key={notification.id} 
-                        isActive={true}
                         transition={Slide} 
                         autoClose={false} 
                         enableMultiContainer 
-                        containerId={`${notification.id}`}
+                        containerId={'notification.id'} 
                         newestOnTop={true} 
                         onClick={() => saySomething(notification.id)} 
                         position={toast.POSITION.BOTTOM_LEFT} 
                         />
-                        
-                        )
-                      }
-                      
-  const saySomething = (id)=>{console.log("HELLO", id)}
-                      
-  // props.today && props.today.length > 0 ? setInterval(setPopUps, 1000, ourNotifications) && clearInterval() : clearInterval()
 
-  // props.today && props.today.length > 0 ? clearInterval() && setInterval(setPopUps, 1000*60, ourNotifications) : clearInterval()
-  
+    )
+  }
+    // return newNotifications
+
+  //  const getNotifications = 
+
+  // useEffect(()=>{
+
+  // }, [props.notifications])
+
+  // const gimmie = setInterval(()=> {return setPopUps(ourNotifications)}, 6000);
+//setInterval(()=> {return setPopUps(ourNotifications)}, 6000)
+  const saySomething = (id)=>{console.log("HELLO", id)}
+  // const story = (words)=>{setTimeout(story(words), 1000); return  };
+  // const showToast = () => {
+  //   toast("Look at me!", {containerId: "A"})
+  // }
+  console.log("HECK YEA", )
+  props.today && props.today.length > 0 ? clearInterval() && setInterval(setPopUps, 500, ourNotifications) : clearInterval()
   return (
     <>
-
-      {props.user && props.today ? setPopUps(ourNotifications): clearInterval()}
+      {/* iterate through notification, if (shouldShowNotification()), show it */}
+      {/* {setPopUps(notifications)} */}
+      {/* {props.user && props.today ?  gimmie : null} */}
+      {props.user && props.today ? setPopUps(ourNotifications) : clearInterval()}
+      {/* {props.today && props.today.length > 0 ? setInterval(setPopUps, 500) : clearInterval()} */}
+      {/* <ToastContainer
+        position="bottom-left"
+        autoClose={5000}
+        containerId="A"
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnVisibilityChange
+        draggable
+        pauseOnHover
+        />
+      <button onClick={showToast}>Show Toast</button> */}
     </>
   );
 }
