@@ -53,13 +53,25 @@ export default function PatientNotifications(props) {
       newNotifications.map((notification) => {
         let startTime = notification.time.getTime()
         let endTime = startTime + 1000 * 60 * 60;
-        const notificationPopUp = toast(notification.info, {containerId: 'notification.id'})
+        const notificationPopUp = toast(notification.info, {containerId: `${notification.id}`})
         setTimeout(notificationPopUp, 1000);
         console.log("This is notification time", startTime);
           if (today >= startTime && today <= endTime && !notification.completed) {
             console.log("Found notifications for Today", notification);
-            finalResult.push(notification)
-            return printNotifications(notification);
+            // finalResult.push(notification)
+            return (   
+              <ToastContainer 
+                                key={`${notification.id}`} 
+                                isActive={true}
+                                transition={Slide} 
+                                autoClose={false} 
+                                enableMultiContainer 
+                                containerId={`${notification.id}`}
+                                newestOnTop={true} 
+                                onClick={() => saySomething(notification.id)} 
+                                position={toast.POSITION.BOTTOM_LEFT} 
+                                />)
+          //  console.log( printNotifications(notification));
                         // setTimeout(setPopUps, 500, ourNotifications))
             // return <PopUpNotification key={notification.id} notificationCompleted={notificationCompleted} onSetCompleted={setNotificationCompleted} info={notification.info} pills={notification.pills} appointment={notification.appointment} food={notification.food} completed={notification.completed} />
           }
@@ -73,57 +85,31 @@ export default function PatientNotifications(props) {
   }
     
   const printNotifications = (notification)=>{
-    return (
-      <ToastContainer 
-                        key={notification.id} 
-                        transition={Slide} 
-                        autoClose={false} 
-                        enableMultiContainer 
-                        containerId={'notification.id'} 
-                        newestOnTop={true} 
-                        onClick={() => saySomething(notification.id)} 
-                        position={toast.POSITION.BOTTOM_LEFT} 
-                        />
-
-    )
-  }
-    // return newNotifications
-
-  //  const getNotifications = 
-
-  // useEffect(()=>{
-
-  // }, [props.notifications])
-
-  // const gimmie = setInterval(()=> {return setPopUps(ourNotifications)}, 6000);
-//setInterval(()=> {return setPopUps(ourNotifications)}, 6000)
+    return ( <p>{notification.id}</p>
+      // <ToastContainer 
+      //                   key={`${notification.id}`} 
+      //                   isActive={true}
+      //                   transition={Slide} 
+      //                   autoClose={false} 
+      //                   enableMultiContainer 
+      //                   containerId={`${notification.id}`}
+      //                   newestOnTop={true} 
+      //                   onClick={() => saySomething(notification.id)} 
+      //                   position={toast.POSITION.BOTTOM_LEFT} 
+      //                   />
+                        
+  )}
+                      
   const saySomething = (id)=>{console.log("HELLO", id)}
-  // const story = (words)=>{setTimeout(story(words), 1000); return  };
-  // const showToast = () => {
-  //   toast("Look at me!", {containerId: "A"})
-  // }
-  console.log("HECK YEA", )
-  props.today && props.today.length > 0 ? clearInterval() && setInterval(setPopUps, 500, ourNotifications) : clearInterval()
+                      
+  // props.today && props.today.length > 0 ? setInterval(setPopUps, 1000, ourNotifications) && clearInterval() : clearInterval()
+
+  // props.today && props.today.length > 0 ? clearInterval() && setInterval(setPopUps, 1000*60, ourNotifications) : clearInterval()
+  
   return (
     <>
-      {/* iterate through notification, if (shouldShowNotification()), show it */}
-      {/* {setPopUps(notifications)} */}
-      {/* {props.user && props.today ?  gimmie : null} */}
-      {props.user && props.today ? setPopUps(ourNotifications) : clearInterval()}
-      {/* {props.today && props.today.length > 0 ? setInterval(setPopUps, 500) : clearInterval()} */}
-      {/* <ToastContainer
-        position="bottom-left"
-        autoClose={5000}
-        containerId="A"
-        hideProgressBar={false}
-        newestOnTop
-        closeOnClick
-        rtl={false}
-        pauseOnVisibilityChange
-        draggable
-        pauseOnHover
-        />
-      <button onClick={showToast}>Show Toast</button> */}
+
+      {props.user && props.today ? setPopUps(ourNotifications): clearInterval()}
     </>
   );
 }

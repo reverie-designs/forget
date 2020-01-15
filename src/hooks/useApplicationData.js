@@ -1,6 +1,7 @@
 import React, {useEffect, useReducer} from "react"
 import api from "../helpers/api"
 import reducer, {SET_USER, SET_ERROR, SET_NOTIFICATIONS_DATA,SET_NOTIFICATIONS_DAY, SET_SETTINGS, SET_GEOFENCE, SET_LOCATION, SET_MYEVENTS} from "../reducers/application"
+import { red } from "@material-ui/core/colors"
 // import { Z_STREAM_ERROR } from "zlib"
 
 
@@ -57,6 +58,12 @@ export default function useApplicationData() {
       return api.get("/api/user", {params:user})
         .then((res)=> {
           console.log("Found user", res.data[0])
+
+          if(res.data[0] === undefined){
+            dispatch({type: SET_ERROR, error:"Couldn't find matching user"})
+          } else {
+
+          
           if(res.data[0].is_patient && res.data[0].name){
             auth_code = res.data[0].auth_code;
             user_id = {user_id: res.data[0].user_id}
@@ -117,10 +124,10 @@ export default function useApplicationData() {
                 getLocation(auth_code);
               })
             })
-          } else if (!res.data[0].name){
+          } else if (!res.data[0] === undefined){
             dispatch({type: SET_ERROR, error:"Couldn't find matching user"})
           }
-        })
+        }})
     } else {
       dispatch({type: SET_ERROR, error:"user name and password must be more than one character"})
     }
@@ -128,7 +135,16 @@ export default function useApplicationData() {
 
 
 const logout = () => {
-  return dispatch({type: SET_USER, user: ""})
+  return (
+    dispatch({type: SET_USER, user: ""}),
+    dispatch({type: SET_NOTIFICATIONS_DATA, notifications: []}),
+    dispatch({type: SET_NOTIFICATIONS_DAY, todays_notifications: []}),
+    dispatch({type: SET_SETTINGS, settings: {}}),
+    dispatch({type: SET_ERROR, error: ""}),
+    dispatch({type: SET_GEOFENCE, geofence: ""}),
+    dispatch({type: SET_MYEVENTS, myEvents: []}),
+    dispatch({type: SET_LOCATION, location: ""})
+  )
 }
 
 const updateRadius = (radius) => {
