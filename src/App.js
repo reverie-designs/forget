@@ -138,8 +138,13 @@ const myNotificationList = [{
 ]
 
 function App() {
-  const {state, logout, getUser, addNotification, updateRadius, updateSettings} = useApplicationData();
+  const {state, logout, getUser, addNotification, updateRadius, updateSettings, myEvents} = useApplicationData();
+
+  
+  // console.log("These are my events new objects", myEvents);
   console.log(state);
+
+  // const showCalendar = () => state.user && state.notifications ? state.user?: 
   return (
     <HashRouter>
           <div>
@@ -148,6 +153,7 @@ function App() {
               <div>
               
                   <p>This is User: {state.user.name}</p>
+                  {}
                 </div>
                 <main>
 
@@ -167,7 +173,7 @@ function App() {
                 <Route path="/settings" component={() => <PatientSettings user={state.user} settings={state.settings} updateSettings={updateSettings}/>}/>
                 <Route path="/calendar" component={() => <Calendar className='CalendarBox'
                                                     localizer={localizer}
-                                                    events={myNotificationList}
+                                                    events={state.myEvents}
                                                     startAccessor="start"
                                                     endAccessor="end"
                                                     style={{height: 500}}/>}
