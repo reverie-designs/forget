@@ -40,8 +40,8 @@ export default function PatientNotifications(props) {
               console.log("Found notifications for Today", notification);
               notesToPrint.push(notification)
               console.log('All notes that should be going to state',notesToPrint);
-              // const notificationPopUp = toast.info(notification.info, {containerId: `${notification.id}`})
-              // setTimeout(() => notificationPopUp, 2000);
+              const notificationPopUp = toast(notification.info, {containerId: `${notification.id}`})
+              setTimeout(() => notificationPopUp, 2000);
               if (todaysNotes.length <= notesToPrint.length){
                 setNotes(notesToPrint)
               }
@@ -55,36 +55,34 @@ export default function PatientNotifications(props) {
 
 
   const printNotifications = (notifications)=>{
-    return notifications.map((notification)=>{
+    notifications.map((notification)=>{
       console.log("printing notifications", notification)
-      let id = notification.id;
-      const notificationPopUp = toast.info(notification.info, {toastID:id, containerId: `${notification.id}`, enableMultiContainer: true, autoClose: false, newestOnTop: true, transition: Slide, isActive: true, position:"bottom-right" } )
-              setTimeout(() => notificationPopUp, 2000);
-              return notificationPopUp
-              // <ToastContainer 
-              //       key={notification.id} 
-              //       isActive={true}
-              //       transition={Slide} 
-              //       autoClose={false} 
-              //       enableMultiContainer 
-              //       containerId={`${notification.id}`} 
-              //       newestOnTop={true} 
-              //       onClick={() => saySomething(notification.id)} 
-              //       position={toast.POSITION.BOTTOM_LEFT} 
-              // />
+              return <ToastContainer 
+                    key={notification.id} 
+                    isActive={true}
+                    transition={Slide} 
+                    autoClose={false} 
+                    enableMultiContainer 
+                    containerId={`${notification.id}`} 
+                    newestOnTop={true} 
+                    onClick={() => saySomething(notification.id)} 
+                    position={toast.POSITION.BOTTOM_LEFT} 
+              />
             }
   )}
 
   const saySomething = (id)=>{console.log("HELLO", id)}
 
-  console.log("HELLOdfgsghsfghfgdOOOOO", todaysNotes)
-  useEffect(()=>{ setPopUps(myNotifications)}, [props.today])
+
   // useEffect(()=>{setInterval(setPopUps, 1000, myNotifications)}, [props.today])
+  useEffect(()=>{setPopUps(myNotifications)}, [])
   return (
     
     <>
-      
-      <ToastContainer>{(props.user && props.today && todaysNotes.length > 0) ? printNotifications(todaysNotes) : clearInterval()} </ToastContainer>
+      {console.log(todaysNotes)}
+      {props.user && props.today && todaysNotes.length >0 ? printNotifications(todaysNotes) : clearInterval()}
     </>
   );
 }
+
+useEffect(()=>{setInterval(setPopUps, 10000, myNotifications)}, [props.today])
