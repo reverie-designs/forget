@@ -1,6 +1,6 @@
 import React, {useEffect, useReducer} from "react"
 import api from "../helpers/api"
-import reducer, {SET_USER, SET_ERROR, SET_NOTIFICATIONS_DATA,SET_NOTIFICATIONS_DAY, SET_SETTINGS, SET_GEOFENCE, SET_LOCATION} from "../reducers/application"
+import reducer, {SET_USER, SET_ERROR, SET_NOTIFICATIONS_DATA,SET_NOTIFICATIONS_DAY, SET_SETTINGS, SET_GEOFENCE, SET_LOCATION, SET_MYEVENTS} from "../reducers/application"
 // import { Z_STREAM_ERROR } from "zlib"
 
 
@@ -16,7 +16,8 @@ export default function useApplicationData() {
     today: new Date(),
     error: "",
     geofence: "",
-    location: ""
+    location: "",
+    myEvents: []
   })
   
   const splitDate =(fullDate) =>{
@@ -28,6 +29,24 @@ export default function useApplicationData() {
     return date.join(" ");
   }
 
+  const myEvents=(notifications)=>{
+    if(notifications){
+      const events = notifications.map((notification)=>{
+        let noteStart = new Date(`${notification.date} ${notification.time}`);
+        let startTime = noteStart.getTime()
+        let noteEnd = startTime + 1000 * 60 * 60;
+         const restructuredNotification={
+           id: notification.id,
+           title: notification.info,
+           start: noteStart,
+           end: new Date(noteEnd)
+         }
+         return restructuredNotification;
+     })
+     console.log("THESE ARE UPDATED EVENTS", events)
+     return events;
+    }
+  };
   const getUser = (newUser) => {
     let user_id;
     let auth_code;
@@ -81,11 +100,18 @@ export default function useApplicationData() {
               console.log("geofence", all[1].data[0])
               console.log("ALL NOTIFICATIONS", all[2].data)
               console.log("TOday's request", notification);
-                dispatch({type: SET_SETTINGS, settings: all[0].data[0]})
+              dispatch({type: SET_SETTINGS, settings: all[0].data[0]})
               dispatch({type: SET_GEOFENCE, geofence: all[1].data[0]})
               dispatch({type: SET_NOTIFICATIONS_DATA, notifications: all[2].data})
+              if(all[2].data.length > 0){
+                const events = myEvents(all[2].data) 
+                dispatch({type: SET_MYEVENTS, myEvents: events})
+              }
               return api.get("api/notifications/day",{params: notification})
               .then((res)=>{
+                
+                // console.log("THESE ARE",state.notifications);
+                
                 console.log("TODAY's NOTIFICATIONS", res.data);
                 //current location for patient
                 getLocation(auth_code);
@@ -157,5 +183,5 @@ const updateSettings = (settings)=> {
   // })
 
 
-  return {state, logout, getUser, addNotification, updateLocation, updateRadius, getLocation}
+  return {state, logout, getUser, addNotification, updateLocation, updateRadius, getLocation, myEvents}
 }

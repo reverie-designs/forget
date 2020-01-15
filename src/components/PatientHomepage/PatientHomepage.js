@@ -29,7 +29,7 @@ export default function PatientHomepage() {
       setGreeting(NIGHT);
     }
   }
-
+ 
   return (
     <div>
       <div className={ isDay ? "patient-homepage-day" : "patient-homepage-night"}>
