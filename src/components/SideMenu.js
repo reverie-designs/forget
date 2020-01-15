@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { green } from '@material-ui/core/colors';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
@@ -78,7 +79,7 @@ export default function SideMenu(props) {
         <ListItem button>
             <NavLink to="/settings" className="no-link-style"> <ListItemText primary="Settings" /></NavLink>
             <ListItemIcon>
-              <SettingsIcon />
+              <SettingsIcon style={{ color: green[500] }}  />
             </ListItemIcon>
           </ListItem>
         <ListItem button>

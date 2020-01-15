@@ -17,7 +17,7 @@ function MyButton(props) {
 
   return (
     // <div classesName={classes.paper}>
-    <Button variant="contained" className="button" onClick={props.onClick} color={props.buttonColor} disableElevation>
+    <Button variant="contained" className={props.className} onClick={props.onClick} color={props.buttonColor} disableElevation>
       {props.buttonText}
     </Button>
     // </div>

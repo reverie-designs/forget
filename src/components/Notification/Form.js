@@ -7,6 +7,7 @@ import StateTextFields from "./TextField";
 import FormControlLabel from "./CheckBox";
 import Switch from "./Switch";
 import DateTimePicker from "./DateTime";
+import './Form.scss';
 
 import RestaurantIcon from '@material-ui/icons/Restaurant';
 import EnhancedEncryptionIcon from '@material-ui/icons/EnhancedEncryption';
@@ -140,8 +141,8 @@ function Form(props) {
                 />
           </div>
           <div>
-              <MyButton buttonText="Save" type="submit" onClick={save} buttonColor="primary"/>
-              <MyButton buttonText="Cancel" onClick={reset} buttonColor="secondary"/>
+              <MyButton buttonText="Save" type="submit" onClick={save} buttonColor="primary" className="save-button"/>
+              <MyButton buttonText="Cancel" onClick={reset} buttonColor="secondary" className="cancel-button"/>
           </div>
         </section>
 
