@@ -45,7 +45,6 @@ export default function ButtonAppBar(props) {
   const checkForUser = (user) => {
     if (user === "") {
       return (<div><NavLink to="/sign-in"><Button color="inherit" className="button-pop">Login</Button></NavLink>
-      |
       <NavLink to="/sign-up"><Button color="inherit" className="button-pop">Sign Up</Button></NavLink></div>)
     } else {
       return (<LogoutButton onClick={props.onClick}/>)
