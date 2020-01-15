@@ -16,7 +16,7 @@ export default function StateTextFields(props) {
   return (
     <div className={classes.root} noValidate autoComplete="off">
       <div className="flex-center">
-        <p>Notes:</p>
+        <p>Title:</p>
         <TextField value={props.value} onChange={props.onChange} />
       </div>
      </div>
