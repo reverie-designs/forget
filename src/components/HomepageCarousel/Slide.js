@@ -70,7 +70,7 @@ const styles = {
     lineHeight: '32px',
     marginBottom: 12,
     textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
+    whiteSpace: 'wrap',
     overflow: 'hidden',
     color: '#fff'
   },

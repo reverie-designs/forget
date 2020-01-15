@@ -33,11 +33,11 @@ export default function SideMenu(props) {
   });
   console.log("HELLO GEO", props.geofence);
   const [toggleGeofence, setGeofence] = useState({
-    geofence: props.geofence.radius_on? props.geofence.radius_on: false,
+    geofence: props.geofence ? props.geofence.radius_on: false,
   });
   console.log("toggle on or off", toggleGeofence.geofence)
   useEffect(()=>{
-    const radiusToggleObject = {user_id: props.user.user_id, radius_on: toggleGeofence.geofence, radius: props.geofence.radius, patient_id: props.user.patient_id}
+    const radiusToggleObject = {user_id: props.user.user_id, radius_on: toggleGeofence.geofence, radius: props.geofence ?props.geofence.radius : false, patient_id: props.user.patient_id}
     console.log("radius object",radiusToggleObject);
     props.updateRadius(radiusToggleObject);
   },[toggleGeofence])

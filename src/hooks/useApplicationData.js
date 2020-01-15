@@ -183,5 +183,5 @@ const updateSettings = (settings)=> {
   // })
 
 
-  return {state, logout, getUser, addNotification, updateLocation, updateRadius, getLocation, myEvents}
+  return {state, logout, getUser, addNotification, updateLocation, updateRadius, getLocation, myEvents, updateSettings}
 }
