@@ -17,7 +17,7 @@ export default function NotificationToggleButton(props) {
             className={props.className}
           />
         }
-        label="Off"
+        label="On"
       />
     </FormGroup>
   );
