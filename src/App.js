@@ -175,14 +175,14 @@ function App() {
                 <Route exact path="/sign-in" component={() => (!state.user) ? <SignIn addUser={getUser} user={state.user} error={state.error}/> : <Redirect to="/" />}/>
                 <Route path="/cv-map" component={() => <Map  geofence={state.geofence} user={state.user} settings={state.settings} location={state.location} getLocation={state.getLocation} />}/>
                 <Route path="/settings" component={() => <PatientSettings user={state.user} settings={state.settings} updateSettings={updateSettings}/>}/>
-                <Route path="/calendar" component={() => <Calendar className='CalendarBox'
+                <Route exact path="/calendar" component={() => <Calendar className='CalendarBox'
                                                     localizer={localizer}
                                                     events={state.myEvents}
                                                     startAccessor="start"
                                                     endAccessor="end"
-                                                    style={{height: 500}}/>}
+                                                    style={{height: 500}}/> }
                 />
-                <Route path="/create-notification" component={() => <Notification addNotification={addNotification} user={state.user} error={state.error} />}/>
+                <Route path="/create-notification" component={() => (state.user.is_patient === false) ? <Notification addNotification={addNotification} user={state.user} error={state.error} /> : <Redirect to="/#/"/> }/>
              
                   {/* <p>This is User: {user.name}</p> */}
                   {/* <SignIn  addUser={validate} user={user} error={error}/> */}
