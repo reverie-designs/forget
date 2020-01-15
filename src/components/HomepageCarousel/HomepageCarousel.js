@@ -14,14 +14,14 @@ const [carouselState, setCarouselState] = useState(
 return (
 <div style={{ position: 'relative', width: '100%', height: 500 }}>
   <AutoRotatingCarousel
-    label='Sign Up'
+    label='Login'
     open={carouselState.open}
     onClose={() => setCarouselState({ open: false })}
     onStart={() => setCarouselState({ open: false })}
     style={{ position: 'absolute' }}
   >
      <Slide
-      media={<img alt="Grandfather and grandmother holding photo frame smiling" src={ElderlyCouple} />}
+      media={<img alt="Elderly couple holding photo frame smiling" src={ElderlyCouple} />}
       mediaBackgroundStyle={{ backgroundColor: cyan[400] }}
       style={{ backgroundColor: cyan[600] }}
       title='Forget Me Not'
