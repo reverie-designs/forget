@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
+import { ToastContainer, toast, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import PopUpNotification from './PopUpNotification';
 
 // import Button from '@material-ui/core/Button';
@@ -37,33 +39,20 @@ export default function PatientNotifications(props) {
   const ourNotifications = props.today;
   const setPopUps = (notifications) => {
      let today = new Date();
-    // let prior = today
-    console.log("TIME NOW",today)
-
-    today = today.getTime();
-    console.log("TIME NOW miliseconds",today)
-    // console.log(today)
-    // console.log(updateHour);
-
-    // let updateHour = new Date(prior.setHours(prior.getHours() + 1)); //it works-ish. Off by 1/2 hour
-    
-    // let minusHour = new Date(prior.setHours(prior.getHours() - 1)); 
-    // moment(prior).add(30, 'm').toDate();
-
-    // updateHour = updateHour.getTime();
-    // console.log("this is update hour...", updateHour);
-    // console.log("update hour to date", new Date(updateHour))
-
+      today = today.getTime();
+      // console.log(today)
     
     const newNotifications = notifications.map((notification) => {return deconstructedNotification(notification)});
     return newNotifications.map((notification) => {
       let startTime = notification.time.getTime()
       let endTime = startTime + 1000 * 60 * 60;
+      const notificationPopUp = toast(notification.info, {containerId: notification.id})
+      setTimeout((notificationPopUp), 2000);
       console.log("This is notification time", startTime);
         if (today >= startTime && today <= endTime && !notification.completed) {
-
           console.log("Found notifications for Today", notification);
-          return <PopUpNotification key={notification.id} notificationCompleted={notificationCompleted} onSetCompleted={setNotificationCompleted} info={notification.info} pills={notification.pills} appointment={notification.appointment} food={notification.food} completed={notification.completed} />
+          return   <ToastContainer key={notification.id} transition={Slide} autoClose={false} enableMultiContainer containerId={notification.id} newestOnTop={true} onClick={() => saySomething(notification.id)} position={toast.POSITION.BOTTOM_LEFT}></ToastContainer>
+          // return <PopUpNotification key={notification.id} notificationCompleted={notificationCompleted} onSetCompleted={setNotificationCompleted} info={notification.info} pills={notification.pills} appointment={notification.appointment} food={notification.food} completed={notification.completed} />
         }
         return null;
       }
@@ -72,7 +61,8 @@ export default function PatientNotifications(props) {
   };
   //  const getNotifications = 
 
-  
+  const saySomething = (id)=>{console.log("HELLO", id)}
+
 
   return (
     <div>

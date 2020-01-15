@@ -147,7 +147,7 @@ function App() {
     <HashRouter>
           <div>
             <NavBar user={state.user} onClick={logout} geofence={state.geofence} updateRadius={updateRadius}/>
-            <ToastifyPopUp />
+            {/* <ToastifyPopUp /> */}
             {/* <PatientNotifications todays_notifications={state.todays_notifications} /> */}
               <div>
               
