@@ -11,6 +11,8 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     marginTop: theme.spacing(1),
+    backgroundColor: "#003366",
+    color: "white",
   },
 }));
 
@@ -34,7 +36,7 @@ export default function AuthorizationCode(props) {
         <Button
             type="submit"
             variant="contained"
-            color="primary"
+            
             className={classes.submit}
             disabled={props.disableButton}
             onClick={props.onClick}

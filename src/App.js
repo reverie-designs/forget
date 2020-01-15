@@ -12,15 +12,18 @@ import SignIn from './components/SignIn';
 import Notification from './components/Notification/index'
 import Main from './components/Main';
 import PatientNotifications from './components/PatientNotifications/PatientNotifications';
+import PopUpNotification from './components/PatientNotifications/PopUpNotification';
+import useApplicationData from "./hooks/useApplicationData";
+import ToastifyPopUp from './components/PatientNotifications/ToastifyPopUp';
+
+
 import {
   Route,
   HashRouter,
   Redirect
 } from "react-router-dom";
 
-import useApplicationData from "./hooks/useApplicationData";
 const localizer = momentLocalizer(moment);
-
 
 
 const myNotificationList = [{
@@ -149,7 +152,8 @@ function App() {
     <HashRouter>
           <div>
             <NavBar user={state.user} onClick={logout} geofence={state.geofence} updateRadius={updateRadius}/>
-            <PatientNotifications />
+            {/* <ToastifyPopUp /> */}
+            {/* <PatientNotifications todays_notifications={state.todays_notifications} /> */}
               <div>
               
                   <p>This is User: {state.user.name}</p>
@@ -159,7 +163,7 @@ function App() {
 
                 <Route exact path="/" component={()=>
                   // user ? Home : LandingPage
-                  <Main addUser={getUser} user={state.user} error={state.error}  geofence={state.geofence} settings={state.settings} location={state.location} getLocation={state.getLocation}/>
+                  <Main addUser={getUser} user={state.user} error={state.error}  geofence={state.geofence} settings={state.settings} location={state.location} getLocation={state.getLocation} todays_notifications={state.todays_notifications} />
                   }/>
                   {/* <Main user={user} error={error}/>
                   }/> */}

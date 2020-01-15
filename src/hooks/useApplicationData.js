@@ -75,8 +75,8 @@ export default function useApplicationData() {
               console.log("notifications for today", all[2].data)
 
               dispatch({type: SET_SETTINGS, settings: all[0].data[0]})
-              dispatch({type: SET_GEOFENCE, geofence: all[1].data[0]})
-              dispatch({type: SET_NOTIFICATIONS_DAY, todays_notifications: all[2].data[0]})
+              dispatch({type: SET_GEOFENCE, geofence: all[0].data[1]})
+              dispatch({type: SET_NOTIFICATIONS_DAY, todays_notifications: all[2].data})
             })
           } else if (!is_patient && res.data[0].name){
             auth_code = {auth_code: res.data[0].auth_code}
