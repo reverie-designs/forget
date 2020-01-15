@@ -62,7 +62,6 @@ export default function ButtonAppBar(props) {
           </IconButton>}
           <NavLink to="/"><img alt="Forget me Not Logo" src={Logo} className="logo"/></NavLink>
           <Typography variant="h6" className={classes.title}>
-            Forget Me Not
           </Typography>
           {checkForUser(props.user)}
           {/* <LogoutButton onClick={props.onClick}/>
