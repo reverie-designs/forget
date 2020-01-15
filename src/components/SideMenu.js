@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { blue } from '@material-ui/core/colors';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
@@ -54,13 +55,13 @@ export default function SideMenu(props) {
           <ListItem button>
               <ListItemText primary="Geofence" />
               <ListItemIcon>
-                <GeofenceToggleButton checked={toggleGeofence.geofence} onChange={handleChange('geofence')} />
+                <GeofenceToggleButton className="geofence-toggle" checked={toggleGeofence.geofence} onChange={handleChange('geofence')} />
               </ListItemIcon>
             </ListItem>
               <ListItem button>
               <ListItemText primary="Disable Notifications" />
               <ListItemIcon>
-                <NotificationToggleButton checked={toggleNotification.notification} onChange={handleChange('notification')} />
+                <NotificationToggleButton className="notification-toggle" checked={toggleNotification.notification} onChange={handleChange('notification')} />
               </ListItemIcon>
           </ListItem>
       </div>
@@ -71,27 +72,27 @@ export default function SideMenu(props) {
   return (
     <div className={classes.list}>
       <ImageAvatars></ImageAvatars>
-      <ListItemText primary={`Hello: ${props.user.name}`} className="userName"/>
+      <ListItemText primary={`Hello ${props.user.name}`} className="userName"/>
       {/* <ListItemText primary={props.user.username} /> */}
          <Divider></Divider>
       <List component="nav" aria-label="main mailbox folders"> 
         <ListItem button>
-            <NavLink to="/settings" className="no-link-style"> <ListItemText primary="Settings" /></NavLink>
-            <ListItemIcon>
-              <SettingsIcon />
+          <ListItemIcon>
+              <SettingsIcon style={{ color: blue[900] }}  />
             </ListItemIcon>
+            <NavLink to="/settings" className="no-link-style"> <ListItemText primary="Settings" /></NavLink>  
           </ListItem>
         <ListItem button>
-        <NavLink to="/create-notification" className="no-link-style"><ListItemText primary="Create Notification" /></NavLink>
-          <ListItemIcon>
-            <NotificationsIcon />
+        <ListItemIcon>
+            <NotificationsIcon style={{ color: blue[900] }} />
           </ListItemIcon>
+        <NavLink to="/create-notification" className="no-link-style"><ListItemText primary="Create Notification" /></NavLink>
         </ListItem>
         <ListItem button>
-        <NavLink to="/calendar" className="no-link-style"><ListItemText primary="All Notifications" /></NavLink>
-          <ListItemIcon>
-            <DateRangeIcon />
+        <ListItemIcon>
+            <DateRangeIcon style={{ color: blue[900] }} />
           </ListItemIcon>
+        <NavLink to="/calendar" className="no-link-style"><ListItemText primary="All Notifications" /></NavLink>
         </ListItem>
       
          {isPatient(props.user.is_patient)}

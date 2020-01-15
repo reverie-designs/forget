@@ -104,11 +104,14 @@
   justify-content: center;
 }
 .formBox{
-  background-color: #61dafb;
+  background-color: white;
   max-width: 400px;
   width: 80%;
   margin: auto;
   border-radius: 10px;
+  border: darkgrey solid 3px;
+  padding: 10px;
+  margin-top: 50px;
 }
 .formTitle{
   padding-top: 10%;

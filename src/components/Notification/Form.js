@@ -7,6 +7,8 @@ import StateTextFields from "./TextField";
 import FormControlLabel from "./CheckBox";
 import Switch from "./Switch";
 import DateTimePicker from "./DateTime";
+import { blue } from "@material-ui/core/colors";
+import './Form.scss';
 
 import RestaurantIcon from '@material-ui/icons/Restaurant';
 import EnhancedEncryptionIcon from '@material-ui/icons/EnhancedEncryption';
@@ -114,7 +116,7 @@ function Form(props) {
           </div>
           <div className="flex-center">
                 <FormControlLabel 
-                          icon={<EnhancedEncryptionIcon />} 
+                          icon={<EnhancedEncryptionIcon style={{ color: blue[900] }} />} 
                           checkedIcon={<EnhancedEncryptionIcon />} 
                           onChange={pillsChange} 
                           value={pills} 
@@ -123,7 +125,7 @@ function Form(props) {
                 />
 
                 <FormControlLabel 
-                          icon={<RestaurantIcon />} 
+                          icon={<RestaurantIcon style={{ color: blue[900] }} />} 
                           checkedIcon={<RestaurantIcon />} 
                           onChange={foodChange} 
                           checked={food}
@@ -131,7 +133,7 @@ function Form(props) {
                 />
 
                 <FormControlLabel 
-                          icon={<EventAvailableIcon />} 
+                          icon={<EventAvailableIcon  style={{ color: blue[900] }} />} 
                           checkedIcon={<EventAvailableIcon />} 
                           onChange={appointmentChange} 
                           value={appointment} 
@@ -140,8 +142,8 @@ function Form(props) {
                 />
           </div>
           <div>
-              <MyButton buttonText="Save" type="submit" onClick={save} buttonColor="primary"/>
-              <MyButton buttonText="Cancel" onClick={reset} buttonColor="secondary"/>
+              <MyButton buttonText="Save" type="submit" onClick={save} buttonColor="primary" className="save-button"/>
+              <MyButton buttonText="Cancel" onClick={reset} buttonColor="secondary" className="cancel-button"/>
           </div>
         </section>
 
