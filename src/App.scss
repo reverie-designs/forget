@@ -33,23 +33,54 @@
 .CalendarBox {
   padding-top: 100px;
   border-top: 2px solid grey;
-  width: 80%;
+  width: 95%;
   margin: 2% auto;
 }
-
+.rbc-toolbar {
+  display: block !important;
+  text-align: center !important;
+  width: 80% !important;
+  margin: auto !important;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.rbc-month-view{
+  margin-top: 10px;
+}
+.rbc-toolbar .rbc-toolbar-label{
+  display: block !important;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
 .rbc-event {
-  background-color: #282c34 !important;
+  background-color: #00acc1 !important;
 }
 .rbc-event.rbc-selected {
   background-color: red !important;
 }
 
+.MuiGrid-spacing-xs-2 > .MuiGrid-item {
+  margin: auto;
+  text-align: center;
+}
+.MuiTypography-body1{
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.MuiTypography-h5{
+  font-size: 2rem !important;
+}
 .notification-box {
   // margin-top: 1%;
   margin: auto;
   text-align: center;
   padding-top: 2%;
   // border-top: 2px solid grey;
+}
+.centerBtn{
+  margin: auto;
+  text-align: center;
 }
 
 .textLabel{

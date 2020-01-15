@@ -166,7 +166,8 @@ export default function PatientSettings(props) {
         </Grid>
         </Grid> 
         </form>
-        <Button
+        <div className="centerBtn">
+          <Button
             type="submit"
             width={1/4}
             variant="contained"
@@ -175,7 +176,8 @@ export default function PatientSettings(props) {
             onClick={save}
           >
             Save
-          </Button> 
+          </Button> </div>
+        
         </div>} </div> }
       </div>
     </Container>
