@@ -1,13 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import moment from 'moment';
+import React from 'react';
 import { ToastContainer, toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import PopUpNotification from './PopUpNotification';
 
-// import Button from '@material-ui/core/Button';
-// import Snackbar from '@material-ui/core/Snackbar';
-// import MuiAlert from '@material-ui/lab/Alert';
-// import { makeStyles } from '@material-ui/core/styles';
 
 export default function PatientNotifications(props) {
   // const [notificationCompleted, setNotificationCompleted] = useState(false);
@@ -73,7 +67,6 @@ export default function PatientNotifications(props) {
     )
     // return newNotifications
   };
-  //  const getNotifications = 
 
   // useEffect(()=>{
 

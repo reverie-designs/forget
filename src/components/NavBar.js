@@ -45,7 +45,6 @@ export default function ButtonAppBar(props) {
   const checkForUser = (user) => {
     if (user === "") {
       return (<div><NavLink to="/sign-in"><Button color="inherit" className="button-pop">Login</Button></NavLink>
-      |
       <NavLink to="/sign-up"><Button color="inherit" className="button-pop">Sign Up</Button></NavLink></div>)
     } else {
       return (<LogoutButton onClick={props.onClick}/>)
@@ -57,7 +56,7 @@ export default function ButtonAppBar(props) {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          { <IconButton onClick={toggleDrawer('left', true)} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          { (props.user) && <IconButton onClick={toggleDrawer('left', true)} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>}
           <NavLink to="/"><img alt="Forget me Not Logo" src={Logo} className="logo"/></NavLink>
