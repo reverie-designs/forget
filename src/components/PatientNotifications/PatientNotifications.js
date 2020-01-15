@@ -46,12 +46,21 @@ export default function PatientNotifications(props) {
     return newNotifications.map((notification) => {
       let startTime = notification.time.getTime()
       let endTime = startTime + 1000 * 60 * 60;
-      const notificationPopUp = toast(notification.info, {containerId: notification.id})
+      const notificationPopUp = toast(notification.info, {containerId: 'notification.id'})
       setTimeout(() => notificationPopUp, 2000);
       console.log("This is notification time", startTime);
         if (today >= startTime && today <= endTime && !notification.completed) {
           console.log("Found notifications for Today", notification);
-          return   <ToastContainer key={notification.id} transition={Slide} autoClose={false} enableMultiContainer containerId={notification.id} newestOnTop onClick={() => saySomething(notification.id)} position={toast.POSITION.BOTTOM_LEFT}></ToastContainer>
+          return   <ToastContainer 
+                      key={notification.id} 
+                      transition={Slide} 
+                      autoClose={false} 
+                      enableMultiContainer 
+                      containerId={'notification.id'} 
+                      newestOnTop={true} 
+                      onClick={() => saySomething(notification.id)} 
+                      position={toast.POSITION.BOTTOM_LEFT} 
+                      />
           // return <PopUpNotification key={notification.id} notificationCompleted={notificationCompleted} onSetCompleted={setNotificationCompleted} info={notification.info} pills={notification.pills} appointment={notification.appointment} food={notification.food} completed={notification.completed} />
         }
         return null;
@@ -62,13 +71,30 @@ export default function PatientNotifications(props) {
   //  const getNotifications = 
 
   const saySomething = (id)=>{console.log("HELLO", id)}
-
+  
+  // const showToast = () => {
+  //   toast("Look at me!", {containerId: "A"})
+  // }
 
   return (
-    <div>
+    <>
       {/* iterate through notification, if (shouldShowNotification()), show it */}
       {/* {setPopUps(notifications)} */}
       {props.user && props.today ? setPopUps(ourNotifications) : clearInterval()}
-    </div>
+
+      {/* <ToastContainer
+        position="bottom-left"
+        autoClose={5000}
+        containerId="A"
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnVisibilityChange
+        draggable
+        pauseOnHover
+        />
+      <button onClick={showToast}>Show Toast</button> */}
+    </>
   );
 }
