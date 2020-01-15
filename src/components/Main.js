@@ -1,7 +1,7 @@
 import React from 'react';
 import Map from './MapComponent/component/Map';
 import PatientHomepage from './PatientHomepage/PatientHomepage';
-import SignUp from "./SignUp";
+import SignIn from "./SignIn";
 import HomePageCarousel from './HomepageCarousel/HomepageCarousel';
 //  const checkForPatient = () => {
 //   if (user === "") {
@@ -21,7 +21,7 @@ export default function Main(props) {
   return (
     <div>
       { !loggedIn && <div>
-        <SignUp addUser={props.addUser} error={props.error}/>
+        <SignIn addUser={props.addUser} error={props.error}/>
         <HomePageCarousel/>
         </div>
       }
