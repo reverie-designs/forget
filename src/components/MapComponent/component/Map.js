@@ -1,7 +1,12 @@
 import React, { useState, useRef } from "react";
 import { useGoogleMap, useMap } from "../hooks/map_hook.js";
 import { useGeolocation } from "../hooks/useGeolocation.js";
+import getDistance from "../helper/distanceBetweenPoints";
+import MuiAlert from "@material-ui/lab/Alert";
 
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const mapApiKey = process.env.REACT_APP_GMAPS_API_KEY;
 // const geocodeApiKey = REACT_APP_GEOCODE_KEY;
@@ -12,10 +17,11 @@ const initialConfig = {
   type: null,
 };
 
+let inFence;
 const Map = (props) => {
   console.log(props)
 
-  const [homePosition, setLocation] = useState(props.settings ? {lat: parseFloat(props.settings.lat), lng: parseFloat(props.settings.lng) } : '')
+  const [homePosition, setLocation] = useState(props.settings && props.settings.lat && props.settings.lng ? {lat: parseFloat(props.settings.lat), lng: parseFloat(props.settings.lng) } : '')
   const [radius, setradius] = useState(props.geofence ? Number(props.geofence.radius) : '');
   const [geofence, applyGeofence] = useState(props.geofence ? props.geofence.radius_on : '')
   
@@ -25,6 +31,9 @@ const Map = (props) => {
     initialConfig.center.lat = latitude;
     initialConfig.center.lng = longitude;
     initialConfig.type = 'Geolocation'
+    if (props && props.geofence && props.geofence.radius_on){
+      inFence = getDistance(initialConfig.center, homePosition) <= radius;
+    }
   }
 
   const googleMap = useGoogleMap(mapApiKey);
@@ -32,6 +41,18 @@ const Map = (props) => {
   // useMap({ googleMap, mapContainerRef, initialConfig, homePosition });
   useMap({ googleMap, mapContainerRef, initialConfig, homePosition, radius, geofence });
   return (
+    <div>
+    <div      
+     style={{
+        width: "90%",
+        margin: "auto",
+        marginTop: "10px"
+      }}>
+      {(props && props.geofence && props.geofence.radius_on === false ?
+         <Alert icon={false} severity="warning">FENCE DISABLED</Alert> :
+          (inFence) ? <Alert icon={false} severity="info">PATIENT INSIDE FENCE</Alert> : 
+          <Alert icon={false} severity="error">PATIENT OUTSIDE FENCE</Alert>)}
+    </div>
     <div
       style={{
         height: "450px",
@@ -41,14 +62,11 @@ const Map = (props) => {
       }}
       ref={mapContainerRef}
     />
+    </div>
   );
 };
 
 export default Map;
-
-
-
-
 
 // const Map = (props) => {
 
