@@ -198,6 +198,30 @@ const updateSettings = (settings)=> {
 
   // })
 
+  const updateNotifications = () => {
+    console.log('----------------|-| -> state.user.auth_code',state.user.auth_code);
+    api.get("api/notifications",{params: {auth_code: state.user.auth_code}})
+      .then((res) => {
+        console.log("STATE VS RESPONSE", state.notifications.length, res.data.length)
+        if (state.notifications.length !== res.data.length) {
+          console.log("WOOHOOOH", res.data);
+          dispatch({type: SET_NOTIFICATIONS_DATA, notifications: res.data})
+            const events = myEvents(res.data) 
+            dispatch({type: SET_MYEVENTS, myEvents: events})
+        }
+      })
+    }
+    const updateTodays =() => {
+      const note_day_query = {auth_code: state.user.auth_code, day: state.today}
+      api.get("api/notifications/day",{params: note_day_query})
+        .then((res)=>{
+          if (state.notifications.length !== res.data.length){
+            dispatch({type: SET_NOTIFICATIONS_DAY, todays_notifications: res.data})
+          }
+        })
+    }
+  // (state && state.user && state.user.auth_code) ? clearInterval() && setInterval(updateNotifications,6000) : clearInterval();
+useEffect(()=>{updateNotifications(); setInterval(updateTodays,6000)}, [state.notifications]);
 
   return {state, logout, getUser, addNotification, updateLocation, updateRadius, getLocation, myEvents, updateSettings}
 }
