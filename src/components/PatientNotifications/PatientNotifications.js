@@ -10,15 +10,17 @@ import PopUpNotification from './PopUpNotification';
 // import { makeStyles } from '@material-ui/core/styles';
 
 export default function PatientNotifications(props) {
-  const [notificationCompleted, setNotificationCompleted] = useState(false);
+  // const [notificationCompleted, setNotificationCompleted] = useState(false);
 
-  useEffect(() => {
-    console.log('notificationCompleted: ', notificationCompleted);
-  }, [notificationCompleted])
+  // useEffect(() => {
+  //   console.log('notificationCompleted: ', notificationCompleted);
+  // }, [notificationCompleted])
 
 
   //   // return new Date() <= new Date(`${notification.date} ${notification.time}`);
   // }
+  
+  //takes in notification and restructures to add new fields
   const deconstructedNotification = (notification) => {
     const notificationTime = new Date(`${notification.date} ${notification.time}`)
     console.log("THIS IS NOTIFICATION DEPLOYMENT TIME", notificationTime);
@@ -36,7 +38,10 @@ export default function PatientNotifications(props) {
     return newNotificationObj;
   }
 
+  
   const ourNotifications = props.today;
+
+  //generates POP UPS
   const setPopUps = (notifications) => {
      let today = new Date();
       today = today.getTime();
@@ -70,18 +75,24 @@ export default function PatientNotifications(props) {
   };
   //  const getNotifications = 
 
+  // useEffect(()=>{
+
+  // }, [props.notifications])
+
+  // const gimmie = setInterval(()=> {return setPopUps(ourNotifications)}, 6000);
+//setInterval(()=> {return setPopUps(ourNotifications)}, 6000)
   const saySomething = (id)=>{console.log("HELLO", id)}
-  
+  const story = (words)=>{setTimeout(story(words), 1000); return  };
   // const showToast = () => {
   //   toast("Look at me!", {containerId: "A"})
   // }
-
+  console.log("HECK YEA", )
   return (
     <>
       {/* iterate through notification, if (shouldShowNotification()), show it */}
       {/* {setPopUps(notifications)} */}
+      {/* {props.user && props.today ?  gimmie : null} */}
       {props.user && props.today ? setPopUps(ourNotifications) : clearInterval()}
-
       {/* <ToastContainer
         position="bottom-left"
         autoClose={5000}

@@ -15,9 +15,9 @@ const initialConfig = {
 const Map = (props) => {
   console.log(props)
 
-  const [homePosition, setLocation] = useState(props.settings.lat && props.settings.lng ? {lat: parseFloat(props.settings.lat), lng: parseFloat(props.settings.lng) } : '')
-  const [radius, setradius] = useState(props.geofence.radius ? Number(props.geofence.radius) : '');
-  const [geofence, applyGeofence] = useState(props.geofence.radius_on ? props.geofence.radius_on : '')
+  const [homePosition, setLocation] = useState(props.settings ? {lat: parseFloat(props.settings.lat), lng: parseFloat(props.settings.lng) } : '')
+  const [radius, setradius] = useState(props.geofence ? Number(props.geofence.radius) : '');
+  const [geofence, applyGeofence] = useState(props.geofence ? props.geofence.radius_on : '')
   
   const { latitude, longitude, timestamp} = useGeolocation(true, {enableHighAccuracy: true});
   // const { latitude, longitude, timestamp } = useGeolocation(true, {enableHighAccuracy: true});

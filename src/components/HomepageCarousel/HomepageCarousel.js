@@ -25,27 +25,27 @@ return (
       mediaBackgroundStyle={{ backgroundColor: cyan[400] }}
       style={{ backgroundColor: cyan[600] }}
       title='Forget Me Not'
-      subtitle='The ideal solution to assist you in helping your family member with dementia continue to live an independent life.'
+      subtitle='Help your family member with dementia continue to live an independent life.'
     />
      <Slide
       media={<img alt="Map icon with a pinned location on it" src='https://image.flaticon.com/icons/svg/854/854878.svg' />}
       mediaBackgroundStyle={{ backgroundColor: blue[400] }}
       style={{ backgroundColor: blue[600] }}
       title='Current location'
-      subtitle='You can also set a geofence for safety!'
+      subtitle='Set a geofence for safety!'
     />
     <Slide
       media={<img alt="Cellphone with alarm notification and reminder to take pills" src='https://image.flaticon.com/icons/svg/843/843220.svg' />}
       mediaBackgroundStyle={{ backgroundColor: cyan[400] }}
       style={{ backgroundColor: cyan[600] }}
-      title='Create reminders and appointments'
-      subtitle=''
+      title='Create reminders'
+      subtitle="It\'s time to take your medicine"
     />
     <Slide
       media={<img alt="Calendar icon with one day selected" src='https://image.flaticon.com/icons/svg/123/123392.svg' />}
       mediaBackgroundStyle={{ backgroundColor: blue[400] }}
       style={{ backgroundColor: blue[600] }}
-      title='View all notifications you created'
+      title='View all notifications'
       subtitle='Calendar for easy viewing'
     />
   </AutoRotatingCarousel> 

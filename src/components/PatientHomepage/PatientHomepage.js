@@ -46,8 +46,8 @@ return (
     <div>
       <div className={ isDay ? "patient-homepage-day" : "patient-homepage-night"}>
         <h3 className={ isDay ? "greeting" : "greeting greeting-night"}>{greeting}</h3>
-        <PatientNotifications user={props.user} today={props.today}/>
         <Clock handleUpdate={timeToStatus} />
+        <PatientNotifications user={props.user} today={props.today}/>
       </div>
     </div>
   )
