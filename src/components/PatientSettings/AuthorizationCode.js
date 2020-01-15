@@ -36,7 +36,6 @@ export default function AuthorizationCode(props) {
         <Button
             type="submit"
             variant="contained"
-            
             className={classes.submit}
             disabled={props.disableButton}
             onClick={props.onClick}
