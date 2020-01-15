@@ -14,6 +14,7 @@ export default function NotificationToggleButton(props) {
             onChange={props.onChange}
             value={props.checked}
             color="primary"
+            className={props.className}
           />
         }
         label="Off"
