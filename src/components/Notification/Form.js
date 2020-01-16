@@ -32,7 +32,7 @@ function Form(props) {
   const [appointment, setAppointment] = useState(false);
   
   //SAVE NOTIFICATION STATE
-  const [message, setMessage] = useState("")
+  // const [message, setMessage] = useState("")
 
   const pillsChange = event => {
     setPills(event.target.checked);
@@ -92,7 +92,7 @@ function Form(props) {
     notification.user_id = props.user.user_id;
     notification.auth_code = props.user.auth_code;
     console.log("Form", notification);
-    setMessage("Notification Saved")
+    // setMessage("Notification Saved")
     props.addNotification(notification);
   }
  
@@ -107,7 +107,7 @@ function Form(props) {
   return (
     <div className="formBox">
 
-         <p>{message}</p>
+         {/* <p>{message}</p> */}
        <form autoComplete="off" onSubmit={event => event.preventDefault()}>
          <h3 className="formTitle">NEW NOTIFICATION</h3>
          
