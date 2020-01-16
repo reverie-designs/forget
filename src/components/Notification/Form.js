@@ -16,19 +16,23 @@ import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 
 function Form(props) {
 
+  
   //DATE TIME STATE
   const [selectedDateTime, handleDateChange] = useState(new Date());
-
+  
   // TEXT BOX STATE
   const [info, setInfo] = useState('');
   const setTextChange = event => {
     setInfo(event.target.value);
   };
-
+  
   //CATEGORY STATE
   const [pills, setPills] = useState(false);
   const [food, setFood] = useState(false);
   const [appointment, setAppointment] = useState(false);
+  
+  //SAVE NOTIFICATION STATE
+  // const [message, setMessage] = useState("")
 
   const pillsChange = event => {
     setPills(event.target.checked);
@@ -88,6 +92,7 @@ function Form(props) {
     notification.user_id = props.user.user_id;
     notification.auth_code = props.user.auth_code;
     console.log("Form", notification);
+    // setMessage("Notification Saved")
     props.addNotification(notification);
   }
  
@@ -102,6 +107,7 @@ function Form(props) {
   return (
     <div className="formBox">
 
+         {/* <p>{message}</p> */}
        <form autoComplete="off" onSubmit={event => event.preventDefault()}>
          <h3 className="formTitle">NEW NOTIFICATION</h3>
          
