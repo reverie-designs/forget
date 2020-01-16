@@ -46,12 +46,12 @@ const Map = (props) => {
      style={{
         width: "90%",
         margin: "auto",
-        marginTop: "10px"
-      }}>
+        marginTop: "10px",
+     }}>
       {(props && props.geofence && props.geofence.radius_on === false ?
-         <Alert icon={false} severity="warning">FENCE DISABLED</Alert> :
+         <Alert icon={false} variant="outlined" severity="info">FENCE DISABLED</Alert> :
           (inFence) ? <Alert icon={false} severity="info">PATIENT INSIDE FENCE</Alert> : 
-          <Alert icon={false} severity="error">PATIENT OUTSIDE FENCE</Alert>)}
+          <Alert icon={false} variant="outlined" severity="error">PATIENT OUTSIDE FENCE</Alert>)}
     </div>
     <div
       style={{

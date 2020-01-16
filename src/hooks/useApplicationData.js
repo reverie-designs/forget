@@ -20,6 +20,121 @@ export default function useApplicationData() {
     location: "",
     myEvents: []
   })
+
+   // useEffect(()=>{
+  //   // console.log("SOCKET URL", wssURL)
+  //   // // console.log("THIS IS PROCESS", process.env)
+  //   // const socket = new WebSocket(wssURL)
+  //   // socket.addEventListener('open', () => {
+  //   //   console.log('connected to server')
+  //   //   socket.send('ping')
+  //   // })
+  //   const updateNotifications = () => {
+  //     if (state && state.user && state.user.auth_code) {
+  //       setInterval(() => {
+  //         api.get("api/notifications",{params: {auth_code: state.user.auth_code}})
+  //         .then((res) => {
+  //           if (state && state.notifications && state.notifications.length !== res.data.length) {
+  //             dispatch({type: SET_NOTIFICATIONS_DATA, ...state.notifications})
+  //           }
+  //         })
+  //       }, 6000)
+  //     }
+  //   }
+  //   updateNotifications();
+  // }, [state.notifications]);
+
+  // useEffect(() => {
+  //   let updateNotifications;
+  //   // console.log("---------------------->>>>>>", state)
+  //   if (state && state.user && state.user.auth_code) {
+  //     updateNotifications = setInterval(() => {
+  //     api.get("api/notifications",{params: {auth_code: state.user.auth_code}})
+  //         .then((res) => {
+  //           if (state.notifications.length !== res.data.length) {
+  //             console.log("WOOHOOOH", res.data);
+  //               const events = myEvents(res.data) 
+  //               dispatch({type: SET_MYEVENTS, myEvents: events})
+  //           }
+  //         })
+  //       }, 6000);
+  //   } 
+  //   return () => clearInterval(updateNotifications);
+  // }, [state.notifications]);
+
+  const updateNotifications = () => {
+  console.log('----------------|-| -> state.user.auth_code',state.user.auth_code);
+  api.get("api/notifications",{params: {auth_code: state.user.auth_code}})
+    .then((res) => {
+      if (state.notifications.length !== res.data.length) {
+        console.log("WOOHOOOH", res.data);
+          const events = myEvents(res.data) 
+          dispatch({type: SET_MYEVENTS, myEvents: events})
+      }
+    })
+  }
+    // (state && state.user && state.user.auth_code) ? clearInterval() && setInterval(updateNotifications,6000) : clearInterval();
+
+  useEffect(() => {
+    let test;
+      if (state.user && state.user.auth_code) {
+      test = setInterval(updateNotifications,6000)
+    }
+    return clearInterval(test);
+  }, [state.notifications]);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setSeconds(seconds => seconds + 1);
+  //   }, 1000);
+  //   return () => clearInterval(interval);
+  // }, [state.notifications]); 
+
+  const getLocations = () => {
+    api.get("api/locations",{params: {auth_code: state.user.auth_code}})
+    .then((res) => {
+      if (state && state.location && state.location.id !== res.date.location.id) {
+        dispatch({type: SET_LOCATION, location: res.data[0]})
+      }
+    })
+  }
+  
+  (state && state.user && state.user.auth_code) ? clearInterval() && setInterval(getLocations,60000) : clearInterval();
+
+  // useEffect(() => {
+  //   let updateLocations;
+  //   console.log("---------------------->>>>>>", state)
+  //   if (state && state.user && state.user.auth_code) {
+  //     updateLocations = setInterval(() => {
+  //     api.get("api/locations",{params: {auth_code: state.user.auth_code}})
+  //         .then((res) => {
+  //           if (state && state.location && state.location.id !== res.date.location.id) {
+  //             dispatch({type: SET_LOCATION, location: res.data[0]})
+  //           }
+  //         })
+  //       }, 60000);
+  //   } 
+  //   return () => clearInterval(updateLocations);
+  // }, [state.user.is_patient]);
+
+  // useEffect(()=> {
+  //   let updateLocations;
+  //   // console.log("---------------------->>>>>>", state)
+  //   if (state && state.user && state.user.auth_code) {
+  //     updateLocations = setInterval(() => {
+  //       setInterval(() => {
+  //         api.get("api/locations", {params: {auth_code: state.user.auth_code}})
+  //         .then((res) => {
+  //           // console.log(state.location);
+  //           if (state && state.location && state.location.id !== res.date.location.id) {
+  //             dispatch({type: SET_LOCATION, location: res.data[0]})
+  //           }
+  //         })
+  //       }, 20000)
+  //     }
+  //     updateLocations()
+  //   }
+  // }, [state.user.is_patient]);
+
   
   const splitDate =(fullDate) =>{
     const dateArray = fullDate.toString().split(" ");

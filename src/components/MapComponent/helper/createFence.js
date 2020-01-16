@@ -10,7 +10,7 @@
 const createFence = (googleObj,center,map,radius = 3,isOn = false) => {
   const circle = new googleObj.maps.Circle({
     strokeColor: '#FFFFFF',
-    strokeOpacity: 0.8,
+    strokeOpacity: 0.35,
     strokeWeight: 2,
     fillColor: '#0000FF',
     fillOpacity: 0.35,
