@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useGoogleMap, useMap } from "../hooks/map_hook.js";
 import { useGeolocation } from "../hooks/useGeolocation.js";
 import getDistance from "../helper/distanceBetweenPoints";
@@ -13,29 +13,42 @@ const initialConfig = {
   center: {lat:43.644174, lng: -79.402206},
   type: null,
 };
-let inFence;
 const Map = (props) => {
+  let [inFence, setFence] = useState("");
   console.log(props)
   const [homePosition, setLocation] = useState(props.settings && props.settings.lat && props.settings.lng ? {lat: parseFloat(props.settings.lat), lng: parseFloat(props.settings.lng) } : '')
   const [radius, setradius] = useState(props.geofence ? Number(props.geofence.radius) : '');
   const [geofence, applyGeofence] = useState(props.geofence ? props.geofence.radius_on : '')
   
-  const { latitude, longitude, timestamp} = useGeolocation(true, {enableHighAccuracy: true});
+  const { latitude, longitude, timestamp} = useGeolocation(true);
   // const { latitude, longitude, timestamp } = useGeolocation(true, {enableHighAccuracy: true});
-  if (latitude && longitude) {
-    initialConfig.center.lat = latitude;
-    initialConfig.center.lng = longitude;
-    initialConfig.type = 'Geolocation'
-    if (props && props.geofence && props.geofence.radius_on){
-      inFence = getDistance(initialConfig.center, homePosition) <= radius;
+  const checkSafety = ()=>{
+    if (latitude && longitude) {
+      initialConfig.center.lat = latitude;
+      initialConfig.center.lng = longitude;
+      initialConfig.type = 'Geolocation'
+      console.log("REACHED COMPARE SAFEY RADIUS")
+      if (props && props.geofence && props.geofence.radius_on){
+        if(getDistance(initialConfig.center, homePosition) != undefined){
+          setFence(getDistance(initialConfig.center, homePosition) <= radius)
+        } else {
+          setFence(true)
+        }
+        
+      }
     }
+  
   }
+
+  
   const googleMap = useGoogleMap(mapApiKey);
   const mapContainerRef = useRef(null);
   // useMap({ googleMap, mapContainerRef, initialConfig, homePosition });
   useMap({ googleMap, mapContainerRef, initialConfig, homePosition, radius, geofence });
+  useEffect(()=>{ checkSafety(); console.log("WITHIN SAFETY ", inFence);},[latitude])
   return (
     <div>
+      {/* {checkSafety} */}
     <div      
      style={{
         width: "90%",
