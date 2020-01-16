@@ -77,7 +77,7 @@ function Form(props) {
     date.push(dateArray[3]);
     return date.join(" ");
   }
-    
+  
   // const [test, setTest] = useState("");
   //SAVE BUTTON
   const save = () => {
@@ -95,7 +95,7 @@ function Form(props) {
     // setMessage("Notification Saved")
     props.addNotification(notification);
   }
- 
+  
     // //Checks TIME
     //  useEffect(() => {
     //   //  console.log(selectedDate)
@@ -106,8 +106,6 @@ function Form(props) {
     //   console.log("THIS IS TEST",test);
   return (
     <div className="formBox">
-
-         {/* <p>{message}</p> */}
        <form autoComplete="off" onSubmit={event => event.preventDefault()}>
          <h3 className="formTitle">NEW NOTIFICATION</h3>
          
