@@ -160,10 +160,16 @@
   text-decoration: none;
 }
 
+.MuiPaper-elevation6{
+  box-shadow: none !important;
+}
 .logo{
   width: 50%;
   animation: App-logo-spin infinite 20s linear;
 }
+// .MuiAlert-outlinedInfo{
+//   border: 4px solid !important;
+// }
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
