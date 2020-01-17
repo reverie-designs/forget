@@ -4,9 +4,9 @@ Forget Me Not is there to assist families with family members who have dementia.
 
 ## 🧱 Tech Stack 🧱
 
-Front-end: React JS, Material UI
-Back-end: Node JS, Express, Axios
-Database: PostgreSQL 
+* Front-end: React JS, Material UI
+* Back-end: Node JS, Express, Axios
+* Database: PostgreSQL 
 
 ## 🔔 How Forget Me Not works 🔔
 
@@ -14,15 +14,15 @@ Here's a sneak-peek of what the application looks like:
 
 <b>Intro carousel</b>
 
-!["Saving an appointment"](https://github.com/fatimaaltaf/scheduler/blob/master/public/GIFS/saving_appointments.gif)
+![]()
 
 <b>Caregiver view</b>
 
-!["Deleting an appointment"](https://github.com/fatimaaltaf/scheduler/blob/master/public/GIFS/Deleting_Appointment.gif)
+![]()
 
 <b>Patient view</b>
 
-!["Editing an appointment"](https://github.com/fatimaaltaf/scheduler/blob/master/public/GIFS/Editing_Appointment.gif)
+![]()
 
 ## 💻 How to use  💻
 
@@ -73,8 +73,8 @@ Here's a sneak-peek of what the application looks like:
 4. Patient has a day and night mode to help distinguish between different times of the day. Notifications pop up on patient's homepage which they can close and check as complete. 
 
 ## 🕺Creators 💃🏻
-Dasha Frumovitch
-Fatima Altaf
-Arvind John
+* Dasha Frumovitch
+* Fatima Altaf
+* Arvind John
 
 
