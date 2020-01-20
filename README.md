@@ -3,7 +3,7 @@
 Forget Me Not is there to assist families with family members who have dementia. The application allows caregivers to create notifications (reminders to eat medicine, food, and about doctor's appointments) for their loved ones while also keeping track of their location. If the patient leaves the 3 KM geofence, the caregiver will receive an alert notifying them that their family member has left the safety radius. The family member with dementia will see pop up notifications on their homepage and have a day and night display to help distinguish different times of day. 
 
 
-## 🔔 How Forget Me Not works 🔔
+## 🔔 Preview of the Application 🔔
 
 Here's a sneak-peek of what the application looks like: 
 
