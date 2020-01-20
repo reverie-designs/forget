@@ -9,22 +9,24 @@ Here's a sneak-peek of what the application looks like:
 
 <b>Splash Page</b>
 
-![]()
+<img src="https://github.com/reverie-designs/forget/blob/master/public/docs/splash-page.gif" alt="Forget Me Not slideshow of main features" height="450" >
 
-<b>Caregiver view</b>
+<b>Caregiver view GeoFence</b>
 
-![]()
-
-<b>Patient view</b>
-
-![]()
+<img src="https://github.com/reverie-designs/forget/blob/master/public/docs/geo-fence.gif" alt="view map with patient's current location, a safety radius and their home base location" height="450" >
 
 <b>Create Notification</b>
 
+<img src="https://github.com/reverie-designs/forget/blob/master/public/docs/create-notification.gif" alt="create a new notification by setting time, date,info and category" height="450" >
 
-![]()
+<b>Calendar View</b>
 
-<b>Calendar</b>
+<img src="https://github.com/reverie-designs/forget/blob/master/public/docs/calendar-view.gif" alt="view all notifications in the calendar" height="450" >
+
+<b>Patient view</b>
+
+<img src="https://github.com/reverie-designs/forget/blob/master/public/docs/patient-view.gif" alt="day or night display with timed greeting and notification" height="450" >
+
 
 ## 🕺Creators 💃🏻
 * [@reverie-designs](https://github.com/reverie-designs)
