@@ -7,7 +7,7 @@ import PatientNotifications from '../PatientNotifications/PatientNotifications'
 export default function PatientHomepage(props) {
 
   // Messages
-  const MORNING = "Good Morning";
+  const MORNING = "Good Morning ";
   const AFTERNOON = "Good Afternoon";
   const EVENING = "Good Evening";
   const NIGHT = "Good Night";

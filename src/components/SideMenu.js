@@ -16,6 +16,7 @@ import './SideMenu.scss';
 import {
   NavLink
 } from "react-router-dom";
+import { Avatar } from '@material-ui/core';
 
 const useStyles = makeStyles({
   list: {
@@ -71,7 +72,7 @@ export default function SideMenu(props) {
 
   return (
     <div className={classes.list}>
-      <ImageAvatars></ImageAvatars>
+      <ImageAvatars src={props.user.avatar_url}/>
       <ListItemText primary={`Hello ${props.user.name}`} className="userName"/>
       {/* <ListItemText primary={props.user.username} /> */}
          <Divider></Divider>
@@ -82,18 +83,18 @@ export default function SideMenu(props) {
             </ListItemIcon>
             <NavLink to="/settings" className="no-link-style"> <ListItemText primary="Settings" /></NavLink>  
           </ListItem>
-        <ListItem button>
+        {(props.user.is_patient === false) && <ListItem button>
         <ListItemIcon>
             <NotificationsIcon style={{ color: blue[900] }} />
           </ListItemIcon>
-        <NavLink to="/create-notification" className="no-link-style"><ListItemText primary="Create Notification" /></NavLink>
-        </ListItem>
-        <ListItem button>
+         <NavLink to="/create-notification" className="no-link-style"><ListItemText primary="Create Notification" /></NavLink>
+        </ListItem>}
+        {(props.user.is_patient === false) && <ListItem button>
         <ListItemIcon>
             <DateRangeIcon style={{ color: blue[900] }} />
           </ListItemIcon>
         <NavLink to="/calendar" className="no-link-style"><ListItemText primary="All Notifications" /></NavLink>
-        </ListItem>
+        </ListItem>}
       
          {isPatient(props.user.is_patient)}
         {/* <ListItem button>

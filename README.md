@@ -1,68 +1,85 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# ⏰ Forget Me Not ⏰ 
 
-## Available Scripts
+Forget Me Not is there to assist families with family members who have dementia. The application allows caregivers to create notifications (reminders to eat medicine, food, and about doctor's appointments) for their loved ones while also keeping track of their location. If the patient leaves the 3 KM geofence, the caregiver will receive an alert notifying them that their family member has left the safety radius. The family member with dementia will see pop up notifications on their homepage and have a day and night display to help distinguish different times of day. 
 
-In the project directory, you can run:
 
-### `npm start`
+## 🔔 Preview of the Application 🔔
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Here's a sneak-peek of what the application looks like: 
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+<b>Splash Page</b>
 
-### `npm test`
+![]()
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<b>Caregiver view</b>
 
-### `npm run build`
+![]()
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<b>Patient view</b>
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+![]()
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<b>Create Notification</b>
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![]()
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<b>Calendar</b>
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 🕺Creators 💃🏻
+* [@reverie-designs](https://github.com/reverie-designs)
+* [@fatimaaltaf](https://github.com/fatimaaltaf)
+* [@johnarvi](https://github.com/johnarvi)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## 💻 Getting Started  💻
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Install dependencies using the `npm install` command.
+2. Create an .env file using the .env.example file (you will need a google maps api key in order to run the map feature of this project)
+3. Start the web server using the `npm start` command. The app will be served at <http://localhost:5050/>.
+4. Please reffer to [forget-api](https://github.com/reverie-designs/forget-api/) for set up instructions of the database server. 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* Note that both servers must be running concurently in order for this app to work.
 
-### Code Splitting
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## ⬆️ Dependencies ⬆️
 
-### Analyzing the Bundle Size
+ * "react": "^16.12.0"
+ * "typescript": "^3.7.4"
+ * "classnames": "^2.2.6",
+ * "node-sass": "^4.13.0",
+ * "prop-types": "^15.7.2",
+ * "react-router-dom": "^5.1.2",
+ * "axios": "^0.19.0",
+ * "react-dom": "^16.12.0",
+ * "react-google-maps": "^9.4.5",
+ * "google-maps-api-loader": "1.1.1",
+ * "@date-io/date-fns": "^1.3.13",
+ * "react-scripts": "3.3.0",
+ * "react-swipeable-views": "^0.13.3",
+ * "react-tackle-box": "^2.1.0",
+ * "react-toastify": "^5.5.0",
+ 
+ * "@material-ui/core": "^4.8.3"
+ * "@material-ui/icons": "^4.5.1",
+ * "@material-ui/lab": "^4.0.0-alpha.39",
+ * "@material-ui/pickers": "^3.2.8",
+ * "material-auto-rotating-carousel": "^3.0.2",
+ * "react-big-calendar": "^0.23.0",
+ * "@testing-library/jest-dom": "^4.2.4",
+ * "@testing-library/react": "^9.4.0",
+ * "@testing-library/user-event": "^7.2.1",
+ 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+## 📌Features📌
 
-### Making a Progressive Web App
+1. Caregiver and patient connect with authentication code
+2. Caregiver can create notifications to remind patient of eating, taking medicine, and upcoming appointments.
+3. Caregiver can see location of patient while patient is at home. If they leave the 3km safety radius, the caregiver will receive an alert letting them know patient has left geofence. 
+4. Caregiver has a calendar view of past and upcoming notifications that have been set for the patient. 
+5. Patient has a greeting, and day and night mode to help distinguish between different times of the day. 
+6. Notifications pop up on patient's homepage which they can close and check as complete. 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
 
-### Advanced Configuration
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
 
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
