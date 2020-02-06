@@ -143,71 +143,51 @@ const myNotificationList = [{
 function App() {
   const {state, logout, getUser, addNotification, updateRadius, updateSettings, myEvents} = useApplicationData();
 
-  
-  // console.log("These are my events new objects", myEvents);
-  console.log(state);
 
   // const showCalendar = () => state.user && state.notifications ? state.user?: 
   return (
     <HashRouter>
-          <div>
-            <NavBar user={state.user} onClick={logout} geofence={state.geofence} updateRadius={updateRadius}/>
-            {/* <ToastifyPopUp /> */}
-            {/* <PatientNotifications todays_notifications={state.todays_notifications} /> */}
-              <div>
-              
-                  {/* <p>This is User: {state.user.name}</p> */}
-                  {}
-                </div>
-                <main>
+      <div>
+        <NavBar user={state.user} onClick={logout} geofence={state.geofence} updateRadius={updateRadius}/>
+          <main>
+            {/* MAIN PAGE */}
+              <Route exact path="/" component={()=>
+                      <Main addUser={getUser} 
+                            user={state.user} 
+                            error={state.error}  
+                            geofence={state.geofence} 
+                            settings={state.settings} 
+                            location={state.location} 
+                            getLocation={state.getLocation} 
+                            todays_notifications={state.todays_notifications} 
+                      />
+              }/>
 
-                <Route exact path="/" component={()=>
-                  // user ? Home : LandingPage
-                  <Main addUser={getUser} user={state.user} error={state.error}  geofence={state.geofence} settings={state.settings} location={state.location} getLocation={state.getLocation} todays_notifications={state.todays_notifications} />
-                  }/>
-                  {/* <Main user={user} error={error}/>
-                  }/> */}
-                {/* <Route exact path="/#/" component={() => <Main addUser={validateSignUp} user={user} error={error} />}/> */}
-                {/* <Route exact path="/sign-up" component={() => (!user) ? <SignUp addUser={validateSignUp} user={user} error={error} /> : <Redirect to="/" />}/> //old code
-                <Route exact path="/sign-in" component={() => (!user) ? <SignIn addUser={validate} user={user} error={error}/> : <Redirect to="/"/>}/> */}
-                {/* <Route exact path="/#/" component={() => <Main addUser={addUser} user={user} error={error} />}/> */}
-                <Route exact path="/sign-up" component={() => (!state.user) ? <SignUp addUser={getUser} user={state.user} error={state.error} /> : <Redirect to="/" />}/>
-                <Route exact path="/sign-in" component={() => (!state.user) ? <SignIn addUser={getUser} user={state.user} error={state.error}/> : <Redirect to="/" />}/>
-                <Route path="/cv-map" component={() => <Map  geofence={state.geofence} user={state.user} settings={state.settings} location={state.location} getLocation={state.getLocation} />}/>
-                <Route path="/settings" component={() => <PatientSettings user={state.user} settings={state.settings} updateSettings={updateSettings}/>}/>
-                <Route exact path="/calendar" component={() => <Calendar className='CalendarBox'
-                                                    localizer={localizer}
-                                                    events={state.myEvents}
-                                                    startAccessor="start"
-                                                    endAccessor="end"
-                                                    style={{height: 500}}/> }
-                />
-                <Route path="/create-notification" component={() => (state.user.is_patient === false) ? <Notification addNotification={addNotification} user={state.user} error={state.error} /> : <Redirect to="/#/"/> }/>
-             
-                  {/* <p>This is User: {user.name}</p> */}
-                  {/* <SignIn  addUser={validate} user={user} error={error}/> */}
-                  {/* <section className="notification-box">
-                      <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                        <div>
-                          <Form/>
-                        </div>
-                          
-                      </MuiPickersUtilsProvider>
-                      
-                  </section>
-                  <Map/>
-                  
-                  <Calendar
-                            className='CalendarBox'
-                            localizer={localizer}
-                            events={myNotificationList}
-                            startAccessor="start"
-                            endAccessor="end"
-                            style={{height: 500}}
-                  /> */}
-                  {/* <HomepageCarousel/> */}
-              </main>
-          </div>  
+            {/* SIGNUP PAGE */}
+              <Route exact path="/sign-up" component={() => (!state.user) ? <SignUp addUser={getUser} user={state.user} error={state.error} /> : <Redirect to="/" />}/>
+
+            {/*  LOG IN PAGE */}
+              <Route exact path="/sign-in" component={() => (!state.user) ? <SignIn addUser={getUser} user={state.user} error={state.error}/> : <Redirect to="/" />}/>
+
+            {/* MAP
+              <Route path="/cv-map" component={() => <Map  geofence={state.geofence} user={state.user} settings={state.settings} location={state.location} getLocation={state.getLocation} />}/> */}
+
+            {/* SETTINGS  */}
+              <Route path="/settings" component={() => <PatientSettings user={state.user} settings={state.settings} updateSettings={updateSettings}/>}/>
+
+            {/* CALENDAR NOTIFICATIONS */}
+              <Route exact path="/calendar" component={() => <Calendar className='CalendarBox'
+                                                  localizer={localizer}
+                                                  events={state.myEvents}
+                                                  startAccessor="start"
+                                                  endAccessor="end"
+                                                  style={{height: 500}}/> }
+              />
+
+            {/* CREATE NORIFICATION */}
+              <Route path="/create-notification" component={() => (state.user.is_patient === false) ? <Notification addNotification={addNotification} user={state.user} error={state.error} /> : <Redirect to="/#/"/> }/>
+        </main>
+      </div>  
      </HashRouter>   
   );
 }
