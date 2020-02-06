@@ -169,8 +169,6 @@ function App() {
             {/*  LOG IN PAGE */}
               <Route exact path="/sign-in" component={() => (!state.user) ? <SignIn addUser={getUser} user={state.user} error={state.error}/> : <Redirect to="/" />}/>
 
-            {/* MAP
-              <Route path="/cv-map" component={() => <Map  geofence={state.geofence} user={state.user} settings={state.settings} location={state.location} getLocation={state.getLocation} />}/> */}
 
             {/* SETTINGS  */}
               <Route path="/settings" component={() => <PatientSettings user={state.user} settings={state.settings} updateSettings={updateSettings}/>}/>
